@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~11.2.7",
     "@angular/router": "~11.2.7",
     "api-ai-javascript": "*",
+    "firebase": "^8.5.0",
     "jquery": "^3.6.0",
     "ngx-paypal": "^7.0.0",
     "rxjs": "~6.6.0",
