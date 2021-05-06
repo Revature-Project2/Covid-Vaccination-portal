@@ -1,0 +1,21 @@
+<table>
+    <thead>
+      <th>ID</th>
+      <th>name</th>
+      <th>surname</th>
+      
+    </thead>
+    <tbody>
+      <tr *ngFor="let policy of policies">
+        <td>{{policy.id}}</td>
+        <td>{{policy.name}}</td>
+        <td>{{policy.surname}}</td>
+        
+        <td>
+            <button (click)="delete(policy.id)">Delete</button>
+        </td>
+        
+       
+      </tr>
+    </tbody>
+  </table>
