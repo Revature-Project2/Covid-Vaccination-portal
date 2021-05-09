@@ -8,6 +8,17 @@ import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
 })
 export class AppComponent {
   title = 'CovidVaccinePortal';
+<<<<<<< HEAD
+=======
+  toggle = false;
+  navigation1() {
+    this.toggle = true;
+  }
+  method()
+  {
+    
+  }
+>>>>>>> 4365ba1bfd158757a1e41318f3195afe7ffa50cf
   /* public payPalConfig?: IPayPalConfig;
   showSuccess: boolean;
 

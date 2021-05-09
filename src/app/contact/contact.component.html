@@ -1,18 +1,181 @@
+<<<<<<< HEAD
 
+=======
+<div style="margin-top: 100px;"></div>
+>>>>>>> 4365ba1bfd158757a1e41318f3195afe7ffa50cf
 <div class="site-section bg-light" id="contact-section" style="background-image: url(./assets/images/slide3.jpg);">
   <div class="container">
     <div class="row mb-5">
       <div class="col-12 text-center">
         <h3 class="section-sub-title">Contact Form</h3>
+<<<<<<< HEAD
         <h2 class="section-title mb-3">Get In Touch</h2>
+=======
+        <h2 class="section-title mb-3">Book your appointment
+        </h2>
+>>>>>>> 4365ba1bfd158757a1e41318f3195afe7ffa50cf
       </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-md-7 mb-5">
 
+<<<<<<< HEAD
 
 
         <!-- <form (ngSubmit)="onSubmit(exampleForm.value)" id='theform' class="p-5 bg-white" [formGroup]="exampleForm" >
+=======
+        <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+          {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+        </button>
+        <mat-card style="min-width: 500px;min-height: 500px;padding: 20px;">
+
+          <mat-horizontal-stepper fxLayout="column" [linear]="true" #stepper>
+            <mat-step [stepControl]="firstFormGroup">
+              <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Now booking
+                </ng-template>
+                <mat-card-content>
+                  <p>
+                    The following groups are currently eligible to book COVID-19 vaccine appointments. Do not book an
+                    appointment if you’re not part of an eligible group in Peel. We’ve outlined the booking details for
+                    each group as well as what proof of eligibility you’ll need to bring to your appointment.
+                  </p>
+                  <p>
+                    You will not receive your vaccine if you do not bring the required proof of eligibility documents to
+                    the clinic or if you book an appointment and are not eligible. The information we provide is for
+                    people booking appointments in Peel.
+                  </p>
+                </mat-card-content>
+                <!-- <mat-form-field>
+                    <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                  </mat-form-field> <br> -->
+                <mat-card-content>Select Age Group:</mat-card-content>
+                <mat-list role="list">
+                  <mat-radio-group formControlName="options">
+
+                    <mat-list-item role="listitem" *ngFor="let x of radioList; let i = index">
+                      <mat-radio-button color="primary" [checked]="i == defaultSelected" [value]="i"
+                        (change)="selection = $event.value">
+                        {{x.name}}
+                      </mat-radio-button>
+                    </mat-list-item>
+                  </mat-radio-group>
+                </mat-list>
+                <!-- <mat-card style="margin-top: 0rem;font-size: smaller;">
+                      
+                      <div *ngIf="selection==0">You must be 18 years or older at the time of your vaccine appointment.
+
+                        Live in a hot spot community
+                        You can book an appointment through Ontario's booking system.
+                        
+                        The hot spot postal codes for Peel are:
+                        
+                        L4T, L4W, L4X, L4Z
+                        L5A, L5B, L5C, L5K, L5L, L5M, L5N, L5R, L5V, L5W
+                        L6P, L6R, L6S, L6T, L6V, L6W, L6X, L6Y, L6Z
+                        L7A, L7C
+                        Call Ontario's vaccine booking line at 1-833-943-3900 (TTY 1-866-797-0007) if you need help.</div>
+                      <div *ngIf="selection==1">You can book an appointment through the Region of Peel's booking system.
+
+                        The postal codes for this group are:
+                        
+                        L4V, L4Y
+                        L5E, L5G, L5H, L5J, L5S
+                        L7E, L7K
+                        If you need help booking, call the Region of Peel COVID-19 Vaccination Line at 905-791-5202, 8 a.m. to 8 p.m., 7 days a week.</div>
+                      <div *ngIf="selection==2">Appointments can be booked using Ontario's booking system. Call 1-833-943-3900 to book by phone.
+
+                        Book appointment
+                        
+                        Appointments can also be booked at a hospital-run clinic in Peel.
+                        
+                        What to bring to your appointment
+                        Proof of age - for example an Ontario health card or another form of government issued photo ID like a driver's license, passport, status card, or valid health card from another province.</div>
+                    </mat-card> -->
+
+
+
+
+
+                <div>
+                  <button mat-raised-button color="primary" matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+              <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Fill out your address</ng-template>
+                <mat-form-field >
+                  <input matInput placeholder="First Name" formControlName="firstnameCtrl" required>
+                </mat-form-field>
+                <span>&nbsp;</span>
+                <mat-form-field >
+                  <input matInput placeholder="Last Name" formControlName="lastnameCtrl" required>
+                </mat-form-field>
+                <span>&nbsp;</span>
+                <mat-form-field >
+                  <input matInput placeholder="Email" formControlName="emailCtrl" required>
+                </mat-form-field>
+                <mat-form-field >
+                  <input matInput placeholder="Phone Number" formControlName="phonenumberCtrl" required>
+                </mat-form-field>
+                <span>&nbsp;</span>
+                <mat-form-field >
+                  <input matInput placeholder="Address" formControlName="addressCtrl" required>
+                </mat-form-field>
+                <span>&nbsp;</span>
+                <mat-form-field >
+                  <input matInput placeholder="Health Card Number" formControlName="healthcardCtrl" required>
+                </mat-form-field>
+                <mat-form-field >
+                  <mat-label>Birth date</mat-label>
+                  <input matInput [matDatepicker]="picker" formControlName="datePicker" width="25%">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput name="zipCode" placeholder="Zip Code" mask='00000-0000' formControlName="postalcode">
+                  <!-- <mat-error *ngIf="f.postalcode.errors.pattern">
+                    Pattern should be <strong>M9W7B4</strong>
+                  </mat-error> 
+                  <mat-error *ngIf="f.postalcode.errors.required">
+                    PostCode is Required field.
+                  </mat-error>  -->
+                </mat-form-field><br/>
+                   
+                
+                
+                <div>
+                  <button mat-raised-button color="primary" matStepperPrevious>Back</button><span > &nbsp;</span>
+                  <button mat-raised-button color="primary" matStepperNext >Next</button>
+                  
+                </div>
+              </form>
+            </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>Booking Appointment Date</ng-template>
+              
+               <p style="font-size: 15px;">
+                <p></p><br>
+                Booking sceduling template comes here 
+               <p>loren ipsum loren ipsumloren ipsumloren ipsumloren ipsumloren ipsumloren ipsum</p>
+
+              <div style="margin-top: 350px;">
+                <button mat-raised-button color="primary" matStepperPrevious>Back</button><span>&nbsp;</span>
+                <button mat-raised-button color="primary" (click)="stepper.reset()">Reset</button><span>&nbsp;</span>
+                <button mat-raised-button color="primary" (click)="submitForm()">Submit</button>
+              </div>
+            </mat-step>
+          </mat-horizontal-stepper>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+
+<!-- <form (ngSubmit)="onSubmit(exampleForm.value)" id='theform' class="p-5 bg-white" [formGroup]="exampleForm" >
+>>>>>>> 4365ba1bfd158757a1e41318f3195afe7ffa50cf
 
 
           <h2 class="h4 text-black mb-5">Contact Form</h2>
@@ -37,7 +200,11 @@
             </div>
           </div> -->
 
+<<<<<<< HEAD
           <!-- <div class="row form-group">
+=======
+<!-- <div class="row form-group">
+>>>>>>> 4365ba1bfd158757a1e41318f3195afe7ffa50cf
 
             <div class="col-md-12">
               <label class="text-black" name="email">Email</label> <input type="email" id="email" 
@@ -64,11 +231,19 @@
             </div>
           </div> -->
 
+<<<<<<< HEAD
          <!--  <div class="row form-group">
             <div class="col-md-12">
               <input type="submit" value="Send Message" name="action" class="btn btn-black rounded-0 py-3 px-4"[disabled]="!exampleForm.valid"> -->
              <!-- //[disabled]="!exampleForm.valid"  -->
          <!--    </div>
+=======
+<!--  <div class="row form-group">
+            <div class="col-md-12">
+              <input type="submit" value="Send Message" name="action" class="btn btn-black rounded-0 py-3 px-4"[disabled]="!exampleForm.valid"> -->
+<!-- //[disabled]="!exampleForm.valid"  -->
+<!--    </div>
+>>>>>>> 4365ba1bfd158757a1e41318f3195afe7ffa50cf
           </div>
           
           
@@ -119,6 +294,7 @@
         </button>
         <a routerLink="/login" class="btn btn-link">Cancel</a>
     </div>
+<<<<<<< HEAD
 </form> -->
 
 
@@ -128,3 +304,6 @@
 
 
 
+=======
+</form> -->
+>>>>>>> 4365ba1bfd158757a1e41318f3195afe7ffa50cf
