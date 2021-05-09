@@ -11,12 +11,6 @@ import { FirebaseService } from '../services/firebase.service';
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
-<<<<<<< HEAD
-export class ContactComponent implements OnInit {
-  
-  exampleForm: FormGroup;
-
-=======
 export class ContactComponent  implements OnInit {
   isLinear = false;
   ageGroup:string;
@@ -85,7 +79,6 @@ submitForm()
 }
   /* exampleForm: FormGroup;
   
->>>>>>> 4365ba1bfd158757a1e41318f3195afe7ffa50cf
     
   constructor(
     private fb: FormBuilder,
@@ -150,11 +143,7 @@ submitForm()
         this.router.navigate(['/home']);
       }
     )
-<<<<<<< HEAD
-  }
-=======
   } */
->>>>>>> 4365ba1bfd158757a1e41318f3195afe7ffa50cf
 
 
 }

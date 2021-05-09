@@ -9,14 +9,11 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-<<<<<<< HEAD
-=======
 import { MatStepperModule } from "@angular/material/stepper";
 import {MatListModule} from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
->>>>>>> 4365ba1bfd158757a1e41318f3195afe7ffa50cf
 
 @NgModule({
   imports: [
@@ -29,9 +26,6 @@ import { MatNativeDateModule } from '@angular/material/core';
   MatTableModule,
   MatMenuModule,
   MatIconModule,
-<<<<<<< HEAD
-  MatProgressSpinnerModule
-=======
   MatToolbarModule, 
   MatButtonModule,
   MatIconModule,
@@ -44,7 +38,6 @@ import { MatNativeDateModule } from '@angular/material/core';
   MatDatepickerModule,
   MatNativeDateModule
   
->>>>>>> 4365ba1bfd158757a1e41318f3195afe7ffa50cf
   ],
   exports: [
   CommonModule,
@@ -56,9 +49,6 @@ import { MatNativeDateModule } from '@angular/material/core';
    MatTableModule, 
    MatMenuModule,
    MatIconModule,
-<<<<<<< HEAD
-   MatProgressSpinnerModule
-=======
    MatProgressSpinnerModule,
    MatToolbarModule, 
    MatButtonModule,
@@ -70,7 +60,6 @@ import { MatNativeDateModule } from '@angular/material/core';
    MatRadioModule,
    MatDatepickerModule,
    MatNativeDateModule
->>>>>>> 4365ba1bfd158757a1e41318f3195afe7ffa50cf
    ],
 })
 export class CustomMaterialModule { }
