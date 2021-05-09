@@ -19,7 +19,10 @@ import { PaymentComponent } from './payment/payment.component';
 import { ChatboxComponent } from './chatbox/chatbox.component';
 import { ChatService } from './chat.service';
 
+import { CalendarScheduleComponent } from './calendar-schedule/calendar-schedule.component';
 import { ContactComponent } from './contact/contact.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ import { ContactComponent } from './contact/contact.component';
     SliderComponent,
     PolicyListComponent,
     PaymentComponent,
-    ChatboxComponent
+    ChatboxComponent,
+    CalendarScheduleComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,11 @@ import { ContactComponent } from './contact/contact.component';
     BrowserAnimationsModule,
     CustomMaterialModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    })
   ],
   providers: [ChatService],
   bootstrap: [AppComponent]
