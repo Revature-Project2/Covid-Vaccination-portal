@@ -1,9 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-<<<<<<< HEAD
-
-const routes: Routes = [];
-=======
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactComponent } from './contact/contact.component';
 import { ContactusformComponent } from './contactusform/contactusform.component';
@@ -26,7 +22,6 @@ const routes: Routes = [
 {path:"test",component:TestvalidationComponent},
 {path:"**",component:SliderComponent},
 ];
->>>>>>> 4365ba1bfd158757a1e41318f3195afe7ffa50cf
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
