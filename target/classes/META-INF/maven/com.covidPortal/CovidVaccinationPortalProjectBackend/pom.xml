@@ -54,8 +54,6 @@
 			<artifactId>validation-api</artifactId>
 			<version>2.0.1.Final</version>
 		</dependency>
-<<<<<<< HEAD
-=======
 		
 			
 			<dependency>
@@ -64,7 +62,6 @@
   		<version>5.2.2.RELEASE</version>
   	</dependency>
 		
->>>>>>> 4bce645f164c3f68ddbc44cf7e25049c95e683f4
 	</dependencies>
 
 	<build>
