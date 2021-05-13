@@ -27,25 +27,25 @@ public class AppointmentService {
 		return aRepo.findAll();
 	}
 	
-	public List<Appointment> findByUserId(int userId){
-		return aRepo.findByUserId(userId);
-	}
+//	public List<Appointment> findByUserId(int userId){
+//		return aRepo.findByUserId(userId);
+//	}
+//	
+//	public List<Appointment> findByClinicId(int clinicId){
+//		return aRepo.findByClinicId(clinicId);
+//	}
+//	
+//	public List<Appointment> findByClinicIdAndTimeslotId(int clinicId, int timeslotId){
+//		return aRepo.findByClinicIdAndTimeslotId(clinicId, timeslotId);
+//	}
 	
-	public List<Appointment> findByClinicId(int clinicId){
-		return aRepo.findByClinicId(clinicId);
-	}
+//	public List<Appointment> findByClinicIdAndDate(int clinicId, Date date){
+//		return aRepo.findByClinicIdAndDate(clinicId, date);
+//	}
 	
-	public List<Appointment> findByClinicIdAndTimeslotId(int clinicId, int timeslotId){
-		return aRepo.findByClinicIdAndTimeslotId(clinicId, timeslotId);
-	}
-	
-	public List<Appointment> findByClinicIdAndDate(int clinicId, Date date){
-		return aRepo.findByClinicIdAndDate(clinicId, date);
-	}
-	
-	public List<Appointment> findByConfirmationNumber(int confirmationNumber){
-		return aRepo.findByConfirmationNumber(confirmationNumber);
-	}
+//	public List<Appointment> findByConfirmationNumber(int confirmationNumber){
+//		return aRepo.findByConfirmationNumber(confirmationNumber);
+//	}
 	
 	public Appointment findByAppointmentId(int appointmentId) {
 		return aRepo.findByAppointmentId(appointmentId);

@@ -31,15 +31,15 @@ public class AppointmentController {
 	
 	@GetMapping("/initial")
 	public ResponseEntity<String> insertInitialValues(){
-		List<Appointment> aList = new ArrayList<Appointment>(Arrays.asList(
-				new Appointment(1,123, 1, 222, 11, 2),
-				new Appointment(1,123, 2, 555, 11, 2),
-				new Appointment(1,124, 1, 333, 13, 4),
-				new Appointment(1,124, 2, 999, 13, 4)
-				));	
-		for(Appointment app: aList) {
-			aService.bookAppointment(app);
-		}
+//		List<Appointment> aList = new ArrayList<Appointment>(Arrays.asList(
+//				new Appointment(1,123, 1, 222, 11, 2),
+//				new Appointment(1,123, 2, 555, 11, 2),
+//				new Appointment(1,124, 1, 333, 13, 4),
+//				new Appointment(1,124, 2, 999, 13, 4)
+//				));	
+//		for(Appointment app: aList) {
+//			aService.bookAppointment(app);
+//		}
 		
 		return new ResponseEntity<String>("Initial Appointments Booked", HttpStatus.CREATED);
 	}
@@ -51,8 +51,8 @@ public class AppointmentController {
 		return new ResponseEntity<String>("Appointed Booked", HttpStatus.CREATED);
 	}
 	
-	public ResponseEntity<List<Appointment>> getAllAppointments(){
-		return new ResponseEntity<List<Appointment>>(aService.findAllAppointments(), HttpStatus.OK);
-	}
+//	public ResponseEntity<List<Appointment>> getAllAppointments(){
+//		return new ResponseEntity<List<Appointment>>(aService.findAllAppointments(), HttpStatus.OK);
+//	}
 
 }

@@ -1,16 +1,20 @@
 package com.covidportal.model;
 
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="clinic")
+@Table(name="clinics")
 public class Clinic {
 	
 	@Id
@@ -33,12 +37,18 @@ public class Clinic {
 	@Column(name="closing_time")
 	private Time closingTime;
 	
+	@OneToMany(mappedBy="clinic", fetch=FetchType.LAZY)
+	private List<Appointment> appointmentList = new ArrayList<>();
+	
+	@OneToMany(mappedBy="clinic", fetch=FetchType.LAZY)
+	private List<TimeslotJoinClinic> timeslotClinicList = new ArrayList<>();
+	
 	public Clinic() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Clinic(int clinicId, String clinicName, String clinicAddress, int numberOfBeds, Time openingTime,
-			Time closingTime) {
+			Time closingTime, List<Appointment> appointmentList, List<TimeslotJoinClinic> timeslotClinicList) {
 		super();
 		this.clinicId = clinicId;
 		this.clinicName = clinicName;
@@ -46,6 +56,8 @@ public class Clinic {
 		this.numberOfBeds = numberOfBeds;
 		this.openingTime = openingTime;
 		this.closingTime = closingTime;
+		this.appointmentList = appointmentList;
+		this.timeslotClinicList = timeslotClinicList;
 	}
 	
 	

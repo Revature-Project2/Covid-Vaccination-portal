@@ -67,7 +67,7 @@ public class User {
 	private List<Appointment> appointmentList = new ArrayList<>();
 
 	public User(String firstName, String lastName, Date dateOfBirth, String phoneNumber, String email,
-			String address, String healthCardNumber, String confirmationNumber) {
+			String address, String healthCardNumber, String confirmationNumber, List<Appointment> appointmentList) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -77,6 +77,7 @@ public class User {
 		this.address = address;
 		this.healthCardNumber = healthCardNumber;
 		this.confirmationNumber = confirmationNumber;
+		this.appointmentList = appointmentList;
 	}
 	
 	

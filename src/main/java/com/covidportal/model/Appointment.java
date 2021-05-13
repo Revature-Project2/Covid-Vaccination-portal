@@ -11,14 +11,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.AccessLevel;
 import lombok.ToString;
 
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
 @ToString
@@ -32,44 +32,97 @@ public class Appointment {
 	@Setter(AccessLevel.NONE)
 	private int appointmentId;
 	
-	@Column(name="clinic_id")
-	@Setter(AccessLevel.NONE)	
-	private int clinicId;
+//	@Column(name="clinic_id")
+//	@Setter(AccessLevel.NONE)	
+//	private int clinicId;
 	
-	@Column(name="user_id", nullable=false)
-	@Setter(AccessLevel.NONE)	
-	private int userId;
+//	@Column(name="user_id", nullable=false)
+//	@Setter(AccessLevel.NONE)	
+//	private int userId;
+//	
+//	@Column(name="timeslot_id", nullable=false)
+//	@Setter(AccessLevel.NONE)	
+//	private int timeslotId;
 	
-	@Column(name="timeslot_id", nullable=false)
-	@Setter(AccessLevel.NONE)	
-	private int timeslotId;
+//	@Column(name="appointment_status_id", nullable=false)
+//	private int appointmentStatus_id;
 	
-	@Column(name="appointment_status", nullable=false)
-	private int appointmentStatus;
-	
-	@Column(name="vaccine_id", nullable=false)
-	private int vaccineId;
+//	@Column(name="vaccine_type_id", nullable=false)
+//	private int vaccineTypeId;
 	
 	@Column(name="shot_number")
 	private int shot_number;
 	
 	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
-	@JoinColumn(name="User_FK")
+	@JoinColumn(name="clinic_id")
+	private Clinic clinic;
+	
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@JoinColumn(name="user_id")
 	private User user;
 	
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinColumn(name="Timeslot_FK")
+	@JoinColumn(name="timeslot_id")
 	private Timeslot timeslot;
 	
-	public Appointment(int clinicId, int userId, int timeslotId, int appointmentStatus,
-			int vaccineId, int shot_number) {
-		super();	
-		this.clinicId = clinicId;
-		this.userId = userId;
-		this.timeslotId = timeslotId;
-		this.appointmentStatus = appointmentStatus;
-		this.vaccineId = vaccineId;
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="appointment_status_id")
+	private AppointmentStatus appointmentStatus;
+	
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="vaccine_type_id")
+	private VaccineType vaccineType;
+
+//	public Appointment(int appointmentStatus_id, int vaccineTypeId, int shot_number, Clinic clinic, User user,
+//			Timeslot timeslot, AppointmentStatus appointmentStatus, VaccineType vaccineType) {
+//		super();
+//		this.appointmentStatus_id = appointmentStatus_id;
+//		this.vaccineTypeId = vaccineTypeId;
+//		this.shot_number = shot_number;
+//		this.clinic = clinic;
+//		this.user = user;
+//		this.timeslot = timeslot;
+//		this.appointmentStatus = appointmentStatus;
+//		this.vaccineType = vaccineType;
+//	}
+//
+//	public Appointment(int appointmentId, int appointmentStatus_id, int vaccineTypeId, int shot_number, Clinic clinic,
+//			User user, Timeslot timeslot, AppointmentStatus appointmentStatus, VaccineType vaccineType) {
+//		super();
+//		this.appointmentId = appointmentId;
+//		this.appointmentStatus_id = appointmentStatus_id;
+//		this.vaccineTypeId = vaccineTypeId;
+//		this.shot_number = shot_number;
+//		this.clinic = clinic;
+//		this.user = user;
+//		this.timeslot = timeslot;
+//		this.appointmentStatus = appointmentStatus;
+//		this.vaccineType = vaccineType;
+//	}
+	
+	public Appointment(int shot_number, Clinic clinic, User user,
+			Timeslot timeslot, AppointmentStatus appointmentStatus, VaccineType vaccineType) {
+		super();
 		this.shot_number = shot_number;
-	}	
+		this.clinic = clinic;
+		this.user = user;
+		this.timeslot = timeslot;
+		this.appointmentStatus = appointmentStatus;
+		this.vaccineType = vaccineType;
+	}
+
+	public Appointment(int appointmentId,int shot_number, Clinic clinic,
+			User user, Timeslot timeslot, AppointmentStatus appointmentStatus, VaccineType vaccineType) {
+		super();
+		this.appointmentId = appointmentId;
+		this.shot_number = shot_number;
+		this.clinic = clinic;
+		this.user = user;
+		this.timeslot = timeslot;
+		this.appointmentStatus = appointmentStatus;
+		this.vaccineType = vaccineType;
+	}
+
+
 }
 

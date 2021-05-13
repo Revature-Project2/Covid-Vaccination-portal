@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.covidportal.model.Timeslot;
+import com.covidportal.model.TimeslotJoinClinic;
+import com.covidportal.repository.TimeslotJoinClinicRepository;
 import com.covidportal.repository.TimeslotRepository;
 
 import lombok.AllArgsConstructor;
@@ -17,9 +19,14 @@ import lombok.NoArgsConstructor;
 public class TimeslotService {
 	
 	private TimeslotRepository tRepo;
+	private TimeslotJoinClinicRepository tcRepo;
 	
 	public void createTimeslot(Timeslot tslot) {
 		tRepo.save(tslot);
+	}
+	
+	public void updateTime(TimeslotJoinClinic ts) {
+		tcRepo.save(ts);
 	}
 	
 	public List<Timeslot> findAll(){
@@ -30,8 +37,8 @@ public class TimeslotService {
 		return tRepo.findByTimeslotId(timeslotId);
 	}
 	
-	public List<Timeslot> findByClinicId(int clinicId){
-		return tRepo.findByClinicId(clinicId);
-	}
+//	public List<Timeslot> findByClinicId(int clinicId){
+//		return tRepo.findByClinicId(clinicId);
+//	}
 
 }

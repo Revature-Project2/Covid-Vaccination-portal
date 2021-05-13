@@ -41,11 +41,16 @@ public class Timeslot {
 	
 	@OneToMany(mappedBy="timeslot", fetch=FetchType.LAZY)
 	private List<Appointment> appointmentList = new ArrayList<>();
+
+	@OneToMany(mappedBy="timeslot", fetch=FetchType.LAZY)
+	private List<TimeslotJoinClinic> timeslotClinicList = new ArrayList<>();
 	
-	public Timeslot( Date date, Time time) {
+	public Timeslot( Date date, Time time, List<Appointment> appointmentList, List<TimeslotJoinClinic> timeslotClinicList) {
 		super();		
 		this.date = date;
-		this.time = time;		
+		this.time = time;
+		this.appointmentList = appointmentList;
+		this.timeslotClinicList = timeslotClinicList;
 	}	
 
 }
