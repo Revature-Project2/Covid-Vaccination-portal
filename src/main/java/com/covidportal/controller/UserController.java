@@ -263,7 +263,7 @@ public class UserController {
 		//in gmail account setting please change allow less secure app to true 
 		  String host="smtp.gmail.com";  
 		  final String user="ers.register@gmail.com";
-		  final String password="1982@Cherpu";//change accordingly  
+		  final String password="";//change accordingly  
 		    
 		 
 		  
