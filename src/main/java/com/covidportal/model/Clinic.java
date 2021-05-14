@@ -13,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="clinics")
 public class Clinic {
@@ -37,10 +40,15 @@ public class Clinic {
 	@Column(name="closing_time")
 	private Time closingTime;
 	
-	@OneToMany(mappedBy="clinic", fetch=FetchType.LAZY)
+	
+	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@OneToMany(mappedBy="clinic", fetch=FetchType.EAGER)
+	@JsonBackReference
 	private List<Appointment> appointmentList = new ArrayList<>();
 	
-	@OneToMany(mappedBy="clinic", fetch=FetchType.LAZY)
+	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@OneToMany(mappedBy="clinic", fetch=FetchType.EAGER)
+	@JsonBackReference
 	private List<TimeslotJoinClinic> timeslotClinicList = new ArrayList<>();
 	
 	public Clinic() {

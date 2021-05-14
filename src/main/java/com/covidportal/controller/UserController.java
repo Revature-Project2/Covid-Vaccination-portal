@@ -5,7 +5,10 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.util.Properties;
+import java.util.Set;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -175,7 +179,54 @@ public class UserController {
 	}
 	
 	
+	@PostMapping("/managebooking")
+	public ResponseEntity<Object> manageBooking(@RequestBody LinkedHashMap<String, String> userInput) {
+		
+		Set set = userInput.entrySet();
+		String confirmationNumber="";
+		String email ="";
+
+		 // Displaying elements of LinkedHashMap
+        Iterator iterator = set.iterator();
+        while(iterator.hasNext()) {
+           Map.Entry me = (Map.Entry)iterator.next();
+           
+           if(me.getKey() == "confirmationNumberCtrl")
+        	   confirmationNumber = (String) me.getValue();
+           if(me.getKey() == "emailCtrl")
+        	   email = (String) me.getValue();
+           
+        	
+        }
+        
+       System.out.println(confirmationNumber+" " + email);
+        
+        User user = userServ.getUserByConfirmationNumberAndEmail(confirmationNumber, email);
+       System.out.println(user);
+        
+		
+    	if (user == null) {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<Object>(user, HttpStatus.OK);
+		}
+       
+      // return new ResponseEntity<String>("Testing", HttpStatus.OK);
+       
+		 
+
+		
+       //return new ResponseEntity<Object>("Email Not sent", HttpStatus.I_AM_A_TEAPOT);
+	}
 	
+	
+	
+	
+	
+	
+	
+
+
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -263,7 +314,7 @@ public class UserController {
 		//in gmail account setting please change allow less secure app to true 
 		  String host="smtp.gmail.com";  
 		  final String user="ers.register@gmail.com";
-		  final String password="";//change accordingly  
+		  final String password="1982@Cherpu";//change accordingly  
 		    
 		 
 		  

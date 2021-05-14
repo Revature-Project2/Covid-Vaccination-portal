@@ -16,6 +16,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,7 +31,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter @Setter
 @NoArgsConstructor
-@ToString
+//@ToString
 @Entity
 @Table(name="Users")
 public class User {
@@ -62,12 +67,14 @@ public class User {
 	
 	@Column(name="confirmation_number",unique=true)
 	private String confirmationNumber;
-
-	@OneToMany(mappedBy="user", fetch=FetchType.LAZY)
+	
+	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@JsonBackReference
+	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)
 	private List<Appointment> appointmentList = new ArrayList<>();
 
 	public User(String firstName, String lastName, Date dateOfBirth, String phoneNumber, String email,
-			String address, String healthCardNumber, String confirmationNumber, List<Appointment> appointmentList) {
+			String address, String healthCardNumber, String confirmationNumber , List<Appointment> appointmentList) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;

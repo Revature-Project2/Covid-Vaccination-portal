@@ -77,7 +77,7 @@ public class ClinicController {
 	}
 	
 	
-	@GetMapping("/{clinicName}")
+	@GetMapping("/abc/{clinicName}")
 	public ResponseEntity<Clinic> getClinicName(@PathVariable("clinicName") String name){
 		Clinic c = cServe.getClinicByName(name);
 		if(c==null) {
@@ -91,7 +91,7 @@ public class ClinicController {
 	public ResponseEntity<String> deleteClinicByName(@PathVariable("clinicName") String name){
 		Clinic c = cServe.getClinicByName(name);
 		
-		return new ResponseEntity<>("Clinic Deleted", HttpStatus.GONE);
+		return new ResponseEntity<String>("Clinic Deleted", HttpStatus.GONE);
 	}
 	
 	@GetMapping("/{clinicAddress}")

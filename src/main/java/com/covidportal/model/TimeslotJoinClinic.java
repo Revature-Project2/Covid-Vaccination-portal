@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,13 +37,15 @@ public class TimeslotJoinClinic {
 	@Column(name="status", nullable = false, columnDefinition = "boolean default true")
 	private boolean status;
 	
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonManagedReference
 //	@JoinColumn(name="clinic_id")
 	@MapsId("clinicId")
 	private Clinic clinic;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 //	@JoinColumn(name="timeslot_id")
+	@JsonManagedReference
 	@MapsId("timeslotId")
 	private Timeslot timeslot;
 }

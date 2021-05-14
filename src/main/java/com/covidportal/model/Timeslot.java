@@ -15,6 +15,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -39,10 +42,15 @@ public class Timeslot {
 	@Basic	
 	private Time time;	
 	
-	@OneToMany(mappedBy="timeslot", fetch=FetchType.LAZY)
+	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@JsonBackReference
+	@OneToMany(mappedBy="timeslot", fetch=FetchType.EAGER)
 	private List<Appointment> appointmentList = new ArrayList<>();
 
-	@OneToMany(mappedBy="timeslot", fetch=FetchType.LAZY)
+	
+	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@JsonBackReference
+	@OneToMany(mappedBy="timeslot", fetch=FetchType.EAGER)
 	private List<TimeslotJoinClinic> timeslotClinicList = new ArrayList<>();
 	
 	public Timeslot( Date date, Time time, List<Appointment> appointmentList, List<TimeslotJoinClinic> timeslotClinicList) {

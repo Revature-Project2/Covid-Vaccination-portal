@@ -54,5 +54,12 @@ public class UserService {
 	{
 		userRepo.delete(user);
 	}
+	public User getUserByConfirmationNumberAndEmail(String confirmationNumber, String email)
+	{
+			return userRepo.findByConfirmationNumberAndEmail(confirmationNumber, email);
+	}
+	
+	
+	
 	
 }
