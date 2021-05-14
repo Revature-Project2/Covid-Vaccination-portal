@@ -107,4 +107,28 @@ public class ClinicController {
 		
 	}
 	
+	@PostMapping("/updateclinic")
+	public ResponseEntity<Clinic> updateClinic(@RequestBody Clinic c){
+		//System.out.println("Inside update clinic "+ c);
+		String name=c.getClinicName();
+		Clinic tempClinic;
+		Clinic c1= cServe.getClinicByName(c.getClinicName());
+		//System.out.println("In Update clinic"+ c1);
+		c1.setClinicId(c1.getClinicId());
+		if(c.getClosingTime() != null)
+			c1.setClosingTime(c.getClosingTime());
+		
+		if(c.getOpeningTime() != null)
+			c1.setOpeningTime(c.getOpeningTime());
+		
+		if(c.getNumberOfBeds() > 0)
+			c1.setNumberOfBeds(c.getNumberOfBeds());
+	//	System.out.println(c1);
+		cServe.insertClinic(c1);
+	
+		return new ResponseEntity<Clinic>(cServe.getClinicByName(name), HttpStatus.OK);
+		
+	}
+	
+	
 }

@@ -123,13 +123,18 @@ public class Clinic {
 	public int getClinicId() {
 		return clinicId;
 	}
-
+	public void setClinicId(int clinicId2) {
+		// TODO Auto-generated method stub
+		
+	}
 	@Override
 	public String toString() {
 		return "Clinic [clinicId=" + clinicId + ", clinicName=" + clinicName + ", clinicAddress=" + address
 				+ ", numberOfBeds=" + numberOfBeds + ", openingTime=" + openingTime + ", closingTime=" + closingTime
 				+ "]";
 	}
+
+	
 
 	
 
