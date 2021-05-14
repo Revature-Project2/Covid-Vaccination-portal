@@ -14,15 +14,29 @@
           <nav class="site-navigation position-relative text-right" role="navigation">
 
             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-              <li><a routerLink="home" class="nav-link" >Home</a></li>
+             <!--  <li><a routerLink="home" class="nav-link" >Home</a></li>
               <li><a routerLink="aboutus" class="nav-link" >About Us</a></li>
                <!-- <li><a routerLink="price" class="nav-link">PriceList</a></li>  -->
-              <li><a routerLink="special" class="nav-link">Vaccineinfo</a></li>
+              <!--<li><a routerLink="special" class="nav-link">Vaccineinfo</a></li>
               <li><a routerLink="service" class="nav-link">Do-Don'ts</a></li>
               <li><a routerLink="test" class="nav-link">Test</a></li>
-              <!-- w -->
+            
               <li><a routerLink="contactusform" class="nav-link">Contact</a></li>
               <li class="btn btn-danger"><a  routerLink ="bookappointment"class="nav-link" style="color: white"  >Booking</a></li>  
+              <li><a routerLink="welcomeadmin" class="nav-link">Admin</a></li> -->
+              <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="home" class="nav-link" >Home</a></li>
+              <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="login" class="nav-link" >Log In</a></li>
+              <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="logout" class="nav-link" >Log Out</a></li>
+              <!-- <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="admin" class="nav-link" >Manage Appointments</a></li> -->
+              <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="manageclinics" class="nav-link" >Manage Clinics</a></li>
+              <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="aboutus" class="nav-link" >About Us</a></li>
+               
+              <li><a *ngIf="!loginService.isUserLoggedIn()"  routerLink="special" class="nav-link">Vaccineinfo</a></li>
+              <li><a *ngIf="!loginService.isUserLoggedIn()"  routerLink="service" class="nav-link">Do-Don'ts</a></li>
+              <li><a *ngIf="!loginService.isUserLoggedIn()"  routerLink="test" class="nav-link">Test</a></li>            
+             
+              <li><a *ngIf="!loginService.isUserLoggedIn()"  routerLink="contactusform" class="nav-link">Contact</a></li>
+              <li *ngIf="!loginService.isUserLoggedIn()" class="btn btn-danger"><a *ngIf="!loginService.isUserLoggedIn()"  routerLink ="bookappointment"class="nav-link" style="color: white"  >Booking</a></li>  
              </ul>
           </nav>
         </div>  
@@ -39,9 +53,8 @@
   
 
 <!-- .site-wrap -->
-<app-chatbox></app-chatbox>
-
+<!-- <app-chatbox></app-chatbox> -->
 
 
 <router-outlet></router-outlet>
-<calendar-schedule></calendar-schedule>
+<!-- <calendar-schedule></calendar-schedule> -->

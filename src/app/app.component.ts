@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +10,14 @@ import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
 export class AppComponent {
   title = 'CovidVaccinePortal';
   toggle = false;
+  constructor(public loginService:AuthService) { }
+
   navigation1() {
     this.toggle = true;
   }
   method()
   {
+    sessionStorage.setItem('admin',null)
     
   }
   /* public payPalConfig?: IPayPalConfig;

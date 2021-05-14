@@ -1,0 +1,29 @@
+.example-action-buttons {
+    padding-bottom: 20px;
+  }
+  
+  .example-headers-align .mat-expansion-panel-header-title,
+  .example-headers-align .mat-expansion-panel-header-description {
+    flex-basis: 0;
+  }
+  
+  .example-headers-align .mat-expansion-panel-header-description .mat-panel-description{
+    justify-content: space-around;
+    align-items: center;
+    
+  
+  }
+  /* .mat-expansion-panel-header{
+    margin-left: 0%;
+  } */
+  .example-headers-align .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+  
+  .clinics{
+    height: max;
+    width: 100%;
+   
+  
+  }
+  
