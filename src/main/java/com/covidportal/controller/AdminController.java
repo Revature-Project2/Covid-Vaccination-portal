@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.covidportal.model.Admin;
 import com.covidportal.model.PHash;
 import com.covidportal.service.AdminService;
+
+
 
 @RestController
 @RequestMapping(value="/admin")
@@ -109,6 +112,38 @@ public class AdminController {
 		}
 		return new ResponseEntity<Admin>(a, HttpStatus.OK);
 	}
+	
+	//Dharam code
+	
+	
+	@PostMapping("/pass")
+    public ResponseEntity<Object> getByUserNameAndPassword(@RequestBody  Admin a, BindingResult result){
+
+        System.out.println(a);
+
+        if(result.hasErrors()) {
+            System.out.println(result.getFieldError());
+            return new ResponseEntity<>(result.getFieldError().getCode() + " " + result.getFieldError().getDefaultMessage(), HttpStatus.NOT_ACCEPTABLE);
+        }
+        Admin a1 = aServe.getByUserName(a.getUserName());
+        if(a1==null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        else
+        {
+
+            ph =new PHash(a1.getPassword());
+
+
+
+            if( ph.checkPassword(a.getPassword())) {
+                  return new ResponseEntity<Object>(a1, HttpStatus.OK);
+
+            }
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
 	
 	
 }
