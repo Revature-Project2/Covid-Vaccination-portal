@@ -17,6 +17,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,6 +36,7 @@ public class VaccineType {
 	@Column(name="vaccine_type")	
 	private String vaccineType;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="vaccineType", fetch=FetchType.EAGER)
 	private List<Appointment> appointmentList = new ArrayList<>();
 
