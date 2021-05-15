@@ -1,5 +1,8 @@
 package com.covidportal.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.covidportal.model.Timeslot;
@@ -25,6 +29,36 @@ import lombok.NoArgsConstructor;
 public class TimeslotController {
 	
 	private TimeslotService tService;
+	
+	@PostMapping("/opendates")
+	public ResponseEntity<String> insertAvailableDates(@RequestParam("date1") long date1, 
+														@RequestParam("date2") long date2,
+														@RequestParam("clinic") String clinic){
+		List<Timeslot> times = new ArrayList<>();
+		for(long k=0L; k<(date2-date1); k+=600000) {
+			times.add(new Timeslot(date1+k));		
+		}
+		tService.createTimeslotAll(times, clinic);
+		return new ResponseEntity<String>("Timeslots created", HttpStatus.CREATED);
+	}
+
+	
+//	@PostMapping("/closedates")
+//	public ResponseEntity<String> closeAvailableDates(@RequestParam("date1") long date1, 
+//			@RequestParam("date2") long date2,
+//			@RequestParam("clinic") String clinic){
+//		List<Timeslot> times = new ArrayList<>();
+//		for(long k=0L; k<(date2-date1); k+=600000) {
+//			times.add(new Timeslot(date1+k));		
+//		}
+//		tService.closeTimeslotAll(times, clinic);
+//		return new ResponseEntity<String>("Timeslots created", HttpStatus.CREATED);
+//	}
+
+	//new Date(2021, 04, 15, 11,40, 00)
+	
+	
+//	@PostMapping("/closeDates")
 	
 	
 	@GetMapping("/initial")

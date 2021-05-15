@@ -11,5 +11,5 @@ public interface TimeslotRepository extends JpaRepository<Timeslot, Integer> {
 	public List<Timeslot> findAll();
 	public Timeslot findByTimeslotId(int timeslotId);
 //	public List<Timeslot> findByClinicId(int clinicId);
-    public  Timeslot findBydateTime(long datetime);
+	public  Timeslot findBydateTime(long datetime);
 }

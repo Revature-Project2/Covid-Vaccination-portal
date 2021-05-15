@@ -1,5 +1,4 @@
 package com.covidportal.model;
-
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;

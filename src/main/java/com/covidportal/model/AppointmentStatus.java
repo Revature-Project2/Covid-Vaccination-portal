@@ -12,9 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +21,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-//@ToString
+@ToString
 @Entity
 @Table(name="appointment_status")
 public class AppointmentStatus {
@@ -34,13 +31,9 @@ public class AppointmentStatus {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int appointmentStatusId;
 	
-	
 	@Column(name="appointment_status")
 	private String appointmentStatus;
 	
-	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	
-	@JsonBackReference
 	@OneToMany(mappedBy="appointmentStatus", fetch=FetchType.EAGER)
 	private List<Appointment> appointmentList = new ArrayList<>();
 

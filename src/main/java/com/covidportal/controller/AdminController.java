@@ -22,8 +22,6 @@ import com.covidportal.model.Admin;
 import com.covidportal.model.PHash;
 import com.covidportal.service.AdminService;
 
-
-
 @RestController
 @RequestMapping(value="/admin")
 @CrossOrigin(origins="*") 
@@ -33,8 +31,6 @@ public class AdminController {
 	PHash ph;
 
 	public AdminController() {
-	
-		// TODO Auto-generated constructor stub
 	}
 	
 	
@@ -43,7 +39,7 @@ public class AdminController {
 		super();
 		this.aServe = aServe;
 	}
-    
+	
 	
 	@GetMapping("/initial")
 	public ResponseEntity<String> insertInitialValues(){
@@ -113,8 +109,6 @@ public class AdminController {
 		return new ResponseEntity<Admin>(a, HttpStatus.OK);
 	}
 	
-	//Dharam code
-	
 	
 	@PostMapping("/pass")
     public ResponseEntity<Object> getByUserNameAndPassword(@RequestBody  Admin a, BindingResult result){
@@ -144,6 +138,5 @@ public class AdminController {
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
-	
 	
 }

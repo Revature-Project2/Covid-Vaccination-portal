@@ -2,12 +2,11 @@ package com.covidportal.service;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.covidportal.repository.UserRepository;
 import com.covidportal.model.User;
+import com.covidportal.repository.UserRepository;
 
 
 @Service
@@ -49,20 +48,22 @@ public class UserService {
 	{
 			return userRepo.findByConfirmationNumber(confirmationNumber);
 	}
+
+
 	
 	public void deleteUser(User user)
 	{
 		userRepo.delete(user);
 	}
-	public User getUserByConfirmationNumberAndEmail(String confirmationNumber, String email)
-	{
-			return userRepo.findByConfirmationNumberAndEmail(confirmationNumber, email);
-	}
 	
-    public User findByFirstname(String firstname)
+	public User findByFirstname(String firstname)
     {
         return userRepo.findByFirstName(firstname);
     }
 	
+	public User getUserByConfirmationNumberAndEmail(String confirmationNumber, String email)
+	{
+			return userRepo.findByConfirmationNumberAndEmail(confirmationNumber, email);
+	}
 	
 }

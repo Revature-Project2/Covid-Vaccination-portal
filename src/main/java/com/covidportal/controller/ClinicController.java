@@ -55,7 +55,7 @@ public class ClinicController {
 		
 		
 		
-		List<Clinic> cList = new ArrayList<Clinic>(Arrays.asList(new Clinic("Toronto West", "12 ABCD Drive, Toronto, L4T4E4",50,t1,t2)));
+		List<Clinic> cList = new ArrayList<Clinic>(Arrays.asList(new Clinic("north york general", "1600 pensylvania ave, washington dc",50,t1,t2)));
 		for(Clinic clinic: cList) {
 			cServe.insertClinic(clinic);
 		}
@@ -77,7 +77,7 @@ public class ClinicController {
 	}
 	
 	
-	@GetMapping("/abc/{clinicName}")
+	@GetMapping("/{clinicName}")
 	public ResponseEntity<Clinic> getClinicName(@PathVariable("clinicName") String name){
 		Clinic c = cServe.getClinicByName(name);
 		if(c==null) {
@@ -91,7 +91,7 @@ public class ClinicController {
 	public ResponseEntity<String> deleteClinicByName(@PathVariable("clinicName") String name){
 		Clinic c = cServe.getClinicByName(name);
 		
-		return new ResponseEntity<String>("Clinic Deleted", HttpStatus.GONE);
+		return new ResponseEntity<>("Clinic Deleted", HttpStatus.GONE);
 	}
 	
 	@GetMapping("/{clinicAddress}")
@@ -104,31 +104,28 @@ public class ClinicController {
 	@GetMapping("/{numberOfBeds}")
 	public ResponseEntity<List<Clinic>> getClinicByNumberOfBeds(@PathVariable("numberOfBeds") int numberOfBeds){
 		return new ResponseEntity<List<Clinic>>(cServe.getByNumberOfBeds(numberOfBeds), HttpStatus.OK);
-		
 	}
 	
-	@PostMapping("/updateclinic")
-	public ResponseEntity<Clinic> updateClinic(@RequestBody Clinic c){
-		//System.out.println("Inside update clinic "+ c);
-		String name=c.getClinicName();
-		Clinic tempClinic;
-		Clinic c1= cServe.getClinicByName(c.getClinicName());
-		//System.out.println("In Update clinic"+ c1);
-		c1.setClinicId(c1.getClinicId());
-		if(c.getClosingTime() != null)
-			c1.setClosingTime(c.getClosingTime());
-		
-		if(c.getOpeningTime() != null)
-			c1.setOpeningTime(c.getOpeningTime());
-		
-		if(c.getNumberOfBeds() > 0)
-			c1.setNumberOfBeds(c.getNumberOfBeds());
-	//	System.out.println(c1);
-		cServe.insertClinic(c1);
-	
-		return new ResponseEntity<Clinic>(cServe.getClinicByName(name), HttpStatus.OK);
-		
-	}
-	
+//	@PostMapping("/updateclinic")
+//	public ResponseEntity<Clinic> updateClinic(@RequestBody Clinic c){
+//		//System.out.println("Inside update clinic "+ c);
+//		String name=c.getClinicName();
+//		Clinic tempClinic;
+//		Clinic c1= cServe.getClinicByName(c.getClinicName());
+//		//System.out.println("In Update clinic"+ c1);
+//		c1.setClinicId(c1.getClinicId());
+//		if(c.getClosingTime() != null)
+//			c1.setClosingTime(c.getClosingTime());
+//		
+//		if(c.getOpeningTime() != null)
+//			c1.setOpeningTime(c.getOpeningTime());
+//		
+//		if(c.getNumberOfBeds() > 0)
+//			c1.setNumberOfBeds(c.getNumberOfBeds());
+//	//	System.out.println(c1);
+//		cServe.insertClinic(c1);
+//	
+//		return new ResponseEntity<Clinic>(cServe.getClinicByName(name), HttpStatus.OK);
+//	}
 	
 }

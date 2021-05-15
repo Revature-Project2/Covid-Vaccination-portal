@@ -13,7 +13,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-//@ToString
+@ToString
 @Embeddable
 public class ClinicTimeslotId implements Serializable {
 

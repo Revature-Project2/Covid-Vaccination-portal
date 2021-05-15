@@ -13,9 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +22,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-//@ToString
+@ToString
 @Entity
 @Table(name="Timeslot_Join_Clinic")
 public class TimeslotJoinClinic {
@@ -34,18 +31,33 @@ public class TimeslotJoinClinic {
 	private ClinicTimeslotId id = new ClinicTimeslotId();
 
 	
-	@Column(name="status", nullable = false, columnDefinition = "boolean default true")
-	private boolean status;
+	@Column(name="status")
+	private boolean status=true;
 	
 	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JsonManagedReference
 //	@JoinColumn(name="clinic_id")
 	@MapsId("clinicId")
 	private Clinic clinic;
 	
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 //	@JoinColumn(name="timeslot_id")
-	@JsonManagedReference
 	@MapsId("timeslotId")
 	private Timeslot timeslot;
+
+	public TimeslotJoinClinic(ClinicTimeslotId id, Clinic clinic, Timeslot timeslot) {
+		super();
+		this.id = id;
+		this.clinic = clinic;
+		this.timeslot = timeslot;
+	}
+
+	public TimeslotJoinClinic(boolean status, Clinic clinic, Timeslot timeslot) {
+		super();
+		this.status = status;
+		this.clinic = clinic;
+		this.timeslot = timeslot;
+	}
+	
+	
+	
 }

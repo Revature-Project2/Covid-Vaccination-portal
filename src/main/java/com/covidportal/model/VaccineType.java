@@ -12,9 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +21,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-//@ToString
+@ToString
 @Entity
 @Table(name="vaccine_types")
 public class VaccineType {
@@ -38,9 +35,6 @@ public class VaccineType {
 	@Column(name="vaccine_type")	
 	private String vaccineType;
 	
-	
-	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	@JsonBackReference
 	@OneToMany(mappedBy="vaccineType", fetch=FetchType.EAGER)
 	private List<Appointment> appointmentList = new ArrayList<>();
 

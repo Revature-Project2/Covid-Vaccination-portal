@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,11 +17,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,7 +27,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter @Setter
 @NoArgsConstructor
-//@ToString
+@ToString
 @Entity
 @Table(name="Users")
 public class User {
@@ -67,14 +63,12 @@ public class User {
 	
 	@Column(name="confirmation_number",unique=true)
 	private String confirmationNumber;
-	
-	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	@JsonBackReference
+
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)
 	private List<Appointment> appointmentList = new ArrayList<>();
 
 	public User(String firstName, String lastName, Date dateOfBirth, String phoneNumber, String email,
-			String address, String healthCardNumber, String confirmationNumber , List<Appointment> appointmentList) {
+			String address, String healthCardNumber, String confirmationNumber, List<Appointment> appointmentList) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -89,7 +83,12 @@ public class User {
 	
 	
 	
-
+	@Override
+    public String toString() {
+        return "User [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth="
+                + dateOfBirth + ", phoneNumber=" + phoneNumber + ", email=" + email + ", address=" + address
+                + ", healthCardNumber=" + healthCardNumber + ", confirmationNumber=" + confirmationNumber + "]";
+    }
 
 	
 	
