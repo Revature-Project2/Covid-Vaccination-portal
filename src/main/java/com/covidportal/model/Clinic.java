@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -42,12 +42,14 @@ public class Clinic {
 	
 	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@OneToMany(mappedBy="clinic", fetch=FetchType.EAGER)
-	@JsonBackReference
+	//@JsonBackReference
+	@JsonIgnore
 	private List<Appointment> appointmentList = new ArrayList<>();
 	
 	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@OneToMany(mappedBy="clinic", fetch=FetchType.EAGER)
-	@JsonBackReference
+	//@JsonBackReference
+	@JsonIgnore
 	private List<TimeslotJoinClinic> timeslotClinicList = new ArrayList<>();
 	
 	public Clinic() {
