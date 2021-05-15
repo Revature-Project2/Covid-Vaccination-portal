@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,22 +36,27 @@ public class Appointment {
 	@Column(name="shot_number")
 	private int shot_number;
 	
+	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="clinic_id")
 	private Clinic clinic;
 	
+	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	private User user;
 	
+	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="timeslot_id")
 	private Timeslot timeslot;
 	
+	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="appointment_status_id")
 	private AppointmentStatus appointmentStatus;
 	
+	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="vaccine_type_id")
 	private VaccineType vaccineType;
