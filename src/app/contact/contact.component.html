@@ -16,7 +16,7 @@
         </button>
         <mat-card style="min-width: 500px;min-height: 500px;padding: 20px;">
 
-          <mat-horizontal-stepper fxLayout="column" [linear]="true" #stepper>
+          <mat-horizontal-stepper fxLayout="column" [linear]="false" #stepper>
             <mat-step [stepControl]="firstFormGroup">
               <form [formGroup]="firstFormGroup">
                 <ng-template matStepLabel>Now booking
@@ -89,34 +89,34 @@
                 </div>
               </form>
             </mat-step>
-            <mat-step [stepControl]="secondFormGroup">
-              <form [formGroup]="secondFormGroup">
+            <mat-step [stepControl]="firstFormGroup">
+              <form [formGroup]="firstFormGroup">
                 <ng-template matStepLabel>Fill out your address</ng-template>
-                <mat-form-field >
-                  <input matInput placeholder="First Name" formControlName="firstnameCtrl" required>
+                <mat-form-field>
+                  <input matInput placeholder="First Name" formControlName="firstName" required>
                 </mat-form-field>
                 <span>&nbsp;</span>
-                <mat-form-field >
-                  <input matInput placeholder="Last Name" formControlName="lastnameCtrl" required>
+                <mat-form-field>
+                  <input matInput placeholder="Last Name" formControlName="lastName" required>
                 </mat-form-field>
                 <span>&nbsp;</span>
-                <mat-form-field >
-                  <input matInput placeholder="Email" formControlName="emailCtrl" required>
+                <mat-form-field>
+                  <input matInput placeholder="Email" formControlName="email" required>
                 </mat-form-field>
-                <mat-form-field >
-                  <input matInput placeholder="Phone Number" formControlName="phonenumberCtrl" required>
-                </mat-form-field>
-                <span>&nbsp;</span>
-                <mat-form-field >
-                  <input matInput placeholder="Address" formControlName="addressCtrl" required>
+                <mat-form-field>
+                  <input matInput placeholder="Phone Number" formControlName="phoneNumber" required>
                 </mat-form-field>
                 <span>&nbsp;</span>
-                <mat-form-field >
-                  <input matInput placeholder="Health Card Number" formControlName="healthcardCtrl" required>
+                <mat-form-field>
+                  <input matInput placeholder="Address" formControlName="address" required>
                 </mat-form-field>
-                <mat-form-field >
+                <span>&nbsp;</span>
+                <mat-form-field>
+                  <input matInput placeholder="Health Card Number" formControlName="healthCardNumber" required>
+                </mat-form-field>
+                <mat-form-field>
                   <mat-label>Birth date</mat-label>
-                  <input matInput [matDatepicker]="picker" formControlName="datePicker" width="25%">
+                  <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" width="25%">
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
@@ -128,30 +128,102 @@
                   <mat-error *ngIf="f.postalcode.errors.required">
                     PostCode is Required field.
                   </mat-error>  -->
-                </mat-form-field><br/>
-                   
-                
-                
+                </mat-form-field><br />
+
+
+
                 <div>
-                  <button mat-raised-button color="primary" matStepperPrevious>Back</button><span > &nbsp;</span>
-                  <button mat-raised-button color="primary" matStepperNext >Next</button>
-                  
+                  <button mat-raised-button color="primary" matStepperPrevious>Back</button><span> &nbsp;</span>
+                  <button mat-raised-button color="primary" matStepperNext>Next</button>
+
                 </div>
               </form>
             </mat-step>
-            <mat-step>
+            <mat-step [stepControl]="firstFormGroup">
+              <form [formGroup]="firstFormGroup">
               <ng-template matStepLabel>Booking Appointment Date</ng-template>
-              
-               <p style="font-size: 15px;">
+
+              <!-- <p style="font-size: 15px;">
                 <p></p><br>
                 Booking sceduling template comes here 
                <p>loren ipsum loren ipsumloren ipsumloren ipsumloren ipsumloren ipsumloren ipsum</p>
+        -->    <mat-list-item>
+              <p style="font-size: 15px;margin-top: 10px;">Please select Clinic near to your location:</p>
+              </mat-list-item>
+              <mat-list-item>
+              <mat-form-field appearance="fill">
+                
+                <mat-label>Choose an option</mat-label>
+                <mat-select formControlName="clinicId">
+                  <mat-option value="1">HighTech Clinic,Vaughan</mat-option>
+                  <mat-option value="2">Aradhya Clinic, Etobicoke</mat-option>
+                  <mat-option value="3">Sandhya Clinic , North York</mat-option>
+                </mat-select>
+              </mat-form-field>
+              </mat-list-item>
+              <mat-label>Select datw</mat-label>
+              <mat-list-item><mat-form-field>
+                <mat-label>Booking Date</mat-label>
+                <input matInput [matDatepicker]="picker1"  formControlName="bookdatectrl" width="25%"  (dateChange)="valueChanged($event)">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field></mat-list-item>
+              
+                <!-- <mat-radio-group aria-label="Select an option" formControlName="datePicker">
+                  <mat-list-item role = "listitem">  <mat-radio-button value="1">Option 1</mat-radio-button></mat-list-item>
+                  <mat-list-item role = "listitem">  <mat-radio-button value="1">Option 2</mat-radio-button></mat-list-item>
+                
+                </mat-radio-group> -->
+               
+                <!-- <span  *ngFor="let card of cards" style="min-width: 500px;min-height: 60px;overflow: scroll;">
+                    <mat-card [label]="card.label" style="margin-bottom: 10px;width: 35%;" formControlName="cardctrl" [(ngModel)]="carddata" appMaterialhover>{{card.label }} </mat-card> 
+                    
+                </span> -->
+
+                 <mat-card-content *ngIf="toggle">Select Available timeslot:</mat-card-content>
+                <mat-list role="list">
+                  <mat-radio-group formControlName="timeslotId">
+
+                    <mat-list-item role="listitem" *ngFor="let m of cards; let c = index">
+                      <mat-radio-button color="primary" [checked]="c == defaultSelected" [value]="c"
+                        (change)="selection = $event.value">
+                        {{m.label}}
+                      </mat-radio-button>
+                    </mat-list-item>
+                  </mat-radio-group>
+                </mat-list>
+<!-- 
+                <mat-card>
+                  <mat-card-header>
+                    <mat-card-title>Multiple Selection</mat-card-title>
+                    <mat-card-subtitle>You can select multiple items just by clicking</mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-content>
+                    <ul [cdkSelection]="selected" cdkSelectionStrategy="multiple" (selectionChange)="onSelectionChange($event)">
+                      <li *ngFor="let item of cards"><button mat-stroked-button [cdkSelectionToggle]="item.value">{{item.label}}</button></li>
+                    </ul>
+                  </mat-card-content>
+                </mat-card> -->
+                
+                <mat-card-content>Select Age Group:</mat-card-content>
+                <mat-list role="list">
+                  <mat-radio-group formControlName="vaccineId">
+
+                    <mat-list-item role="listitem" *ngFor="let n of radioListforVaccine; let a = index">
+                      <mat-radio-button color="primary" [checked]="a == defaultSelected" [value]="a"
+                        (change)="selection1 = $event.value">
+                        {{n.name}}
+                      </mat-radio-button>
+                    </mat-list-item>
+                  </mat-radio-group>
+                </mat-list>
 
               <div style="margin-top: 350px;">
                 <button mat-raised-button color="primary" matStepperPrevious>Back</button><span>&nbsp;</span>
                 <button mat-raised-button color="primary" (click)="stepper.reset()">Reset</button><span>&nbsp;</span>
                 <button mat-raised-button color="primary" (click)="submitForm()">Submit</button>
               </div>
+              </form>
             </mat-step>
           </mat-horizontal-stepper>
         </mat-card>

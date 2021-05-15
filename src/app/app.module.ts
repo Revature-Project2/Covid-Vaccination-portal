@@ -11,15 +11,15 @@ import { PriceListComponent } from './price-list/price-list.component';
 import { SpecialComponent } from './special/special.component';
 import { ServicesComponent } from './services/services.component';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
-import { HeaderComponent } from './header/header.component';
+import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './footer/footer.component';
 import { PolicyListComponent } from './policy-list/policy-list.component';
 import { SliderComponent } from './slider/slider.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ChatboxComponent } from './chatbox/chatbox.component';
 import { ChatService } from './chat.service';
-import { HttpClientModule } from '@angular/common/http';
-
+import { MaterialhoverDirective } from './materialhover.directive';
+import { CovidserviceService } from './services/covidservice.service';
 import { CalendarScheduleComponent } from './calendar-schedule/calendar-schedule.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -55,7 +55,7 @@ import { LogoutComponent } from './logout/logout.component';
     SpecialComponent,
     ServicesComponent,
     TestimonialsComponent,
-    HeaderComponent,
+   
     FooterComponent,
     SliderComponent,
     PolicyListComponent,
@@ -69,7 +69,9 @@ import { LogoutComponent } from './logout/logout.component';
     LoginComponent,
     PasswordresetComponent,
     AdminComponent,
-    LogoutComponent
+    LogoutComponent,
+    TestvalidationComponent,
+    MaterialhoverDirective
   ],
   imports: [
     BrowserModule,
@@ -88,10 +90,11 @@ import { LogoutComponent } from './logout/logout.component';
     MatCarouselModule,
     MatExpansionModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+   HttpClientModule
     
   ],
-  providers: [ChatService],
+    providers: [ChatService,CovidserviceService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

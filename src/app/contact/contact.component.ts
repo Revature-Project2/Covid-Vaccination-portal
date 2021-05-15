@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from "@angular/forms";
+import { FormArray, FormsModule } from "@angular/forms";
 import {ServiceService} from '../service.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 
 import { Router } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
+import { CovidserviceService } from '../services/covidservice.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -15,38 +17,87 @@ export class ContactComponent  implements OnInit {
   isLinear = false;
   ageGroup:string;
   panelOpenState = false;
-
   //radio button
+  cards = [];
+  toggle:boolean;
   private defaultSelected = 0;
   public selection: number =0;
+  public selection1: number =0;
+  selectionc:number=0;
+  selectionv:number=0;
   RadioButtonList:any;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-
-  constructor(private _formBuilder: FormBuilder) {}
-
+  thirdFormGroup: FormGroup;
+  carddata;
+  userForm:FormArray;
+  constructor(private _formBuilder: FormBuilder,private covidserve:CovidserviceService,private httpci:HttpClient) {}
+  
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      //firstCtrl: ['', Validators.required]
-      options: new FormControl((this.selection))
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      firstnameCtrl: ['', Validators.required],
-      lastnameCtrl: ['', Validators.required],
-      emailCtrl: ['', Validators.required],
-      phonenumberCtrl: ['', Validators.required],
-      addressCtrl: ['', Validators.required],
-      healthcardCtrl: ['', Validators.required],
-
-      datePicker: new FormControl('', [
-        Validators.required,
-        ]),
-        postalcode: new FormControl('', [
+    
+      this.firstFormGroup = this._formBuilder.group({
+        //firstCtrl: ['', Validators.required]
+        options: new FormControl((this.selection)),
+        firstName : ['', Validators.required],
+        lastName: ['', Validators.required],
+        email: ['', Validators.required],
+        phoneNumber: ['', Validators.required],
+        address: ['', Validators.required],
+        healthCardNumber: ['', Validators.required],
+  
+        dateOfBirth : new FormControl('', [
           Validators.required,
-          ])
-          // Validators.pattern('^(?!.*[DFIOQU])[A-VXY][0-9][A-Z] ?[0-9][A-Z][0-9]$')
-    });
-  }
+          ]),
+          postalcode: new FormControl('', [
+            Validators.required,
+            ]),
+
+            clinicId: ['', Validators.required],
+            bookdatectrl: ['', Validators.required],
+            //cardctrl: ['', Validators.required],
+            timeslotId: new FormControl((this.selectionc)),
+            vaccineId : new FormControl((this.selectionv))
+      })
+     
+    
+    
+    }
+  
+    
+    // this.firstFormGroup = this._formBuilder.group({
+    //   //firstCtrl: ['', Validators.required]
+    //   options: new FormControl((this.selection))
+    // });
+    // this.secondFormGroup = this._formBuilder.group({
+    //   firstName : ['', Validators.required],
+    //   lastName: ['', Validators.required],
+    //   email: ['', Validators.required],
+    //   phoneNumber: ['', Validators.required],
+    //   address: ['', Validators.required],
+    //   healthCardNumber: ['', Validators.required],
+
+    //   dateOfBirth : new FormControl('', [
+    //     Validators.required,
+    //     ]),
+    //     postalcode: new FormControl('', [
+    //       Validators.required,
+    //       ])
+    //       // Validators.pattern('^(?!.*[DFIOQU])[A-VXY][0-9][A-Z] ?[0-9][A-Z][0-9]$')
+    // });
+    // this.thirdFormGroup = this._formBuilder.group({
+    //   clinicId: ['', Validators.required],
+    //   bookdatectrl: ['', Validators.required],
+    //   //cardctrl: ['', Validators.required],
+    //   timeslotId: new FormControl((this.selectionc)),
+    //   vaccineId : new FormControl((this.selectionv))
+    //  // vacinectrl: new FormControl('', [ Validators.required, ]),
+      
+    //     //alidators.pattern('^(?!.*[DFIOQU])[A-VXY][0-9][A-Z] ?[0-9][A-Z][0-9]$')
+    // });
+  
+    
+  
+
 
   get f() { return this.secondFormGroup.controls; }
   validation_messages = {
@@ -72,10 +123,42 @@ export class ContactComponent  implements OnInit {
     { "id": 2, "name": "50 years or older" }
 ];
 
-submitForm()
+
+radioListforVaccine: { id: number, name: string }[] = [
+  { "id": 0, "name": "Fizer" },
+  { "id": 1, "name": "Madorna" },
+  { "id": 2, "name": "Astragenica" }
+];
+
+
+valueChanged(event)
 {
-  console.log(this.firstFormGroup.value);
-  console.log(this.secondFormGroup.value);
+  this.toggle = true;
+  this.cards = [{ id: 1, label: '8.00 a.m.'}, { id: 2, label: '9.00 a.m'}, { id: 3, label: '10.00 a.m'}];
+   console.log(event.value);
+   if(event.value == 'Wed May 26 2021 00:00:00 GMT-0400 (Eastern Daylight Time)')
+   {
+     console.log("date is selcted yuppe");
+   }
+}
+// submitForm()
+// {
+
+//   //console.log(this.userForm.value)
+//    console.log(this.firstFormGroup.value);
+//   // console.log(this.secondFormGroup.value);
+//   // console.log(this.thirdFormGroup.value);
+// }
+
+public submitForm(){
+  let stringFood = JSON.stringify(this.firstFormGroup.value);
+  this.covidserve.postForm(stringFood).subscribe(
+    response => {
+      console.log("this is response get from admin");
+      console.log(response);
+     
+    }
+  );
 }
   /* exampleForm: FormGroup;
   
