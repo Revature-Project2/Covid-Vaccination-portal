@@ -22,6 +22,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @AllArgsConstructor
@@ -63,7 +64,8 @@ public class User {
 	
 	@Column(name="confirmation_number",unique=true)
 	private String confirmationNumber;
-
+	
+        @JsonIgnore
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)
 	private List<Appointment> appointmentList = new ArrayList<>();
 
