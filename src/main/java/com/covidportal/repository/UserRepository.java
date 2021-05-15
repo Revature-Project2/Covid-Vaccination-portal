@@ -15,6 +15,10 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	public User findByHealthCardNumber(String healthCardNumber);
 	public User findByConfirmationNumber(String confirmationNumber);
 	public User findByConfirmationNumberAndEmail(String confirmationNumber , String email);
+<<<<<<< HEAD
     public User findByFirstName(String firstname);
+=======
+	
+>>>>>>> 957759258d9d41a78ac3e5a6c438dd30c674e972
 
 }

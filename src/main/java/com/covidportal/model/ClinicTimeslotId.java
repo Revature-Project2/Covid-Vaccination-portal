@@ -13,7 +13,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
+<<<<<<< HEAD
 //@ToString
+=======
+@ToString
+>>>>>>> 957759258d9d41a78ac3e5a6c438dd30c674e972
 @Embeddable
 public class ClinicTimeslotId implements Serializable {
 

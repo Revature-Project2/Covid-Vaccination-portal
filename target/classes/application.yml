@@ -5,15 +5,9 @@ server:
 # spring.datasource.username = username ... etc
 spring:
   datasource:
-<<<<<<< HEAD
-    url: jdbc:postgresql://database-1.cyxuqcprjao8.us-east-2.rds.amazonaws.com/vaccinedb
-    username: vaccineuser
-    password: vaccineUser
-=======
     url: jdbc:postgresql://rev-can-training.cea2fhkj4vzc.us-east-2.rds.amazonaws.com/covidvaccinedb
     username: cvdbuser
     password: password
->>>>>>> 957759258d9d41a78ac3e5a6c438dd30c674e972
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect

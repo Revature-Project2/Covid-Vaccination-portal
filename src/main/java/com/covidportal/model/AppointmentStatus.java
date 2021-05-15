@@ -24,7 +24,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
+<<<<<<< HEAD
 //@ToString
+=======
+@ToString
+>>>>>>> 957759258d9d41a78ac3e5a6c438dd30c674e972
 @Entity
 @Table(name="appointment_status")
 public class AppointmentStatus {

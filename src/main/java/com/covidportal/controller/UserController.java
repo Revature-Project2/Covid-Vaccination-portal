@@ -1,16 +1,27 @@
 package com.covidportal.controller;
 
+<<<<<<< HEAD
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+=======
+import java.sql.Date;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+>>>>>>> 957759258d9d41a78ac3e5a6c438dd30c674e972
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+<<<<<<< HEAD
 import org.apache.tomcat.util.json.ParseException;
+=======
+>>>>>>> 957759258d9d41a78ac3e5a6c438dd30c674e972
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +38,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDate;
 import java.util.Properties;
 import java.util.Set;
+<<<<<<< HEAD
 import java.util.TimeZone;
+=======
+>>>>>>> 957759258d9d41a78ac3e5a6c438dd30c674e972
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -37,6 +51,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+<<<<<<< HEAD
 import com.covidportal.model.Appointment;
 import com.covidportal.model.AppointmentStatus;
 import com.covidportal.model.Clinic;
@@ -49,17 +64,26 @@ import com.covidportal.service.ClinicService;
 import com.covidportal.service.TimeslotService;
 import com.covidportal.service.UserService;
 import com.covidportal.service.VaccineTypeService;
+=======
+import com.covidportal.model.User;
+import com.covidportal.service.UserService;
+>>>>>>> 957759258d9d41a78ac3e5a6c438dd30c674e972
 
 @RestController
 @RequestMapping(value = "/users")
 @CrossOrigin(origins = "*")
 public class UserController {
 
+<<<<<<< HEAD
 	
+=======
+	UserService userServ;
+>>>>>>> 957759258d9d41a78ac3e5a6c438dd30c674e972
 
 	public UserController() {
 
 	}
+<<<<<<< HEAD
         UserService userServ;
 	TimeslotService tserv;
 	ClinicService cServ;
@@ -180,6 +204,16 @@ public class UserController {
 
 
 
+=======
+
+	@Autowired
+	public UserController(UserService userServ) {
+		super();
+		this.userServ = userServ;
+	}
+
+	// This is tested with postmap and working
+>>>>>>> 957759258d9d41a78ac3e5a6c438dd30c674e972
 	@GetMapping("/initial")
 	public ResponseEntity<String> inserInitialValues()
 

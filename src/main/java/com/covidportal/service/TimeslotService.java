@@ -36,6 +36,7 @@ public class TimeslotService {
 	public Timeslot findByTimeslotId(int timeslotId) {
 		return tRepo.findByTimeslotId(timeslotId);
 	}
+<<<<<<< HEAD
     public Timeslot findbydateandtime(long datetime)
     {
         return tRepo.findBydateTime(datetime);
@@ -49,6 +50,8 @@ public class TimeslotService {
 //    public List<Timeslot> findByClinicId(int clinicId){
 //        return tRepo.findByClinicId(clinicId);
 //    }
+=======
+>>>>>>> 957759258d9d41a78ac3e5a6c438dd30c674e972
 	
 //	public List<Timeslot> findByClinicId(int clinicId){
 //		return tRepo.findByClinicId(clinicId);
