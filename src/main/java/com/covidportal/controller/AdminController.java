@@ -40,11 +40,7 @@ public class AdminController {
 		super();
 		this.aServe = aServe;
 	}
-<<<<<<< HEAD
     
-=======
-	
->>>>>>> 957759258d9d41a78ac3e5a6c438dd30c674e972
 	
 	@GetMapping("/initial")
 	public ResponseEntity<String> insertInitialValues(){

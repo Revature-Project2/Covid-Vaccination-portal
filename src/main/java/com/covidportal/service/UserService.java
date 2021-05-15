@@ -59,14 +59,10 @@ public class UserService {
 			return userRepo.findByConfirmationNumberAndEmail(confirmationNumber, email);
 	}
 	
-<<<<<<< HEAD
     public User findByFirstname(String firstname)
     {
         return userRepo.findByFirstName(firstname);
     }
-=======
-	
->>>>>>> 957759258d9d41a78ac3e5a6c438dd30c674e972
 	
 	
 }

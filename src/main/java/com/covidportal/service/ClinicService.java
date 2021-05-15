@@ -43,16 +43,10 @@ public class ClinicService {
 		CRepo.delete(c);
 	}
 	
-<<<<<<< HEAD
 	public List<Clinic> getByClinicId(int id) {
 		return CRepo.findByClinicId(id);
 	}
  
-=======
-	public Clinic getByClinicId(int id) {
-		return CRepo.findByClinicId(id);
-	}
->>>>>>> 957759258d9d41a78ac3e5a6c438dd30c674e972
 	
 	public List<Clinic> getByNumberOfBeds(int numberOfBeds) {
 		return CRepo.findByNumberOfBeds(numberOfBeds);

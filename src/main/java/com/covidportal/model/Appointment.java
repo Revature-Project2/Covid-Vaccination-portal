@@ -24,11 +24,7 @@ import lombok.ToString;
 //@AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-<<<<<<< HEAD
 //@ToString
-=======
-@ToString
->>>>>>> 957759258d9d41a78ac3e5a6c438dd30c674e972
 @Entity
 @Table(name="Appointments")
 public class Appointment {
@@ -135,7 +131,6 @@ public class Appointment {
 		this.appointmentStatus = appointmentStatus;
 		this.vaccineType = vaccineType;
 	}
-<<<<<<< HEAD
     public Appointment(int appointmentId, int shot_number, Clinic clinic) {
         super();
         this.appointmentId = appointmentId;
@@ -143,8 +138,6 @@ public class Appointment {
         this.clinic = clinic;
     }
 
-=======
->>>>>>> 957759258d9d41a78ac3e5a6c438dd30c674e972
 
 
 }
