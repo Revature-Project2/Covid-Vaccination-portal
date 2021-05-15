@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,11 +35,13 @@ public class TimeslotJoinClinic {
 	@Column(name="status")
 	private boolean status=true;
 	
+	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 //	@JoinColumn(name="clinic_id")
 	@MapsId("clinicId")
 	private Clinic clinic;
 	
+	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 //	@JoinColumn(name="timeslot_id")
 	@MapsId("timeslotId")
