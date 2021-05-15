@@ -1,4 +1,42 @@
 .cal-day-selected,
       .cal-day-selected:hover {
-        background-color: deeppink !important;
+        background-color: rgb(0, 132, 255) !important;
       }
+
+.unavailable-day{
+  background-color: rgb(236, 236, 236) !important;
+}
+.available-day{
+  background-color: rgb(153, 250, 218) !important;
+}
+.full-day{
+  background-color: rgb(255, 128, 128) !important;
+}
+.available-day:hover{
+  cursor: pointer;
+}
+.full-day:hover{
+  cursor: default;
+}
+.row.text-center{
+  margin:10px 0 10px 120px;
+}
+
+
+// .cal-today
+
+// .myCustomWeekClass{
+//   background-color:red;
+//   color:red;
+// }
+
+// .cal-day-columns{
+//   background-color:red;
+// }
+mwl-calendar-week-view-hour-segment{
+  display:none;
+}
+
+// .myInformer{
+//   display:none;
+// }
