@@ -154,8 +154,8 @@
               <mat-form-field appearance="fill">
                 
                 <mat-label>Choose an option</mat-label>
-                <mat-select formControlName="clinicId">
-                  <mat-option value="1">HighTech Clinic,Vaughan</mat-option>
+                <mat-select formControlName="clinicId" [(ngModel)]="clinicdefault">
+                  <mat-option value="1" >HighTech Clinic,Vaughan</mat-option>
                   <mat-option value="2">Aradhya Clinic, Etobicoke</mat-option>
                   <mat-option value="3">Sandhya Clinic , North York</mat-option>
                 </mat-select>

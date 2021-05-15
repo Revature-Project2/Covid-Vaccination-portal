@@ -22,7 +22,8 @@
           <br>                
           <br>
             <div class="col-sm-12">
-              <button type="submit" (click)=checkLogin(adminCreds) class="btn btn-primary text-center">Log In</button>
+              <button type="submit" (click)=checkLogin()   class="btn btn-primary text-center">Log In</button> 
+              <!-- [disabled]="adminCreds.invalid" -->
               <a [routerLink]="['/passwordreset']"><button type="submit" class="btn btn-primary text-center float-right">Reset Password</button></a>
              
             </div>        
