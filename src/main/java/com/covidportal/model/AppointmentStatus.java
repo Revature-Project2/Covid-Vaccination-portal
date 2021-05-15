@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,6 +34,7 @@ public class AppointmentStatus {
 	@Column(name="appointment_status")
 	private String appointmentStatus;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="appointmentStatus", fetch=FetchType.EAGER)
 	private List<Appointment> appointmentList = new ArrayList<>();
 
