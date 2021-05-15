@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
@@ -38,10 +38,14 @@ public class Timeslot {
 //	@Column(name="time")// Type time
 ////	@Basic	
 //	private String time;	
-	@JsonBackReference
+	
+	@JsonIgnore
+	//@JsonBackReference
 	@OneToMany(mappedBy="timeslot", fetch=FetchType.EAGER)
 	private List<Appointment> appointmentList = new ArrayList<>();
-	@JsonBackReference
+	
+	@JsonIgnore
+	//@JsonBackReference
 	@OneToMany(mappedBy="timeslot", fetch=FetchType.EAGER)
 	private List<TimeslotJoinClinic> timeslotClinicList = new ArrayList<>();
 	
