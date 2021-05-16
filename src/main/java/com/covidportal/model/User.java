@@ -65,7 +65,7 @@ public class User {
 	@Column(name="confirmation_number",unique=true)
 	private String confirmationNumber;
 	
-        @JsonIgnore
+    @JsonIgnore
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)
 	private List<Appointment> appointmentList = new ArrayList<>();
 

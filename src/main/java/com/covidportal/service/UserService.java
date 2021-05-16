@@ -24,8 +24,13 @@ public class UserService {
 		this.userRepo = userRepo;
 	}
 
+	public void deleteByUserId(int id) {
+		userRepo.deleteByUserId(id);
+	}
 	
-	
+	public User findByUserId(int userId) {
+		return userRepo.findByUserId(userId);
+	}
 	
 	public List<User> findAll()
 	{

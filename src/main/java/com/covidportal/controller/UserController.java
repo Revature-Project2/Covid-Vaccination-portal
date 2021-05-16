@@ -47,6 +47,7 @@ import com.covidportal.service.VaccineTypeService;
 
 @RestController
 @RequestMapping(value = "/users")
+//@CrossOrigin(origins = "http://localhost:4200")
 @CrossOrigin(origins = "*")
 public class UserController {
 
@@ -79,7 +80,8 @@ public class UserController {
 
 	// This is tested with postmap and working
 
-
+	
+	
 	@PostMapping("/saveuserandappointment")
 	public ResponseEntity<Object> insertUserandappointment(@RequestBody LinkedHashMap<String, String> formdata)
 			throws ParseException, java.text.ParseException {
@@ -272,16 +274,16 @@ public class UserController {
 	//
 	// This is working.Tested with postmap
 
-	@DeleteMapping("/{healthCardNumber}")
-	public ResponseEntity<String> deleteUser(@PathVariable("healthCardNumber") String cardNumber) {
-
-		User user = userServ.getUserByHealthCardNumber(cardNumber);
-		System.out.println("In dlete method" + user);
-		userServ.deleteUser(user);
-		return new ResponseEntity<String>("User Deleted", HttpStatus.GONE);
-
-	}
-	
+//	@DeleteMapping("/{healthCardNumber}")
+//	public ResponseEntity<String> deleteUser(@PathVariable("healthCardNumber") String cardNumber) {
+//
+//		User user = userServ.getUserByHealthCardNumber(cardNumber);
+//		System.out.println("In dlete method" + user);
+//		userServ.deleteUser(user);
+//		return new ResponseEntity<String>("User Deleted", HttpStatus.GONE);
+//
+//	}
+//	
 	
 	
 	@GetMapping("/email/{email}") 
@@ -298,9 +300,9 @@ public class UserController {
 	}
 	
 	
-	@PostMapping("/managebooking")
-	public ResponseEntity<Object> manageBooking(@RequestBody LinkedHashMap<String, String> userInput) {
-		
+	@PostMapping("/cancelbooking")
+	public ResponseEntity<List<Appointment>> manageBooking(@RequestBody LinkedHashMap<String, String> userInput) {
+		List<Appointment> aList = new ArrayList<>();
 		Set set = userInput.entrySet();
 		String confirmationNumber="";
 		String email ="";
@@ -310,7 +312,7 @@ public class UserController {
         while(iterator.hasNext()) {
            Map.Entry me = (Map.Entry)iterator.next();
            
-           if(me.getKey() == "confirmationNumberCtrl")
+           if(me.getKey() == "confirmationCodeCtrl")
         	   confirmationNumber = (String) me.getValue();
            if(me.getKey() == "emailCtrl")
         	   email = (String) me.getValue();
@@ -327,7 +329,11 @@ public class UserController {
     	if (user == null) {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		} else {
-			return new ResponseEntity<Object>(user, HttpStatus.OK);
+			aList = appServ.findByUserId(user.getUserId());
+			for(Appointment list : aList) {
+				System.out.println(list.getTimeslot().getDateTime());
+			}
+			return new ResponseEntity<List<Appointment>>(aList, HttpStatus.OK);
 		}
        
       // return new ResponseEntity<String>("Testing", HttpStatus.OK);
@@ -340,8 +346,62 @@ public class UserController {
 	
 	
 	
-	
-	
+//	@PostMapping("/delete")
+//	public ResponseEntity<String> deleteBookings(@RequestBody LinkedHashMap<String, String> userInput) {
+//		
+//		List<Appointment> aList = new ArrayList<>();
+//		
+//		Set set = userInput.entrySet();
+//		String id="";
+//		//String email ="";
+//		System.out.println("1");
+//		 // Displaying elements of LinkedHashMap
+//        Iterator iterator = set.iterator();
+//        while(iterator.hasNext()) {
+//           Map.Entry me = (Map.Entry)iterator.next();
+//           
+//           if(me.getKey() == "id")
+//        	   id = (String) me.getValue();
+//           System.out.println("inside");   
+//        	
+//        }
+//		
+//		
+//		
+//		
+//		aList = appServ.findByUserId(Integer.parseInt(id));
+//		
+//		
+//		System.out.println("2");
+//		if(aList.size() > 0) {
+//			for(Appointment list : aList) {			
+//				appServ.deleteByAppointmentId(list.getAppointmentId());
+//			}	
+//		}
+//		System.out.println("3");
+//		userServ.deleteByUserId(Integer.parseInt(id));
+//		System.out.println("4");
+//		return new ResponseEntity<String>("Both appointments cancelled successfully!", HttpStatus.GONE);
+//
+//	}
+	@PostMapping("/{id}")
+	public ResponseEntity<String> deleteBookings(@PathVariable("id") int id) {
+		
+		List<Appointment> aList = new ArrayList<>();
+		
+		aList = appServ.findByUserId(id);
+		
+		if(aList.size() > 0) {
+			for(Appointment list : aList) {			
+				appServ.deleteByAppointmentId(list.getAppointmentId());
+			}	
+		}
+		
+		userServ.deleteByUserId(id);
+		
+		return new ResponseEntity<String>("Both appointments cancelled successfully!", HttpStatus.GONE);
+
+	}
 	
 	
 

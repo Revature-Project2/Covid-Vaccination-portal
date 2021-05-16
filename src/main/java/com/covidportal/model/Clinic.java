@@ -128,12 +128,12 @@ public class Clinic {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
-	public String toString() {
-		return "Clinic [clinicId=" + clinicId + ", clinicName=" + clinicName + ", clinicAddress=" + address
-				+ ", numberOfBeds=" + numberOfBeds + ", openingTime=" + openingTime + ", closingTime=" + closingTime
-				+ "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Clinic [clinicId=" + clinicId + ", clinicName=" + clinicName + ", clinicAddress=" + address
+//				+ ", numberOfBeds=" + numberOfBeds + ", openingTime=" + openingTime + ", closingTime=" + closingTime
+//				+ "]";
+//	}
 
 	
 

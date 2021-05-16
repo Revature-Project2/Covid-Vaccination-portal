@@ -17,16 +17,26 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(onConstructor=@__(@Autowired))
 public class AppointmentService {
 	
-	private AppointmentRepository aRepo;	
+	private AppointmentRepository aRepo;
+	private UserService uService;
 	
 	public void bookAppointment(Appointment appointment) {
 		 aRepo.save(appointment);
 	}
 	
+	public void deleteByAppointmentId(int id) {
+		aRepo.deleteByAppointmentId(id);
+	}
 	public List<Appointment> findAllAppointments(){
 		return aRepo.findAll();
 	}
+	public List<Appointment> findByUserId(int userId){		
+		return aRepo.findByUser(uService.findByUserId(userId));
+	}
 	
+	public List<Appointment> getByUserId(int userId){
+		return aRepo.findByUserId(userId);
+	}
 //	public List<Appointment> findByUserId(int userId){
 //		return aRepo.findByUserId(userId);
 //	}

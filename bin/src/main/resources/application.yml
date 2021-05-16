@@ -1,13 +1,13 @@
 # yaml stands for (YAML aint Markup Language)it uses whitespace and nesting for its properties
 server:
-  port: 9010
+  port: 9096
 #if this was .properties spring.datasource.url = your url
 # spring.datasource.username = username ... etc
 spring:
   datasource:
-    url: jdbc:postgresql://rev-can-training.cm4hyuqs05se.us-east-1.rds.amazonaws.com:5432/covidvaccinedb
-    username: cvdbuser
-    password: password
+    url: jdbc:postgresql://rev-can-training.cevrrymkkbmb.us-east-2.rds.amazonaws.com/project2db
+    username: project2user
+    password: passw0rd123
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
