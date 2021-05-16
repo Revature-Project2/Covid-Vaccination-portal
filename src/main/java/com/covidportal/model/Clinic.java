@@ -80,6 +80,17 @@ public class Clinic {
 		this.openingTime = openingTime;
 		this.closingTime = closingTime;
 	}
+	
+	public Clinic(int clinicId, String clinicName, String clinicAddress, int numberOfBeds, Time openingTime,
+			Time closingTime) {
+		super();
+		this.clinicId = clinicId;
+		this.clinicName = clinicName;
+		this.address = clinicAddress;
+		this.numberOfBeds = numberOfBeds;
+		this.openingTime = openingTime;
+		this.closingTime = closingTime;
+	}
 
 	public String getClinicName() {
 		return clinicName;
@@ -128,6 +139,8 @@ public class Clinic {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 //	@Override
 //	public String toString() {
 //		return "Clinic [clinicId=" + clinicId + ", clinicName=" + clinicName + ", clinicAddress=" + address
