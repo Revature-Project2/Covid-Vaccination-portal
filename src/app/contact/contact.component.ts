@@ -30,6 +30,7 @@ export class ContactComponent  implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   carddata;
+  clinicdefault = 1;
   userForm:FormArray;
   constructor(private _formBuilder: FormBuilder,private covidserve:CovidserviceService,private httpci:HttpClient) {}
   
@@ -52,7 +53,7 @@ export class ContactComponent  implements OnInit {
             Validators.required,
             ]),
 
-            clinicId: ['', Validators.required],
+            clinicId: new FormControl((this.clinicdefault)),
             bookdatectrl: ['', Validators.required],
             //cardctrl: ['', Validators.required],
             timeslotId: new FormControl((this.selectionc)),

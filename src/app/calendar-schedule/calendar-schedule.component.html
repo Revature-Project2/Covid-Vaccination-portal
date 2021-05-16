@@ -1,14 +1,4 @@
-<!-- <mwl-calendar-month-view [viewDate]="viewDate" id="calendar-section">
-</mwl-calendar-month-view>
-
-<mwl-calendar-week-view [viewDate]="viewDate">
-</mwl-calendar-week-view>
-<mwl-calendar-day-view [viewDate]="viewDate">
-</mwl-calendar-day-view> -->
-
-
-<div class="alert alert-info">
-    Click on a day or time slot on the view.
+<div class="alert alert-danger myInformer">
     <strong *ngIf="clickeddDate"
       >You clicked on this time: {{ clickeddDate | date:'medium' }}</strong
     >
@@ -16,9 +6,9 @@
       >You clicked on this column: {{ clickedColumn }}</strong
     >
   </div>
-  <div>{{title | date:'medium'}}</div>
+ 
 
-<div class="row text-center">
+<div class="row text-center" >
 
     <div class="col-md-4">
         <div class="btn-group">
@@ -33,46 +23,51 @@
             </div>
         </div>
     </div>
-    
+     <div >{{title | date:'medium'}}</div>
 
     <div class="col-md-4">
         <div class="btn-group">
-            <div class="btn btn-primary" (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month">
+            <div class="btn btn-primary" (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month" >
                 Month
             </div>
             <div class="btn btn-primary" (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week">
                 Week
-            </div>
-            <div class="btn btn-primary" (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day">
-                Day
             </div>
         </div>
     </div>
 </div>
 
 
-<!-- <mwl-calendar-month-view [viewDate]="viewDate" id="calendar-section">
-</mwl-calendar-month-view> -->
+
 <div [ngSwitch]="view" id="calendar-section" style="max-width:1000px; margin:20px auto 20px auto;">
 
     <!-- <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events" (columnHeaderClicked)="clickedColumn = $event.isoDayNumber" (dayClicked)="dayClicked($event.day)" > -->
-    <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" 
-        [events]="events" (columnHeaderClicked)="clickedColumn = $event.isoDayNumber" 
-        (beforeViewRender)="beforeMonthViewRender($event)" 
-        (dayClicked)="dayClicked($event.day)" >
-    </mwl-calendar-month-view>
+        <!-- <app-day-status>  -->
+        <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" 
+            [events]="events" (columnHeaderClicked)="clickedColumn = $event.isoDayNumber" 
+            (beforeViewRender)="beforeMonthViewRender($event)" 
+            (dayClicked)="MonthDayClicked($event.day)" >
+        </mwl-calendar-month-view>
+        <!-- (mouseover)="mouseHovered($event)" -->
+    <!-- </app-day-status> -->
+        <!-- [title]="dayStatus($event.day)" -->
 
     <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [hourSegments]="6" [dayStartHour]="startHour"
-    [dayEndHour]="closeHour" [viewDate]="viewDate" [events]="events" (dayHeaderClicked)="clickeddDate = $event.day.date"
-    (hourSegmentClicked)="clickedDate = $event.date;" (click)="secClick()" (beforeViewRender)="beforeWeekOrDayViewRender($event)"
-    (hourSegmentClicked)="hourSegmentClicked($event.date)">
+    [dayEndHour]="closeHour" [viewDate]="viewDate"  (dayHeaderClicked)="clickeddDate = $event.day.date"
+    (hourSegmentClicked)="weekHourClicked($event)" (beforeViewRender)="beforeWeekOrDayViewRender($event)">
     </mwl-calendar-week-view>
 
-    <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [hourSegments]="6" [dayStartHour]="startHour"
-    [dayEndHour]="closeHour" [viewDate]="viewDate" [events]="events" (hourSegmentClicked)="myMethod($event.date)">
-    <!-- [dayEndHour]="closeHour" [viewDate]="viewDate" [events]="events" (hourSegmentClicked)="clickeddDate = $event.date"> -->
-    (beforeViewRender)="beforeWeekOrDayViewRender($event)"
-    (hourSegmentClicked)="hourSegmentClicked($event.date)"
-    </mwl-calendar-day-view>
-
 </div>
+
+
+<form>
+    <div>
+        <label for="clinic">clinic</label>
+        <input id="clinic" [value]="clinic">
+    </div>
+    <div>
+        <label for="AppointmentTime">Appointment Time</label>
+        <input id="AppointmentTime" [value]="bookingTime | date:'medium'" disabled>
+    </div>
+    <button type="submit" >Book Appointment</button>
+</form>
