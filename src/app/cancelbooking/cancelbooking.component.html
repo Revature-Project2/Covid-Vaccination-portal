@@ -1,0 +1,66 @@
+<!-- <p style="margin-top: 200px;">managebooking works!</p> -->
+
+<div class="site-section bg-light" id="contact-section" style="background-image: url(./assets/images/slide3.jpg);">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h3 class="section-sub-title"></h3>
+        <h2 class="section-title mb-3">
+        </h2>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-7 mb-5">
+        <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+          {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+        </button>
+        <mat-card style="min-width: 500px;min-height: 500px;padding: 20px;">
+          <mat-horizontal-stepper fxLayout="column" [linear]="true" #stepper>
+            <mat-step [stepControl]="firstFormGroup">
+                <form [formGroup]="firstFormGroup">
+                  <ng-template matStepLabel>Cancel Booking
+                  </ng-template>
+                  <br><br><br>
+                  <mat-form-field >
+                    <input matInput placeholder="Confirmation Code" formControlName="confirmationCodeCtrl" required>
+                  </mat-form-field>
+                  <span>&nbsp;</span>
+                  <br><br>
+                  <mat-form-field >
+                    <input matInput placeholder="Email" formControlName="emailCtrl" required>
+                  </mat-form-field>
+               
+                <div>
+                    <button mat-raised-button color="primary" (click)=submitForm(firstFormGroup) matStepperNext>Submit</button>
+                </div>
+              </form>
+            </mat-step>
+       
+            <mat-step>
+              <ng-template matStepLabel>Confirm Cancellation</ng-template>
+               <p style="font-size: 15px;">
+                <p></p><br>
+               
+               <h4><b>Your Appointment Details</b></h4>
+               <h5> <b> Booking Clinic:</b> {{clinicName}}</h5>
+               <p><u><b>Your First Booking</b></u></p>
+               <h5> <b> Booking Date:</b> {{ date }}</h5>
+               <h5> <b> Booking Time: </b>  {{ time }}</h5>
+               <p><u><b>Your Second Booking</b></u></p>
+               <h5> <b> Booking Date:</b> {{ date1 }}</h5>
+               <h5> <b> Booking Time: </b>  {{ time1 }}</h5>
+                <p style="color:green">{{displaySuccess}}</p>
+              <div style="margin-top: 25px;">
+                <!-- <button mat-raised-button color="primary" matStepperPrevious>Back</button><span>&nbsp;</span> -->
+                <button class="btn btn-danger"  (click)="submitForm1()" >Cancel Booking</button><span>&nbsp;</span>
+                <!-- <button mat-raised-button color="primary" (click)="submitForm()">Submit</button> -->
+              </div>
+            </mat-step>
+          </mat-horizontal-stepper>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+

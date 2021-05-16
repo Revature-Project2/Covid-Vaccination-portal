@@ -17,6 +17,7 @@ import { TestvalidationComponent } from './testvalidation/testvalidation.compone
 import { WelcomeAdminComponent } from './welcome-admin/welcome-admin.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ManageClinicsComponent } from './manage-clinics/manage-clinics.component';
+import { CancelbookingComponent } from './cancelbooking/cancelbooking.component';
 
 const routes: Routes = [
 {path:"aboutus",component:AboutUsComponent},
@@ -35,6 +36,7 @@ const routes: Routes = [
 {path:"admin",component:AdminComponent ,canActivate:[AuthGaurdService]},
 {path:"logout", component:LogoutComponent ,canActivate:[AuthGaurdService]}, 
 {path:"manageclinics",component:ManageClinicsComponent},
+{path:"cancelbooking",component:CancelbookingComponent},
 {path:"**",component:SliderComponent}
 
 ];

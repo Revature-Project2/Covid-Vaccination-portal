@@ -42,6 +42,7 @@ import { LoginComponent } from './login/login.component';
 import { PasswordresetComponent } from './passwordreset/passwordreset.component';
 import { AdminComponent } from './admin/admin.component';
 import { LogoutComponent } from './logout/logout.component';
+import { CancelbookingComponent } from './cancelbooking/cancelbooking.component';
 
 
 
@@ -71,7 +72,8 @@ import { LogoutComponent } from './logout/logout.component';
     AdminComponent,
     LogoutComponent,
     TestvalidationComponent,
-    MaterialhoverDirective
+    MaterialhoverDirective,
+    CancelbookingComponent
   ],
   imports: [
     BrowserModule,
