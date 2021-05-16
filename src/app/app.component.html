@@ -1,19 +1,4 @@
 <div class="site-wrap">
-<<<<<<< HEAD
- 
-<div class="site-mobile-menu site-navbar-target">
-  <div class="site-mobile-menu-header">
-    <div class="site-mobile-menu-close mt-3">
-      <span class="icon-close2 js-menu-toggle"></span>
-    </div>
-  </div>
-  <div class="site-mobile-menu-body"></div>
-</div>
-
-<div class="site-wrap">
-
-=======
->>>>>>> e37b90d1ce07f8732f04127f3d2b33de0f014ec8
   <div class="site-mobile-menu site-navbar-target">
     <div class="site-mobile-menu-header">
       <div class="site-mobile-menu-close mt-3">
@@ -72,19 +57,9 @@
          <div class="col-12 col-md-12 d-none d-xl-block">
           <nav class="site-navigation position-relative text-right" role="navigation">
 
-            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-             <!--  <li><a routerLink="home" class="nav-link" >Home</a></li>
-              <li><a routerLink="aboutus" class="nav-link" >About Us</a></li>
-               <!-- <li><a routerLink="price" class="nav-link">PriceList</a></li>  -->
-              <!--<li><a routerLink="special" class="nav-link">Vaccineinfo</a></li>
-              <li><a routerLink="service" class="nav-link">Do-Don'ts</a></li>
-              <li><a routerLink="test" class="nav-link">Test</a></li>
-            
-              <li><a routerLink="contactusform" class="nav-link">Contact</a></li>
-              <li class="btn btn-danger"><a  routerLink ="bookappointment"class="nav-link" style="color: white"  >Booking</a></li>  
-              <li><a routerLink="welcomeadmin" class="nav-link">Admin</a></li> -->
+            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">             
               <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="home" class="nav-link" >Home</a></li>
-              <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="login" class="nav-link" >Log In</a></li>
+              <!-- <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="login" class="nav-link" >Log In</a></li> -->
               <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="logout" class="nav-link" >Log Out</a></li>
               <!-- <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="admin" class="nav-link" >Manage Appointments</a></li> -->
               <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="manageclinics" class="nav-link" >Manage Clinics</a></li>
@@ -92,9 +67,9 @@
                
               <li><a *ngIf="!loginService.isUserLoggedIn()"  routerLink="special" class="nav-link">Vaccineinfo</a></li>
               <li><a *ngIf="!loginService.isUserLoggedIn()"  routerLink="service" class="nav-link">Do-Don'ts</a></li>
-              <li><a *ngIf="!loginService.isUserLoggedIn()"  routerLink="test" class="nav-link">Test</a></li>            
+              <!-- <li><a *ngIf="!loginService.isUserLoggedIn()"  routerLink="test" class="nav-link">Test</a></li>             -->
              
-              <li><a *ngIf="!loginService.isUserLoggedIn()"  routerLink="contactusform" class="nav-link">Contact</a></li>
+              <!-- <li><a *ngIf="!loginService.isUserLoggedIn()"  routerLink="contactusform" class="nav-link">Contact</a></li> -->
               <li *ngIf="!loginService.isUserLoggedIn()" class="btn btn-success"><a *ngIf="!loginService.isUserLoggedIn()"  routerLink ="bookappointment"class="nav-link" style="color: white"  >Booking</a></li>  
               &nbsp;
               <li *ngIf="!loginService.isUserLoggedIn()" class="btn btn-danger"><a *ngIf="!loginService.isUserLoggedIn()"  routerLink ="cancelbooking"class="nav-link" style="color: white"  >Cancel Booking</a></li> 
@@ -119,9 +94,4 @@
 
 
 <router-outlet></router-outlet>
-<<<<<<< HEAD
- <!-- <calendar-schedule></calendar-schedule>  -->
- <div class="content" style="display: block;"><span>CovidVaccinePortal app is running!</span> </div>
-=======
-<calendar-schedule  ></calendar-schedule>
->>>>>>> e37b90d1ce07f8732f04127f3d2b33de0f014ec8
+<!-- <calendar-schedule  ></calendar-schedule> -->

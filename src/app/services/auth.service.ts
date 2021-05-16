@@ -9,21 +9,11 @@ import { FormGroup } from '@angular/forms';
 })
 export class AuthService {
 
-  private urlBase = "http://localhost:9096/admin/pass";
+  private urlBase = "http://localhost:9010/admin/pass";
   private httpCli : HttpClient;  
   constructor(httpCli: HttpClient) { 
     this.httpCli = httpCli;
   }
-
-  // public getAdmin(): Observable<Admin[]>{
-  //   const httpHead={
-  //     headers: new HttpHeaders({
-  //       'Content-Type': 'application/json',
-  //       'Access-Control-Allow-Origin':'*'
-  //     })
-  //   };
-  //   return this.httpCli.get<Admin[]>(this.urlBase, httpHead);
-  // }
 
   authenticate(admin) : Observable<Admin>{
       const httpHead={
