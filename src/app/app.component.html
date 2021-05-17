@@ -58,19 +58,19 @@
           <nav class="site-navigation position-relative text-right" role="navigation">
 
             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">             
-              <li class="btn btn-success" *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()" routerLink="home" class="nav-link" style="color: white" >Home</a></li>
+              <li class="btn btn-secondary" *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()" routerLink="home" class="nav-link" style="color: white" >Home</a></li>
               <!-- <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="login" class="nav-link" >Log In</a></li> -->
-              <li  class="btn btn-success"><a *ngIf="loginService.isUserLoggedIn()" routerLink="logout" class="nav-link" >Log Out</a></li>
+              <li  class="btn btn-secondary" *ngIf="!loginService.isUserLoggedIn() && isInLogin()"><a *ngIf="!loginService.isUserLoggedIn() && isInLogin()" routerLink="logout" class="nav-link" >Log Out</a></li>
               <!-- <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="admin" class="nav-link" >Manage Appointments</a></li> -->
-              <li class="btn btn-success"><a *ngIf="loginService.isUserLoggedIn()" routerLink="manageclinics" class="nav-link" >Manage Clinics</a></li>
-              <li class="btn btn-success" *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()" routerLink="aboutus" class="nav-link"  style="color: white" >About Us</a></li>
+              <li class="btn btn-secondary" *ngIf="!loginService.isUserLoggedIn() && isInLogin()"><a *ngIf="!loginService.isUserLoggedIn() && isInLogin()" routerLink="manageclinics" class="nav-link" >Manage Clinics</a></li>
+              <li class="btn btn-secondary" *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()" routerLink="aboutus" class="nav-link"  style="color: white" >About Us</a></li>
                
               <!-- <li><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"  routerLink="special" class="nav-link">Vaccineinfo</a></li> -->
               <!-- <li><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"  routerLink="service" class="nav-link">Do-Don'ts</a></li> -->
               <!-- <li><a *ngIf="!loginService.isUserLoggedIn()"  routerLink="test" class="nav-link">Test</a></li>             -->
              
               <!-- <li><a *ngIf="!loginService.isUserLoggedIn()"  routerLink="contactusform" class="nav-link">Contact</a></li> -->
-              <li *ngIf="!loginService.isUserLoggedIn() && !isInLogin()" class="btn btn-success"><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"  routerLink ="bookappointment"class="nav-link" style="color: white"  >Booking</a></li>  
+              <li *ngIf="!loginService.isUserLoggedIn() && !isInLogin()" class="btn btn-secondary"><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"  routerLink ="bookappointment"class="nav-link" style="color: white"  >Booking</a></li>  
             
               <li *ngIf="!loginService.isUserLoggedIn() && !isInLogin()" class="btn btn-danger"><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"  routerLink ="cancelbooking"class="nav-link" style="color: white"  >Cancel Booking</a></li> 
                   
@@ -78,9 +78,9 @@
           </nav>
         </div>  
 
-      <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#"
+      <!-- <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#"
             class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
-        </div>
+        </div> -->
 
       </div>
     </div>

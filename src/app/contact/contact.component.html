@@ -1,19 +1,19 @@
 <div style="margin-top: 100px;"></div>
 <div class="site-section bg-light" id="contact-section" style="background-image: url(./assets/images/slide3.jpg);">
   <div class="container">
-    <!-- <div class="row mb-5">
+    <div class="row mb-5">
       <div class="col-12 text-center">
         <h3 class="section-sub-title">Contact Form</h3>
-        <h2 class="section-title mb-3">Book your appointment1
+        <h2 class="section-title mb-3">Book your appointment
         </h2>
       </div>
-    </div> -->
+    </div>
     <div class="row justify-content-center">
       <div class="col-md-7 mb-5">
 
-        <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+        <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
           {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-        </button>
+        </button> -->
         <mat-card style="min-width: 500px;min-height: 500px;padding: 20px;">
 
           <mat-horizontal-stepper fxLayout="column" [linear]="false" #stepper>
@@ -51,7 +51,6 @@
                 <!-- <mat-card style="margin-top: 0rem;font-size: smaller;">
                       
                       <div *ngIf="selection==0">You must be 18 years or older at the time of your vaccine appointment.
-
                         Live in a hot spot community
                         You can book an appointment through Ontario's booking system.
                         
@@ -63,7 +62,6 @@
                         L7A, L7C
                         Call Ontario's vaccine booking line at 1-833-943-3900 (TTY 1-866-797-0007) if you need help.</div>
                       <div *ngIf="selection==1">You can book an appointment through the Region of Peel's booking system.
-
                         The postal codes for this group are:
                         
                         L4V, L4Y
@@ -71,7 +69,6 @@
                         L7E, L7K
                         If you need help booking, call the Region of Peel COVID-19 Vaccination Line at 905-791-5202, 8 a.m. to 8 p.m., 7 days a week.</div>
                       <div *ngIf="selection==2">Appointments can be booked using Ontario's booking system. Call 1-833-943-3900 to book by phone.
-
                         Book appointment
                         
                         Appointments can also be booked at a hospital-run clinic in Peel.
@@ -140,7 +137,7 @@
               </form>
             </mat-step>
             <mat-step [stepControl]="firstFormGroup">
-              <form [formGroup]="firstFormGroup">
+              <form [formGroup]="firstFormGroup" >
               <ng-template matStepLabel>Booking Appointment Date</ng-template>
 
               <!-- <p style="font-size: 15px;">
@@ -148,26 +145,90 @@
                 Booking sceduling template comes here 
                <p>loren ipsum loren ipsumloren ipsumloren ipsumloren ipsumloren ipsumloren ipsum</p>
         -->    <mat-list-item>
-              <p style="font-size: 15px;margin-top: 10px;">Please select Clinic near to your location:</p>
+              <!-- <p style="font-size: 15px;margin-top: 10px;">Please select Clinic near to your location:</p> -->
               </mat-list-item>
+
+
+
+<div class="horiz">
               <mat-list-item>
-              <mat-form-field appearance="fill">
-                
-                <mat-label>Choose an option</mat-label>
-                <mat-select formControlName="clinicId" [(ngModel)]="clinicdefault">
-                  <mat-option value="1" >HighTech Clinic,Vaughan</mat-option>
-                  <mat-option value="2">Aradhya Clinic, Etobicoke</mat-option>
-                  <mat-option value="3">Sandhya Clinic , North York</mat-option>
+              <mat-form-field appearance="fill">  
+                <mat-label>clinic name</mat-label>
+                <mat-select formControlName="clinicId">
+                  <!-- <mat-option selected aria-selected="Select Clinic" disabled value="Select Clinic" >Select Clinic</mat-option> -->
+                  <mat-option *ngFor='let clinic of clinicList' [value]="clinic.clinicName"   (change)="nameSelected($event)">{{clinic.clinicName}}</mat-option>
                 </mat-select>
               </mat-form-field>
               </mat-list-item>
+
+
+              <mat-list-item>
+                <mat-form-field appearance="fill">
+                <mat-label>Vaccine type</mat-label>
+                <mat-select formControlName="Vaccine">
+                  <!-- <mat-option selected aria-selected="Select Clinic" disabled value="Select Clinic" >Select Clinic</mat-option> -->
+                  <mat-option value="Pfizer">Pfizer</mat-option>
+                  <mat-option value="Moderna">Moderna</mat-option>
+                  <mat-option value="Astrazeneca">Astrazeneca</mat-option>
+                </mat-select>
+              </mat-form-field>
+              </mat-list-item>
+            </div>
+            
+            <div style="width:100%">
+             
+              <mat-list-item>
+                <mat-form-field appearance="fill">
+                <mat-label>Scheduled Time</mat-label>
+                <!-- <mat-select formControlName="schedule" disabled>
+                  <mat-option selected aria-selected="Scheduled Time" disabled value="Scheduled TimeScheduled Time" >Scheduled Time</mat-option>
+                  <!-- <mat-option value="Pfizer">Pfizer</mat-option>
+                  <mat-option value="Moderna">Moderna</mat-option>
+                  <mat-option value="Astrazeneca">Astrazeneca</mat-option> -->
+                 
+              <!--  </mat-select> -->
+                 <input matInput placeholder="bookinTime" formControlName="bookinTime" required style="width:100%;">
+              </mat-form-field>
+              </mat-list-item>
+
+            <!-- <input matInput placeholder="bookinTime" formControlName="bookinTime" required style="width:300px; min-width:50%;"> -->
+
+            <!-- <div style="width:400px; min-width:50%; margin-left:50px;">
+              <button mat-raised-button color="primary" matStepperPrevious>Back</button><span>&nbsp;</span>
+              <button mat-raised-button color="primary" (click)="stepper.reset()">Reset</button><span>&nbsp;</span>
+              <button mat-raised-button color="primary" (click)="submitForm()">Submit</button>
+            </div> -->
+
+          </div> 
+
+
+          <div style="width:400px; min-width:50%;">
+            <button mat-raised-button color="primary" matStepperPrevious>Back</button><span>&nbsp;</span>
+            <button mat-raised-button color="primary" (click)="stepper.reset()">Reset</button><span>&nbsp;</span>
+            <button mat-raised-button color="primary" (click)="submitForm()">Submit</button>
+          </div>
+
+              <!-- <mat-card-content>Select Age Group:</mat-card-content>
+                <mat-list role="list">
+                  <mat-radio-group formControlName="vaccineId">
+                    <mat-list-item role="listitem" *ngFor="let n of radioListforVaccine; let a = index">
+                      <mat-radio-button color="primary" [checked]="a == defaultSelected" [value]="a"
+                        (change)="selection1 = $event.value">
+                        {{n.name}}
+                      </mat-radio-button>
+                    </mat-list-item>
+                  </mat-radio-group>
+                </mat-list>
               <mat-label>Select datw</mat-label>
               <mat-list-item><mat-form-field>
                 <mat-label>Booking Date</mat-label>
                 <input matInput [matDatepicker]="picker1"  formControlName="bookdatectrl" width="25%"  (dateChange)="valueChanged($event)">
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
-              </mat-form-field></mat-list-item>
+              </mat-form-field></mat-list-item> -->
+
+
+              
               
                 <!-- <mat-radio-group aria-label="Select an option" formControlName="datePicker">
                   <mat-list-item role = "listitem">  <mat-radio-button value="1">Option 1</mat-radio-button></mat-list-item>
@@ -180,10 +241,9 @@
                     
                 </span> -->
 
-                 <mat-card-content *ngIf="toggle">Select Available timeslot:</mat-card-content>
+                 <!-- <mat-card-content *ngIf="toggle">Select Available timeslot:</mat-card-content>
                 <mat-list role="list">
                   <mat-radio-group formControlName="timeslotId">
-
                     <mat-list-item role="listitem" *ngFor="let m of cards; let c = index">
                       <mat-radio-button color="primary" [checked]="c == defaultSelected" [value]="c"
                         (change)="selection = $event.value">
@@ -191,7 +251,7 @@
                       </mat-radio-button>
                     </mat-list-item>
                   </mat-radio-group>
-                </mat-list>
+                </mat-list> -->
 <!-- 
                 <mat-card>
                   <mat-card-header>
@@ -205,24 +265,12 @@
                   </mat-card-content>
                 </mat-card> -->
                 
-                <mat-card-content>Select Age Group:</mat-card-content>
-                <mat-list role="list">
-                  <mat-radio-group formControlName="vaccineId">
 
-                    <mat-list-item role="listitem" *ngFor="let n of radioListforVaccine; let a = index">
-                      <mat-radio-button color="primary" [checked]="a == defaultSelected" [value]="a"
-                        (change)="selection1 = $event.value">
-                        {{n.name}}
-                      </mat-radio-button>
-                    </mat-list-item>
-                  </mat-radio-group>
-                </mat-list>
 
-              <div style="margin-top: 350px;">
-                <button mat-raised-button color="primary" matStepperPrevious>Back</button><span>&nbsp;</span>
-                <button mat-raised-button color="primary" (click)="stepper.reset()">Reset</button><span>&nbsp;</span>
-                <button mat-raised-button color="primary" (click)="submitForm()">Submit</button>
-              </div>
+                <calendar-schedule  [clinicList]='clinicList'></calendar-schedule>
+                
+
+              
               </form>
             </mat-step>
           </mat-horizontal-stepper>
@@ -234,10 +282,7 @@
 <app-footer></app-footer>
 
 <!-- <form (ngSubmit)="onSubmit(exampleForm.value)" id='theform' class="p-5 bg-white" [formGroup]="exampleForm" >
-
-
           <h2 class="h4 text-black mb-5">Contact Form</h2>
-
           <div class="row form-group">
             <div class="col-md-6 mb-3 mb-md-0">
               <label class="text-black" name="fname">First Name</label> <input type="text" id="fname" formControlName="firstname" 
@@ -259,23 +304,19 @@
           </div> -->
 
 <!-- <div class="row form-group">
-
             <div class="col-md-12">
               <label class="text-black" name="email">Email</label> <input type="email" id="email" 
                 class="form-control rounded-0">
              
             </div>
           </div>
-
           <div class="row form-group">
-
             <div class="col-md-12">
               <label class="text-black" name="subject">Subject</label> <input type="subject" id="subject" 
                 class="form-control rounded-0" >
              
             </div>
           </div>
-
           <div class="row form-group">
             <div class="col-md-12">
               <label class="text-black" name="message">Message</label>
@@ -296,9 +337,7 @@
         </form>
         
       </div>
-
     </div>
-
   </div>
 </div> -->
 

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
 import { CovidserviceService } from '../services/covidservice.service';
 import { HttpClient } from '@angular/common/http';
+import { Clinic } from '../manage-clinics/clinic';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -30,12 +31,34 @@ export class ContactComponent  implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   carddata;
-  clinicdefault = 1;
   userForm:FormArray;
   constructor(private _formBuilder: FormBuilder,private covidserve:CovidserviceService,private httpci:HttpClient) {}
   
+  selectedItem:any;
+
+  // nameSelected(clinic:any):void{
+  //   console.log("hi");
+  //   this.selectedItem=clinic.target.value;
+  //   console.log(clinic);
+  //   console.log(this.selectedItem);
+  // }
+  nameSelected(temp:any):void{
+    console.log("hi");
+  }
+  clinicList:Clinic[];
   ngOnInit() {
     
+    (async()=>{
+      const rawResponse = await fetch("http://localhost:9010/clinic", {method: 'GET', headers:{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow.Origin': '*'
+      }
+      });
+      const clinics = await rawResponse.json();
+      this.clinicList=clinics;
+      // console.log(clinics);
+    })();
       this.firstFormGroup = this._formBuilder.group({
         //firstCtrl: ['', Validators.required]
         options: new FormControl((this.selection)),
@@ -53,12 +76,15 @@ export class ContactComponent  implements OnInit {
             Validators.required,
             ]),
 
-            clinicId: new FormControl((this.clinicdefault)),
+            clinicId: ['', Validators.required],
             bookdatectrl: ['', Validators.required],
             //cardctrl: ['', Validators.required],
             timeslotId: new FormControl((this.selectionc)),
             vaccineId : new FormControl((this.selectionv))
-      })
+      }
+      
+      
+      )
      
     
     
@@ -171,7 +197,6 @@ public submitForm(){
     public firebaseService: FirebaseService
   ) { }
    
-
  
   validation_messages = {
     'name': [
@@ -190,7 +215,6 @@ public submitForm(){
  
     ]
   };
-
   ngOnInit() {
     this.createForm();
   }
@@ -210,15 +234,11 @@ public submitForm(){
      
     });
   }
-
  
-
     
-
   resetFields(){
     this.createForm();
   }
-
   onSubmit(value){
     this.firebaseService.createContact(value)
     .then(

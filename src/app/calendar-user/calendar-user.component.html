@@ -1,0 +1,220 @@
+<div style="margin-top: 100px;"></div>
+<div class="site-section bg-light" id="contact-section" style="background-image: url(./assets/images/slide3.jpg);">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h2 class="section-title mb-3">Book your appointment
+        </h2>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-7 mb-5">
+
+        <mat-card style="min-width: 500px;min-height: 500px;padding: 20px;">
+
+          <mat-horizontal-stepper fxLayout="column" [linear]="false" #stepper>
+            <mat-step [stepControl]="firstFormGroup">
+              <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Now booking
+                </ng-template>
+                <mat-card-content>
+                  <p>
+                    The following groups are currently eligible to book COVID-19 vaccine appointments. Do not book an
+                    appointment if you’re not part of an eligible group in Peel. We’ve outlined the booking details for
+                    each group as well as what proof of eligibility you’ll need to bring to your appointment.
+                  </p>
+                  <p>
+                    You will not receive your vaccine if you do not bring the required proof of eligibility documents to
+                    the clinic or if you book an appointment and are not eligible. The information we provide is for
+                    people booking appointments in Peel.
+                  </p>
+                </mat-card-content>
+
+                <mat-card-content>Select Age Group:</mat-card-content>
+                <mat-list role="list">
+                  <mat-radio-group formControlName="options">
+
+                    <mat-list-item role="listitem" *ngFor="let x of radioList; let i = index">
+                      <mat-radio-button color="primary" [checked]="i == defaultSelected" [value]="i"
+                        (change)="selection = $event.value">
+                        {{x.name}}
+                      </mat-radio-button>
+                    </mat-list-item>
+                  </mat-radio-group>
+                </mat-list>
+
+                <div>
+                  <button mat-raised-button color="primary" matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+
+
+            <mat-step [stepControl]="firstFormGroup">    
+              <ng-template matStepLabel>Fill out your address</ng-template>       
+              <form class="row g-3"  style="margin-top:20px;">
+                <div class="col-md-6">
+                  <label for="inputEmail4" class="form-label">First name</label>
+                  <input type="text" class="form-control" id="inputEmail4" name="amount" step=".01" required (change)="namefunc($event)">
+                </div>
+                <div class="col-md-6">
+                  <label for="inputEmail4" class="form-label">Last name</label>
+                  <input type="text" class="form-control" id="inputEmail4" name="amount" step=".01" required (change)="lastfunc($event)">
+                </div>
+                <div class="col-md-6">
+                  <label for="inputEmail4" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="inputEmail4" name="amount" step=".01" required (change)="emailfunc($event)">
+                </div>
+                <div class="col-md-6">
+                  <label for="inputEmail4" class="form-label">Phone number</label>
+                  <input type="text" class="form-control" id="inputEmail4" name="amount" step=".01" required (change)="pnumberfunc($event)">
+                </div>
+                <div class="col-md-6">
+                  <label for="inputEmail4" class="form-label">Health card number</label>
+                  <input type="text" class="form-control" id="inputEmail4" name="amount" step=".01" required (change)="healthfunc($event)">
+                </div>
+                <div class="col-md-6">
+                  <label for="inputEmail4" class="form-label">Date of birth</label>
+                  <input type="date" class="form-control" id="inputEmail4" name="amount" step=".01" required (change)="dobfunc($event)">
+                </div>
+                <div class="col-md-12">
+                  <label for="inputEmail4" class="form-label">Address</label>
+                  <input type="text" class="form-control" id="inputEmail4" name="amount" step=".01" required (change)="addrfunc($event)">
+                </div>
+                <div style="margin:30px 0 0 15px;">
+                  <button mat-raised-button color="primary" matStepperPrevious>Back</button><span> &nbsp;</span>
+                  <button mat-raised-button color="primary" matStepperNext>Next</button>
+
+                </div>
+            </form>   
+            </mat-step>
+
+
+            
+            <mat-step [stepControl]="firstFormGroup">
+              <form class="row g-3"  style="margin-top:20px;"[formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Booking Appointment Date</ng-template>
+
+                            
+                
+                <div class="form-group col-md-4" style="margin-right:700px;">
+                  <label for="inputCity" class="form-label" >Clinic</label>
+                   <select class="form-select form-control" aria-label="Default select example" name="clinic" required style="margin-bottom:10px;"  (change)="nameSelected($event)">
+                    <option disabled selected>Selct clinic</option>
+                  <option *ngFor='let clinic of clinicList' [value]="clinic.clinicName" >{{clinic.clinicName}}</option>
+                </select>
+                </div>
+
+
+
+
+
+                <div class="alert alert-danger myInformer" style="width:100%; display:none;">
+                  <strong *ngIf="clickeddDate">You clicked on this time: {{ clickeddDate | date:'medium' }}</strong>
+                  <strong *ngIf="clickedColumn != null">You clicked on this column: {{ clickedColumn }}</strong>
+                </div>
+
+
+
+
+                <div class="d-flex justify-content-between " id="myStyle">
+    
+                  <div class="col-md-4">
+                      <div class="btn-group">
+                          <div class="btn btn-primary btn-sm" style="background-color:#3f51b5;" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
+                              Previous
+                          </div>
+                          <div class="btn btn-outline-secondary btn-sm" mwlCalendarToday [(viewDate)]="viewDate">
+                              Today
+                          </div>
+                          <div class="btn btn-primary btn-sm" style="background-color:#3f51b5;" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">
+                              Next
+                          </div>
+                      </div>
+                  </div>
+                   
+
+                  <div class="col-md-4">
+                    <div class="btn-group">
+                      <div class="btn btn-primary  btn-sm" style="background-color:#3f51b5; margin-left:100px;" (click)="setView(CalendarView.Month)"
+                        [class.active]="view === CalendarView.Month">
+                        Month
+                      </div>
+                      <div class="btn btn-primary  btn-sm" style="background-color:#3f51b5; " (click)="setView(CalendarView.Week)"
+                        [class.active]="view === CalendarView.Week">
+                        Week
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div >{{title | date:'medium'}}</div>
+
+                
+
+                <div [ngSwitch]="view" id="calendar-section" style="max-width:1000px; margin:20px auto 20px auto;">
+
+                  <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
+                    (columnHeaderClicked)="clickedColumn = $event.isoDayNumber"
+                    (beforeViewRender)="beforeMonthViewRender($event)" (dayClicked)="MonthDayClicked($event.day)">
+                  </mwl-calendar-month-view>
+
+
+                  <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [hourSegments]="6"
+                    [dayStartHour]="startHour" [dayEndHour]="closeHour" [viewDate]="viewDate"
+                    (dayHeaderClicked)="clickeddDate = $event.day.date" (hourSegmentClicked)="weekHourClicked($event)"
+                    (beforeViewRender)="beforeWeekOrDayViewRender($event)">
+                  </mwl-calendar-week-view>
+
+                </div>
+
+
+    
+
+
+                <div class="form-group col-md-4">
+                  <label for="inputCity" class="form-label">Vaccine Type</label>
+                   <select class="form-select form-control" aria-label="Default select example" name="currency" required (change)="vaccinefunc($event)">
+                  <option value="CAD" selected disabled>vaccine Type</option>
+                  <option value="Pfizer">Pfizer</option>
+                  <option value="Moderna">Moderna</option>
+                  <option value="Astrazeneca">Astrazeneca</option>
+                </select>
+                </div>
+
+
+                  <div  class="form-group col-md-8">
+                    <label class="form-label" for="AppointmentTime">Appointment Time</label>
+                    <!-- <input class="form-control" id="AppointmentTime" [value]="bookingTime | date:'medium'" > -->
+                    <!-- <input class="form-control" id="AppointmentTime" [value]="bookingTime" > -->
+                    <input class="form-control" id="AppointmentTime" [value]="mayVar" >
+                  </div>
+                  
+
+
+                <div style="width:400px; min-width:50%; padding:15px 0 0 30px;">
+                  <button mat-raised-button color="primary" matStepperPrevious>Back</button><span>&nbsp;</span>
+                  <button mat-raised-button color="primary" (click)="stepper.reset()">Reset</button><span>&nbsp;</span>
+                  <!-- <button mat-raised-button color="primary" (click)="submitForm()">Submit</button> -->
+                  <!--<mat-option *ngFor='let clinic of clinicList' [value]="clinic.clinicName"
+                   (change)="nameSelected($event)">{{clinic.clinicName}}</mat-option> -->
+                </div>
+
+
+
+                <button type="submit" style="margin-right:30px; height:40px; padding:auto; margin-top:12px; " (click)="myBooking()">Book Appointment</button>
+
+
+
+
+              </form>
+            </mat-step>
+          </mat-horizontal-stepper>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
