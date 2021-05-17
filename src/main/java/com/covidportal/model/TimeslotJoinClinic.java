@@ -5,15 +5,12 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,14 +32,14 @@ public class TimeslotJoinClinic {
 	@Column(name="status")
 	private boolean status=true;
 	
-	@JsonIgnore
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonBackReference
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 //	@JoinColumn(name="clinic_id")
 	@MapsId("clinicId")
 	private Clinic clinic;
 	
-	@JsonIgnore
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JsonBackReference
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 //	@JoinColumn(name="timeslot_id")
 	@MapsId("timeslotId")
 	private Timeslot timeslot;

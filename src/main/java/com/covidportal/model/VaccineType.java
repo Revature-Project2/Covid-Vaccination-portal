@@ -12,17 +12,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-@ToString
 @Entity
 @Table(name="vaccine_types")
 public class VaccineType {
@@ -36,8 +35,8 @@ public class VaccineType {
 	@Column(name="vaccine_type")	
 	private String vaccineType;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy="vaccineType", fetch=FetchType.EAGER)
+	@JsonManagedReference
+	@OneToMany(mappedBy="vaccineType", fetch=FetchType.LAZY)
 	private List<Appointment> appointmentList = new ArrayList<>();
 
 }

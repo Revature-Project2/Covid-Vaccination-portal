@@ -2,11 +2,9 @@ package com.covidportal.model;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,20 +13,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @AllArgsConstructor
 @Getter @Setter
 @NoArgsConstructor
-@ToString
 @Entity
 @Table(name="Users")
 public class User {
@@ -64,9 +60,9 @@ public class User {
 	
 	@Column(name="confirmation_number",unique=true)
 	private String confirmationNumber;
-	
-    @JsonIgnore
-	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)
+
+	@JsonManagedReference
+	@OneToMany(mappedBy="user", fetch=FetchType.LAZY)
 	private List<Appointment> appointmentList = new ArrayList<>();
 
 	public User(String firstName, String lastName, Date dateOfBirth, String phoneNumber, String email,
@@ -82,15 +78,22 @@ public class User {
 		this.confirmationNumber = confirmationNumber;
 		this.appointmentList = appointmentList;
 	}
+
+	public User(String firstName, String lastName, Date dateOfBirth, String phoneNumber, String email, String address,
+			String healthCardNumber, String confirmationNumber) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+		this.address = address;
+		this.healthCardNumber = healthCardNumber;
+		this.confirmationNumber = confirmationNumber;
+	}
 	
 	
-	
-	@Override
-    public String toString() {
-        return "User [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth="
-                + dateOfBirth + ", phoneNumber=" + phoneNumber + ", email=" + email + ", address=" + address
-                + ", healthCardNumber=" + healthCardNumber + ", confirmationNumber=" + confirmationNumber + "]";
-    }
+
 
 	
 	

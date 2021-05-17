@@ -11,7 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +28,7 @@ import lombok.ToString;
 @Table(name="appointment_status")
 public class AppointmentStatus {
 	
+	
 	@Id
 	@Column(name="appointment_status_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -34,8 +37,21 @@ public class AppointmentStatus {
 	@Column(name="appointment_status")
 	private String appointmentStatus;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy="appointmentStatus", fetch=FetchType.EAGER)
+	@JsonManagedReference
+	@OneToMany(mappedBy="appointmentStatus", fetch=FetchType.LAZY)
 	private List<Appointment> appointmentList = new ArrayList<>();
+
+	public AppointmentStatus(String appointmentStatus) {
+		super();
+		this.appointmentStatus = appointmentStatus;
+	}
+
+	public AppointmentStatus(int appointmentStatusId, String appointmentStatus) {
+		super();
+		this.appointmentStatusId = appointmentStatusId;
+		this.appointmentStatus = appointmentStatus;
+	}
+	
+	
 
 }

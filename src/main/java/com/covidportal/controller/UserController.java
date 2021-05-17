@@ -47,8 +47,7 @@ import com.covidportal.service.VaccineTypeService;
 
 @RestController
 @RequestMapping(value = "/users")
-//@CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin(origins = "*")
+@CrossOrigin
 public class UserController {
 
 	
@@ -80,96 +79,112 @@ public class UserController {
 
 	// This is tested with postmap and working
 
-	
-	
-	@PostMapping("/saveuserandappointment")
-	public ResponseEntity<Object> insertUserandappointment(@RequestBody LinkedHashMap<String, String> formdata)
-			throws ParseException, java.text.ParseException {
 
-		System.out.println("request comes inside this");
-		Set set = formdata.entrySet();
-		User user = new User();
-		Appointment app = new Appointment();
-		Timeslot td = new Timeslot();
-		VaccineType vt= new VaccineType();
-		// Displaying elements of LinkedHashMap
-		Iterator iterator = set.iterator();
-		while (iterator.hasNext()) {
-			Map.Entry<String, String> me = (Map.Entry) iterator.next();
-			if (me.getKey() == "firstName")
-				user.setFirstName(me.getValue());
-			if (me.getKey() == "lastName")
-				user.setLastName(me.getValue());
-			if (me.getKey() == "email")
-				user.setEmail(me.getValue());
-			if (me.getKey() == "phoneNumber")
-				user.setPhoneNumber(me.getValue());
-			if (me.getKey() == "address")
-				user.setAddress(me.getValue());
-			if (me.getKey() == "healthCardNumber")
-				user.setHealthCardNumber(me.getValue());
-			if (me.getKey() == "dateOfBirth") {
-
-//            	   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
-//            		LocalDateTime localDateTime = LocalDateTime.parse(me.getValue().toString(), formatter);
-//            		Date date = (Date) Date.from(LocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-//            		System.out.println(date);
-//            		 LocalDate localDate = localDateTime.toLocalDate();
-//            	     user.setDateOfBirth(localDate);
-//            	     System.out.println(localDate);
-			}
-
-			// getting data for appointment table
-			if (me.getKey() == "clinicId") {
-				System.out.println(me.getValue()+"88888888888888888888888888888888888888888888");
-                  List<Clinic> clinicList =   cServ.getByClinicId(Integer.parseInt(me.getValue()));
-                  app.setClinic((clinicList.size()!=0)?clinicList.get(0):null);
-			}		
-			
-			
-			if (me.getKey() == "vaccineId") {
-                 
-				System.out.println("=================="+me.getValue());
-			List<VaccineType>	vList =vtServ.findvaccinebyid(Integer.parseInt(me.getValue())+1);
-			System.out.println("=================="+vList.get(0).getVaccineType());
-			app.setVaccineType(vList.get(0));
-			
-					
-			}
-			
-			if (me.getKey() == "bookdatectrl") {
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-				sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
-				Date date =  sdf.parse(me.getValue());
-				System.out.println(date);
-				System.out.println(me.getValue());
-				java.sql.Date sd = new java.sql.Date(date.getTime());
-				    System.out.println("fdgf"+sd.getTime());
-				    td = new Timeslot(sd.getTime(), null, null);
-				    
-				app.setTimeslot(td);
-
-		}
-	
-	}
-		
-		//adding short to appointment
-		app.setShot_number(1);
-		//setting appointment status 
-		List<AppointmentStatus> appointmentstatus = asServ.getappointmentvyid(1);
-		app.setAppointmentStatus(appointmentstatus.get(0));
-		System.out.println(user);
-		userServ.insertUser(user);
-		//User user1 = userServ.findByFirstname(user.getFirstName());
-		app.setUser(user);
-		appServ.bookAppointment(app);
-		System.out.println(app);
-		return new ResponseEntity<Object>(formdata, HttpStatus.CREATED);
-}
-
-
-
-
+//	@PostMapping("/saveuserandappointment")
+//	public ResponseEntity<Object> insertUserandappointment(@RequestBody LinkedHashMap<String, String> formdata)
+//			throws ParseException, java.text.ParseException {
+//
+//		System.out.println("request comes inside this");
+//		Set set = formdata.entrySet();
+//		User user = new User();
+//		Appointment app = new Appointment();
+//		Timeslot td = new Timeslot();
+//		VaccineType vt= new VaccineType();
+//		// Displaying elements of LinkedHashMap
+//		Iterator iterator = set.iterator();
+//		while (iterator.hasNext()) {
+//			Map.Entry<String, String> me = (Map.Entry) iterator.next();
+//			if (me.getKey() == "firstName")
+//				user.setFirstName(me.getValue());
+//			if (me.getKey() == "lastName")
+//				user.setLastName(me.getValue());
+//			if (me.getKey() == "email")
+//				user.setEmail(me.getValue());
+//			if (me.getKey() == "phoneNumber")
+//				user.setPhoneNumber(me.getValue());
+//			if (me.getKey() == "address")
+//				user.setAddress(me.getValue());
+//			if (me.getKey() == "healthCardNumber")
+//				user.setHealthCardNumber(me.getValue());
+//			if (me.getKey() == "dateOfBirth") {
+//
+////            	   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
+////            		LocalDateTime localDateTime = LocalDateTime.parse(me.getValue().toString(), formatter);
+////            		Date date = (Date) Date.from(LocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+////            		System.out.println(date);
+////            		 LocalDate localDate = localDateTime.toLocalDate();
+////            	     user.setDateOfBirth(localDate);
+////            	     System.out.println(localDate);
+//			}
+//
+//			// getting data for appointment table
+//			if (me.getKey() == "clinicId") {
+//				System.out.println(me.getValue()+"88888888888888888888888888888888888888888888");
+//                  List<Clinic> clinicList =   cServ.getByClinicId(Integer.parseInt(me.getValue()));
+//                  app.setClinic((clinicList.size()!=0)?clinicList.get(0):null);
+//			}		
+//			
+//			
+//			if (me.getKey() == "vaccineId") {
+//                 
+//				System.out.println("=================="+me.getValue());
+//			List<VaccineType>	vList =vtServ.findvaccinebyid(Integer.parseInt(me.getValue())+1);
+//			System.out.println("=================="+vList.get(0).getVaccineType());
+//			app.setVaccineType(vList.get(0));
+//			
+//					
+//			}
+//			
+//			if (me.getKey() == "bookdatectrl") {
+//				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+//				sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+//				Date date =  sdf.parse(me.getValue());
+//				System.out.println(date);
+//				System.out.println(me.getValue());
+//				java.sql.Date sd = new java.sql.Date(date.getTime());
+//				    System.out.println("fdgf"+sd.getTime());
+//				    td = new Timeslot(sd.getTime(), null, null);
+//				    
+//				app.setTimeslot(td);
+//
+//		}
+//	
+//	}
+//		
+//		//adding short to appointment
+//		app.setShot_number(1);
+//		//setting appointment status 
+//		List<AppointmentStatus> appointmentstatus = asServ.getappointmentvyid(1);
+//		app.setAppointmentStatus(appointmentstatus.get(0));
+//		System.out.println(user);
+//		userServ.insertUser(user);
+//		//User user1 = userServ.findByFirstname(user.getFirstName());
+//		app.setUser(user);
+//		appServ.bookAppointment(app);
+//		System.out.println(app);
+//		return new ResponseEntity<Object>(formdata, HttpStatus.CREATED);
+//}
+//
+//
+//
+//	@PostMapping("/{id}")
+//    public ResponseEntity<String> deleteBookings(@PathVariable("id") int id) {
+//
+//        List<Appointment> aList = new ArrayList<>();
+//
+//        aList = appServ.findByUserId(id);
+//
+//        if(aList.size() > 0) {
+//            for(Appointment list : aList) {
+//                appServ.deleteByAppointmentId(list.getAppointmentId());
+//            }
+//        }
+//
+//        userServ.deleteByUserId(id);
+//
+//        return new ResponseEntity<String>("Both appointments cancelled successfully!", HttpStatus.GONE);
+//
+//    }
 
 
 
@@ -274,16 +289,16 @@ public class UserController {
 	//
 	// This is working.Tested with postmap
 
-//	@DeleteMapping("/{healthCardNumber}")
-//	public ResponseEntity<String> deleteUser(@PathVariable("healthCardNumber") String cardNumber) {
-//
-//		User user = userServ.getUserByHealthCardNumber(cardNumber);
-//		System.out.println("In dlete method" + user);
-//		userServ.deleteUser(user);
-//		return new ResponseEntity<String>("User Deleted", HttpStatus.GONE);
-//
-//	}
-//	
+	@DeleteMapping("/{healthCardNumber}")
+	public ResponseEntity<String> deleteUser(@PathVariable("healthCardNumber") String cardNumber) {
+
+		User user = userServ.getUserByHealthCardNumber(cardNumber);
+		System.out.println("In dlete method" + user);
+		userServ.deleteUser(user);
+		return new ResponseEntity<String>("User Deleted", HttpStatus.GONE);
+
+	}
+	
 	
 	
 	@GetMapping("/email/{email}") 
@@ -300,9 +315,9 @@ public class UserController {
 	}
 	
 	
-	@PostMapping("/cancelbooking")
-	public ResponseEntity<List<Appointment>> manageBooking(@RequestBody LinkedHashMap<String, String> userInput) {
-		List<Appointment> aList = new ArrayList<>();
+	@PostMapping("/managebooking")
+	public ResponseEntity<Object> manageBooking(@RequestBody LinkedHashMap<String, String> userInput) {
+		
 		Set set = userInput.entrySet();
 		String confirmationNumber="";
 		String email ="";
@@ -312,7 +327,7 @@ public class UserController {
         while(iterator.hasNext()) {
            Map.Entry me = (Map.Entry)iterator.next();
            
-           if(me.getKey() == "confirmationCodeCtrl")
+           if(me.getKey() == "confirmationNumberCtrl")
         	   confirmationNumber = (String) me.getValue();
            if(me.getKey() == "emailCtrl")
         	   email = (String) me.getValue();
@@ -329,11 +344,7 @@ public class UserController {
     	if (user == null) {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		} else {
-			aList = appServ.findByUserId(user.getUserId());
-			for(Appointment list : aList) {
-				System.out.println(list.getTimeslot().getDateTime());
-			}
-			return new ResponseEntity<List<Appointment>>(aList, HttpStatus.OK);
+			return new ResponseEntity<Object>(user, HttpStatus.OK);
 		}
        
       // return new ResponseEntity<String>("Testing", HttpStatus.OK);
@@ -346,62 +357,8 @@ public class UserController {
 	
 	
 	
-//	@PostMapping("/delete")
-//	public ResponseEntity<String> deleteBookings(@RequestBody LinkedHashMap<String, String> userInput) {
-//		
-//		List<Appointment> aList = new ArrayList<>();
-//		
-//		Set set = userInput.entrySet();
-//		String id="";
-//		//String email ="";
-//		System.out.println("1");
-//		 // Displaying elements of LinkedHashMap
-//        Iterator iterator = set.iterator();
-//        while(iterator.hasNext()) {
-//           Map.Entry me = (Map.Entry)iterator.next();
-//           
-//           if(me.getKey() == "id")
-//        	   id = (String) me.getValue();
-//           System.out.println("inside");   
-//        	
-//        }
-//		
-//		
-//		
-//		
-//		aList = appServ.findByUserId(Integer.parseInt(id));
-//		
-//		
-//		System.out.println("2");
-//		if(aList.size() > 0) {
-//			for(Appointment list : aList) {			
-//				appServ.deleteByAppointmentId(list.getAppointmentId());
-//			}	
-//		}
-//		System.out.println("3");
-//		userServ.deleteByUserId(Integer.parseInt(id));
-//		System.out.println("4");
-//		return new ResponseEntity<String>("Both appointments cancelled successfully!", HttpStatus.GONE);
-//
-//	}
-	@PostMapping("/{id}")
-	public ResponseEntity<String> deleteBookings(@PathVariable("id") int id) {
-		
-		List<Appointment> aList = new ArrayList<>();
-		
-		aList = appServ.findByUserId(id);
-		
-		if(aList.size() > 0) {
-			for(Appointment list : aList) {			
-				appServ.deleteByAppointmentId(list.getAppointmentId());
-			}	
-		}
-		
-		userServ.deleteByUserId(id);
-		
-		return new ResponseEntity<String>("Both appointments cancelled successfully!", HttpStatus.GONE);
-
-	}
+	
+	
 	
 	
 
@@ -412,7 +369,7 @@ public class UserController {
 	
 	// Method to Generate Confirmation number
 	
-   public static String generateConfirmationNumber() {
+   public  String generateConfirmationNumber() {
 
 		
 		int total = 1;
