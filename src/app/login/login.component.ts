@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
           this.invalidLogin = "no"; 
           sessionStorage.setItem('admin', JSON.stringify(dataResult))
           console.log('logged in');          
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/manageclinics']);
           // this.invalidLogin = false; 
           return false;
         }

@@ -60,9 +60,9 @@
             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">             
               <li class="btn btn-success" *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()" routerLink="home" class="nav-link" style="color: white" >Home</a></li>
               <!-- <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="login" class="nav-link" >Log In</a></li> -->
-              <li ><a *ngIf="loginService.isUserLoggedIn()" routerLink="logout" class="nav-link" >Log Out</a></li>
+              <li  class="btn btn-success"><a *ngIf="loginService.isUserLoggedIn()" routerLink="logout" class="nav-link" >Log Out</a></li>
               <!-- <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="admin" class="nav-link" >Manage Appointments</a></li> -->
-              <li ><a *ngIf="loginService.isUserLoggedIn()" routerLink="manageclinics" class="nav-link" >Manage Clinics</a></li>
+              <li class="btn btn-success"><a *ngIf="loginService.isUserLoggedIn()" routerLink="manageclinics" class="nav-link" >Manage Clinics</a></li>
               <li class="btn btn-success" *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()" routerLink="aboutus" class="nav-link"  style="color: white" >About Us</a></li>
                
               <!-- <li><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"  routerLink="special" class="nav-link">Vaccineinfo</a></li> -->

@@ -35,7 +35,7 @@ const routes: Routes = [
 {path:"passwordreset",component:PasswordresetComponent},
 {path:"admin",component:AdminComponent ,canActivate:[AuthGaurdService]},
 {path:"logout", component:LogoutComponent ,canActivate:[AuthGaurdService]}, 
-{path:"manageclinics",component:ManageClinicsComponent},
+{path:"manageclinics",component:ManageClinicsComponent ,canActivate:[AuthGaurdService]},
 {path:"cancelbooking",component:CancelbookingComponent},
 {path:"**",component:SliderComponent}
 
