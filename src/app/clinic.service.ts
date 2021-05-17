@@ -9,23 +9,15 @@ export class ClinicService {
 
   private urlBase= "http://localhost:9010/clinic";
   constructor(private httpCli: HttpClient ) { }
-
-
-
   public getAllClinics():Observable<Clinic[]>{
     const httpHead={
-
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow.Origin': '*'
       }),
-     
-
     };
     return this.httpCli.get<Clinic[]>(this.urlBase, httpHead);
   }
-
-
   public updateClinic(clinic):Observable<Clinic>{
    // console.log("in clinic service"+clinic);
     const httpHead={

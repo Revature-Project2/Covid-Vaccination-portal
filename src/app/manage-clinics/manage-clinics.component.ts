@@ -1,4 +1,5 @@
 import { Time } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ClinicService } from '../clinic.service';
@@ -11,11 +12,9 @@ import { Clinic } from './clinic';
 })
 export class ManageClinicsComponent implements OnInit {
 
-  
-
   selectedItem:string;
-  openTime : Time;
-  closeTime :Time;
+  openTime : any="Opening Time";
+  closeTime :any= "Closing Time";
   beds:number;
   startDate:Date;
   endDate:Date;
@@ -27,7 +26,7 @@ export class ManageClinicsComponent implements OnInit {
     start: new FormControl(),
     end: new FormControl()
   });
-  clinicList:Clinic[];
+  
   private selected = 'option2';
 
   clinicGroup=new FormGroup({
@@ -40,16 +39,39 @@ export class ManageClinicsComponent implements OnInit {
     });
  
 
-  constructor(private clinicService: ClinicService) { }
+  constructor(private clinicService: ClinicService, private httpCli: HttpClient) { }
 
+  public urlBase :any= "http://localhost:9010/clinic";
+
+
+
+  clinicList:Clinic[];
   ngOnInit(): void {
     
-   this.clinicService.getAllClinics().subscribe(
-    response =>{
-     // console.log(response);
-      this.clinicList=response;
-     }
-  )
+  //   console.log("before loading");
+  //  this.clinicService.getAllClinics().subscribe(
+  //   response =>{
+  //    // console.log(response);
+  //     this.clinicList=response;
+  //     console.log("loaded");
+  //    }
+  // );
+  
+  (async()=>{
+    const rawResponse = await fetch("http://localhost:9010/clinic", {method: 'GET', headers:{
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow.Origin': '*'
+    }
+    });
+    const clinics = await rawResponse.json();
+    this.clinicList=clinics;
+    // console.log(this.clinicList);
+    // console.log(this.clinicList);
+    // setTimeout(function(){console.log(clinics);},1000)
+    // console.log(clinics);
+  })()
+
   }
 
   public submitClinic(clinic: FormGroup)
@@ -88,34 +110,115 @@ export class ManageClinicsComponent implements OnInit {
    }
   }
 
+  updateOT(temp:any):void{
+    this.openTime=temp.target.value;
+  }
+  updateCT(temp:any):void{
+    this.closeTime=temp.target.value;
+  }
+  updateB(temp:any):void{
+    this.beds=temp.target.value;
+  }
+  firstD:any;
+  secondD:any;
+  firstDate(temp:any):void{
+    console.log(temp.target.value);
+    let year:any= Number(temp.target.value.substring(0,4));
+    let month:any= (Number(temp.target.value.substring(5,7)))-1;
+    let day:any= Number(temp.target.value.substring(8,10));
+    this.firstD= new Date(year,month,day).getTime();
+    console.log(this.firstD);
+  }
+  secondDate(temp:any):void{
+    console.log(temp.target.value);
+    let year:any= Number(temp.target.value.substring(0,4));
+    let month:any= (Number(temp.target.value.substring(5,7)))-1;
+    let day:any= Number(temp.target.value.substring(8,10));
+    this.secondD= new Date(year,month,day).getTime();
+    console.log(this.clinicName);
+  }
+  onDatesClick(temp:any):void{
+    (async()=>{
+      const rawResponse = await fetch(
+        `http://localhost:9010/timeslots/opendates/?date1=${this.firstD}&date2=${this.secondD}&clinic=${this.clinicName}`,
+       {method: 'PUT', headers:{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:4200'
+        // 'Access-Control-Allow-Methods': 'POST',
+        // 'Access-Control-Allow-Headers': 'Content-Type'
+      }
+      });
+      const clinic2 = await rawResponse.json();
+      this.isUpdated=true;
 
-  public onUpdateClick(clinic : FormGroup){
-   //   console.log(clinic)
-
-//clinic.setValue({clinicName : this.selectedItem});
-      let stringClinic=JSON.stringify(clinic.value);
-      
-      this.clinicService.updateClinic(stringClinic).subscribe(
-        response=>{
-
-          this.isUpdated=true;        
-
-            for(let clinic of this.clinicList)
-            {
-              if(clinic.clinicName == response.clinicName)
-              {
-                clinic.openingTime=response.openingTime;
-                clinic.closingTime=response.closingTime;
-                clinic.numberOfBeds=response.numberOfBeds;
-              
-              }
-            }
-
-
-        }
-      )
-
+    })()    
+   
   }
 
 
+  public onUpdateClick(clinic : FormGroup){
+    
+
+      (async()=>{
+        const rawResponse = await fetch(
+          `http://localhost:9010/clinic/updateclinic?clinicName=${this.clinicName}&openTime=${this.openTime}&closeTime=${this.closeTime}&beds=${this.beds}`,
+         {method: 'PATCH', headers:{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'http://localhost:4200'
+          // 'Access-Control-Allow-Methods': 'POST',
+          // 'Access-Control-Allow-Headers': 'Content-Type'
+        }
+        });
+        const clinic2 = await rawResponse.json();
+        this.isUpdated=true;
+        console.log(clinic2);
+      })()    
+     
+    
+  // (async()=>{
+  //   const config = {
+  //     method: 'POST',
+  //     headers: {
+  //         'Accept': 'application/json',
+  //         'Content-Type': 'application/json',
+  //         'Access-Control-Allow-Origin': 'http://localhost:4200'
+  //     },
+  //     body: JSON.stringify(clinic.value)
+  // }
+  //           const rawResponse = await fetch("http://localhost:9010/clinic/updateclinic", config);
+  //         })() 
+               
+    //          {method: 'POST', headers:{
+    //           'Accept': 'application/json',
+    //           'Content-Type': 'application/json',
+    //           'Access-Control-Allow-Origin': 'http://localhost:4200'
+    //           // 'Access-Control-Allow-Methods': 'POST',
+    //           // 'Access-Control-Allow-Headers': 'Content-Type'
+    //         }
+    //         });
+    //         // const clinics = await rawResponse.json();
+    //         // this.clinicList=clinics;
+    //         // console.log(clinics);
+    //       })()   
+    
+     
+     
+      // this.clinicService.updateClinic(stringClinic).subscribe(
+      //   response=>{
+      //     this.isUpdated=true;        
+      //       for(let clinic of this.clinicList)
+      //       {
+      //         if(clinic.clinicName == response.clinicName)
+      //         {
+      //           clinic.openingTime=response.openingTime;
+      //           clinic.closingTime=response.closingTime;
+      //           clinic.numberOfBeds=response.numberOfBeds;    
+      //         }
+      //       }
+      //   }
+      // )
+  }
 }
+

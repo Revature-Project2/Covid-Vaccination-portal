@@ -17,6 +17,8 @@ import { TestvalidationComponent } from './testvalidation/testvalidation.compone
 import { WelcomeAdminComponent } from './welcome-admin/welcome-admin.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ManageClinicsComponent } from './manage-clinics/manage-clinics.component';
+import { CalendarAdminComponent } from './calendar-admin/calendar-admin.component';
+import { CalendarUserComponent } from './calendar-user/calendar-user.component';
 import { CancelbookingComponent } from './cancelbooking/cancelbooking.component';
 
 const routes: Routes = [
@@ -26,16 +28,20 @@ const routes: Routes = [
 {path:"special",component:SpecialComponent},
 {path:"service",component:ServicesComponent},
 {path:"testimonial",component:TestimonialsComponent},
-{path:"bookappointment",component:ContactComponent},
+{path:"bookappointment",component:CalendarUserComponent},
+// {path:"bookappointment",component:ContactComponent},
 {path:"contactusform",component:ContactusformComponent},
 {path:"home",component:SliderComponent},
 {path:"test",component:TestvalidationComponent},
-{path:"admin/manageclinics",component:ManageClinicsComponent},
+{path:"admin/manageclinics",component:CalendarAdminComponent},
+// {path:"admin/manageclinics",component:ManageClinicsComponent},
 {path:"login",component:LoginComponent},
 {path:"passwordreset",component:PasswordresetComponent},
 {path:"admin",component:AdminComponent ,canActivate:[AuthGaurdService]},
 {path:"logout", component:LogoutComponent ,canActivate:[AuthGaurdService]}, 
-{path:"manageclinics",component:ManageClinicsComponent ,canActivate:[AuthGaurdService]},
+// {path:"manageclinics",component:ManageClinicsComponent},
+{path:"manageclinics",component:CalendarAdminComponent,canActivate:[AuthGaurdService]},
+// {path:"manageclinics",component:ManageClinicsComponent },
 {path:"cancelbooking",component:CancelbookingComponent},
 {path:"**",component:SliderComponent}
 

@@ -46,6 +46,8 @@ export class CancelbookingService {
   }
 
   DeleteAppointment(userId): Observable<User>{
+    console.log('hi');
+    console.log(userId);
     const httpHead1={
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

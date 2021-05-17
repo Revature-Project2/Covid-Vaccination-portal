@@ -54,9 +54,10 @@ private user : User;
       { type: 'pattern', message: 'email pattern should be youremail@fakemail.com' },
     ]
   };
-submitForm(appointment : FormGroup)
-{
+submitForm(appointment : FormGroup){
+  
     let stringAppointment = JSON.stringify(appointment.value); 
+    console.log(stringAppointment);
     console.log('After submit '+stringAppointment);
     this.cancelBookingService.GetAppointments(stringAppointment).subscribe(
       data =>{ 
@@ -74,13 +75,15 @@ submitForm(appointment : FormGroup)
         this.time1 = new Date(this.dateTime).toISOString().slice(11, 19).replace('T', ' ');
         this.userId = data[0].user.userId;
         this.user = new User(data[0].user.userId);
+        console.log('test2');
       }
     )
 }
  submitForm1(){  
   // console.log(JSON.stringify(this.user));
+  console.log(typeof(this.userId));
   this.displaySuccess= "Both appointmeernts cancelled successfully. Thank You!";
-  this.cancelBookingService.DeleteAppointment(this.user.id).subscribe(
+  this.cancelBookingService.DeleteAppointment((this.user.id)).subscribe(
     response =>{         
       console.log(response);     
       

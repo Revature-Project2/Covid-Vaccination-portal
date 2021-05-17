@@ -42,9 +42,12 @@ import { LoginComponent } from './login/login.component';
 import { PasswordresetComponent } from './passwordreset/passwordreset.component';
 import { AdminComponent } from './admin/admin.component';
 import { LogoutComponent } from './logout/logout.component';
-import { CancelbookingComponent } from './cancelbooking/cancelbooking.component';
-import { CalendarAdminComponent } from './calendar-admin/calendar-admin.component';
 import { CalendarUserComponent } from './calendar-user/calendar-user.component';
+import { CalendarAdminComponent } from './calendar-admin/calendar-admin.component';
+import { CancelbookingComponent } from './cancelbooking/cancelbooking.component';
+// import { CancelbookingComponent } from './cancelbooking/cancelbooking.component';
+// import { CalendarAdminComponent } from './calendar-admin/calendar-admin.component';
+// import { CalendarUserComponent } from './calendar-user/calendar-user.component';
 
 
 
@@ -75,9 +78,10 @@ import { CalendarUserComponent } from './calendar-user/calendar-user.component';
     LogoutComponent,
     TestvalidationComponent,
     MaterialhoverDirective,
-    CancelbookingComponent,
+    CalendarUserComponent,
     CalendarAdminComponent,
-    CalendarUserComponent
+    CancelbookingComponent
+
   ],
   imports: [
     BrowserModule,

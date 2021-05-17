@@ -40,9 +40,9 @@ $CovidVaccinePortal-theme: mat-light-theme((
   display: none !important;
 }
 
-.border-top.pt-5{
-  display:none;
-}
+// .border-top.pt-5{
+//   display:none;
+// }
 
 
 .pricingTable {
@@ -200,3 +200,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+.border-top.pt-5{
+  display:none;
+}
+
+
+.bg-info.ng-dirty.ng-touched.ng-valid{
+  background-color:#3f51b5;
+}
+bg-info.ng-untouched.ng-pristine.ng-invalid{
+  background-color:#3f51b5;
+}

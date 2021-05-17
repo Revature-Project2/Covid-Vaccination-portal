@@ -17,3 +17,10 @@
 .mat-form-field-infix{
   width: 100px !important;
 }
+
+
+.horiz{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

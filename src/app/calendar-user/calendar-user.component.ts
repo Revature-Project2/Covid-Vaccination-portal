@@ -490,9 +490,10 @@ myBooking(){
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Access-Control-Allow.Origin': '*'
-    }
-    });
+    }, 
+    },);
     const res = await rawResponse.json();
+    console.log(res);
   
   })()
 }

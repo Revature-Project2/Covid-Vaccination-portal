@@ -5,20 +5,21 @@
           <form>
             <label for="clinicName" class="form-label"><b>Clinic Name :</b></label>
             <select class='select-option'   (change)='onClinicSelected($event)'>
+              <option class='option'  disabled selected>Select Clinic</option>
           <option class='option'  *ngFor='let clinic of clinicList' [value]="clinic.clinicName">{{clinic.clinicName}}</option>
         </select>
         &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;
-        <label for="fromDate" class="form-label"><b>From:</b></label>
+        <label for="fromDate" class="form-label" ><b>From:</b></label>
         &nbsp; &nbsp; 
-        <input type="date" id ="fromDate"name=fromdate>
+        <input type="date" id ="fromDate"name=fromdate (change)='firstDate($event)'>
   
         &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;
-        <label for="toDate" class="form-label"><b>To:</b></label>
+        <label for="toDate" class="form-label" ><b>To:</b></label>
         &nbsp; &nbsp; 
-        <input type="date" id= "toDate"name=toDate>
+        <input type="date" id= "toDate"name=toDate (change)='secondDate($event)' >
   
   &nbsp; &nbsp;
-  <button class="btn btn-primary">Apply</button>
+  <button class="btn btn-primary" (click)='onDatesClick($event)'>Open for Booking</button>
   
           </form>
           <br>
@@ -52,11 +53,11 @@
                   <!--         <td>{{openTime}}</td> -->
                   <td width=50px><input type= text disabled value={{clinicName}}   [(ngModel)]= "selectedItem"  formControlName="clinicName" ></td>
                          <td></td>
-                  <td width=50px><input type= text value={{openTime}}  formControlName="openingTime" ></td>
+                  <td width=50px><input type= text value={{openTime}}  formControlName="openingTime" (change)="updateOT($event)"></td>
                   <td></td>     
-                  <td width=50px><input type= text value={{closeTime}} formControlName="closingTime"></td>
+                  <td width=50px><input type= text value={{closeTime}} formControlName="closingTime"  (change)="updateCT($event)"></td>
                   <td></td>    
-                  <td width=50px><input type= text value={{beds}} formControlName="numberOfBeds" ></td>
+                  <td width=50px><input type= text value={{beds}} formControlName="numberOfBeds"  (change)="updateB($event)" ></td>
                           <td><button  class="btn btn-success" width=30px disabled   *ngIf="isUpdated">Updated</button></td>
                     </tr>
                     <tr></tr>
@@ -73,6 +74,8 @@
   
         </form>
       </div>
+
+      <calendar-schedule [selectedItem]='selectedItem' [clinicList]='clinicList'> </calendar-schedule>
   
      </div>
   </div>

@@ -22,4 +22,12 @@
     
 
   }
+  // ,
+  // "permissions": [
+  //   "http://localhost:4200",
+  //   "http://localhost:9010",
+  //   "http://www.blogger.com/",
+  //   "http://*.google.com/",
+  //   "unlimitedStorage"
+  // ],
 }

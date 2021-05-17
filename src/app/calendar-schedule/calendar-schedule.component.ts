@@ -1,4 +1,4 @@
-import { ChangeDetectorRef,ChangeDetectionStrategy, ViewEncapsulation, Output } from '@angular/core';
+import { ChangeDetectorRef,ChangeDetectionStrategy, ViewEncapsulation, Output, Input } from '@angular/core';
 import { Component,NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import {   CalendarViewPeriod,
   CalendarMonthViewBeforeRenderEvent,
@@ -9,6 +9,7 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
 import { WeekViewHour, WeekViewHourColumn } from 'calendar-utils';
 import { ngfactoryFilePath } from '@angular/compiler/src/aot/util';
 import * as EventEmitter from 'events';
+import { Clinic } from '../manage-clinics/clinic';
 
 @Component({
   selector: 'calendar-schedule',
@@ -91,7 +92,18 @@ export class CalendarScheduleComponent {
     // this.addSelectedDayViewClass();
     // this.addSelectedDayViewClass();
   }
+
+  // @Input() selectedItem:string;
+  // @Input() clinicList:Clinic[];
+
+  // ngOnInt(selectedItem){
+  //   console.log("hiii from ngoninit");
+  // }
   beforeMonthViewRender({body,header,period}): void {
+    // console.log("hiii from ngoninit");
+    // console.log(this.clinicList);
+    // console.log(this.selectedItem);
+    setTimeout(function(){console.log(this.selectedDateTime);},5000);
     body.forEach((day) => {
       // day.cssClass= 'unavailable-day';
       if(day.isPast){ day.cssClass= 'unavailable-day';}
@@ -189,6 +201,7 @@ export class CalendarScheduleComponent {
   //   });
   // }
 
+ 
 
  
   events: CalendarEvent[] = [

@@ -1,271 +1,147 @@
-<div  style=" min-height: 800px;  max-width:1000px; text-align:center;" height= "500px" class="clinics"  >
-    <div  style="margin-top: 10em;">
-       <div>
-          <form>
-            <label for="clinicName" class="form-label"><b>Clinic Name :</b></label>
-            <select class='select-option'   (change)='onClinicSelected($event)'>
-              <option class='option'  disabled selected>Select Clinic</option>
-          <option class='option'  *ngFor='let clinic of clinicList' [value]="clinic.clinicName">{{clinic.clinicName}}</option>
+<div style=" min-height: 800px;  max-width:1000px; text-align:center;" height="500px" class="clinics">
+  <div style="margin-top: 10em;">
+    <div>
+      <form>
+        <label for="clinicName" class="form-label"><b>Clinic Name :</b></label>
+        <select class='select-option' (change)='onClinicSelected($event)'>
+          <option class='option' disabled selected>Select Clinic</option>
+          <option class='option' *ngFor='let clinic of clinicList' [value]="clinic.clinicName">{{clinic.clinicName}}
+          </option>
         </select>
-        &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;
-        <label for="fromDate" class="form-label" ><b>From:</b></label>
-        &nbsp; &nbsp; 
-        <input type="date" id ="fromDate"name=fromdate (change)='firstDate($event)'>
-  
-        &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;
-        <label for="toDate" class="form-label" ><b>To:</b></label>
-        &nbsp; &nbsp; 
-        <input type="date" id= "toDate"name=toDate (change)='secondDate($event)' >
-  
-  &nbsp; &nbsp;
-  <button class="btn btn-primary  btn-sm" (click)='onDatesClick($event)'  style="background-color:#3f51b5;"  style="background-color:#3f51b5;">Open for Booking</button>
-  
-          </form>
-          <br>
-  
-        </div>
-        <div style="border: 1px solid rgb(7, 7, 92);width: 1000px; border-radius: 10px; height: 250px; width: 1200px; margin-left: 50px;">
-        <form [formGroup]="clinicGroup">
-  
-          <table class="table"  style="border-radius: 10px;" >
-            <thead class="table-dark" style="border-radius: 10px;">
-        
-        
-                <tr>
-                  <th scope="row">Clinic Name</th>
-        <th></th>
-                    <th scope="row">Opening Time</th>
-                    <th></th>
-                    <th scope="row">Closing Time</th>
-                    <th></th>
-                    <th scope="row"> Number of Beds</th>
-                    <th scope="row"></th>
-                    <th scope="row"></th>
-        
-                </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td></td><td></td>
-              </tr>
-                    <tr>
-                  <!--         <td>{{openTime}}</td> -->
-                  <td width=50px><input type= text disabled value={{clinicName}}   [(ngModel)]= "selectedItem"  formControlName="clinicName" ></td>
-                         <td></td>
-                  <td width=50px><input type= text value={{openTime}}  formControlName="openingTime" (change)="updateOT($event)"></td>
-                  <td></td>     
-                  <td width=50px><input type= text value={{closeTime}} formControlName="closingTime"  (change)="updateCT($event)"></td>
-                  <td></td>    
-                  <td width=50px><input type= text value={{beds}} formControlName="numberOfBeds"  (change)="updateB($event)" ></td>
-                          <td><button  class="btn btn-success  btn-sm" width=30px disabled   *ngIf="isUpdated"  style="background-color:#3f51b5;">Updated</button></td>
-                    </tr>
-                    <tr></tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                       <td></td>
-                        <td width=100px><button  style="background-color:#3f51b5;" type="submit" class="btn btn-primary  btn-sm" *ngIf= "isVisible" (click)="onUpdateClick(clinicGroup)">update</button></td>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        <label for="fromDate" class="form-label"><b>From:</b></label>
+        &nbsp; &nbsp;
+        <input type="date" id="fromDate" name=fromdate (change)='firstDate($event)'>
 
-                    </tr>
-  
-            </tbody>
-            </table>
-  
-        </form>
-      </div>
-      
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        <label for="toDate" class="form-label"><b>To:</b></label>
+        &nbsp; &nbsp;
+        <input type="date" id="toDate" name=toDate (change)='secondDate($event)'>
 
+        &nbsp; &nbsp;
+        <button class="btn btn-primary  btn-sm" (click)='onDatesClick($event)' style="background-color:#3f51b5;"
+          style="background-color:#3f51b5;">Open for Booking</button>
 
+      </form>
+      <br>
 
-
-
-      <div class="alert alert-danger myInformer">
-        <strong *ngIf="clickeddDate"
-          >You clicked on this time: {{ clickeddDate | date:'medium' }}</strong
-        >
-        <strong *ngIf="clickedColumn != null"
-          >You clicked on this column: {{ clickedColumn }}</strong
-        >
-      </div>
-   
-    <div class="row text-center" >
-    
-        <div class="col-md-4">
-            <div class="btn-group">
-                <div class="btn btn-primary  btn-sm" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"  style="background-color:#3f51b5;">
-                    Previous
-                </div>
-                <div class="btn btn-outline-secondary  btn-sm" mwlCalendarToday [(viewDate)]="viewDate"  >
-                    Today
-                </div>
-                <div class="btn btn-primary  btn-sm" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"  style="background-color:#3f51b5;">
-                    Next
-                </div>
-            </div>
-        </div>
-         <div >{{title | date:'medium'}}</div>
-    
-        <div class="col-md-4">
-            <div class="btn-group">
-                <div class="btn btn-primary  btn-sm" (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month" style="background-color:#3f51b5; margin-left:260px;">
-                    Month
-                </div>
-                <div class="btn btn-primary  btn-sm" (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week" style="background-color:#3f51b5;">
-                    Week
-                </div>
-            </div>
-        </div>
     </div>
-    
-    
-    
+    <div
+      style="border: 1px solid rgb(7, 7, 92);width: 1000px; border-radius: 10px; height: 250px; width: 1200px; margin-left: 50px;">
+      <form [formGroup]="clinicGroup">
+
+        <table class="table" style="border-radius: 10px;">
+          <thead class="table-dark" style="border-radius: 10px;">
+
+
+            <tr>
+              <th scope="row">Clinic Name</th>
+              <th></th>
+              <th scope="row">Opening Time</th>
+              <th></th>
+              <th scope="row">Closing Time</th>
+              <th></th>
+              <th scope="row"> Number of Beds</th>
+              <th scope="row"></th>
+              <th scope="row"></th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <!--         <td>{{openTime}}</td> -->
+              <td width=50px><input type=text disabled value={{clinicName}} [(ngModel)]="selectedItem"
+                  formControlName="clinicName"></td>
+              <td></td>
+              <td width=50px><input type=text value={{openTime}} formControlName="openingTime"
+                  (change)="updateOT($event)"></td>
+              <td></td>
+              <td width=50px><input type=text value={{closeTime}} formControlName="closingTime"
+                  (change)="updateCT($event)"></td>
+              <td></td>
+              <td width=50px><input type=text value={{beds}} formControlName="numberOfBeds" (change)="updateB($event)">
+              </td>
+              <td><button class="btn btn-success  btn-sm" width=30px disabled *ngIf="isUpdated"
+                  style="background-color:#3f51b5;">Updated</button></td>
+            </tr>
+            <tr></tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td width=100px><button style="background-color:#3f51b5;" type="submit" class="btn btn-primary  btn-sm"
+                  *ngIf="isVisible" (click)="onUpdateClick(clinicGroup)">update</button></td>
+
+            </tr>
+
+          </tbody>
+        </table>
+
+      </form>
+    </div>
+    <div class="alert alert-danger myInformer">
+      <strong *ngIf="clickeddDate">You clicked on this time: {{ clickeddDate | date:'medium' }}</strong>
+      <strong *ngIf="clickedColumn != null">You clicked on this column: {{ clickedColumn }}</strong>
+    </div>
+
+    <div class="row text-center">
+
+      <div class="col-md-4">
+        <div class="btn-group">
+          <div class="btn btn-primary  btn-sm" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+            style="background-color:#3f51b5;">
+            Previous
+          </div>
+          <div class="btn btn-outline-secondary  btn-sm" mwlCalendarToday [(viewDate)]="viewDate">
+            Today
+          </div>
+          <div class="btn btn-primary  btn-sm" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+            style="background-color:#3f51b5;">
+            Next
+          </div>
+        </div>
+      </div>
+      <div>{{title | date:'medium'}}</div>
+
+      <div class="col-md-4">
+        <div class="btn-group">
+          <div class="btn btn-primary  btn-sm" (click)="setView(CalendarView.Month)"
+            [class.active]="view === CalendarView.Month" style="background-color:#3f51b5; margin-left:260px;">
+            Month
+          </div>
+          <div class="btn btn-primary  btn-sm" (click)="setView(CalendarView.Week)"
+            [class.active]="view === CalendarView.Week" style="background-color:#3f51b5;">
+            Week
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
     <div [ngSwitch]="view" id="calendar-section" style="max-width:1000px; margin:20px auto 100px auto;">
-    
-        <!-- <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events" (columnHeaderClicked)="clickedColumn = $event.isoDayNumber" (dayClicked)="dayClicked($event.day)" > -->
-            <!-- <app-day-status>  -->
-            <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" 
-                [events]="events" (columnHeaderClicked)="clickedColumn = $event.isoDayNumber" 
-                (beforeViewRender)="beforeMonthViewRender($event)" 
-                (dayClicked)="MonthDayClicked($event.day)" >
-            </mwl-calendar-month-view>
-            <!-- (mouseover)="mouseHovered($event)" -->
-        <!-- </app-day-status> -->
-            <!-- [title]="dayStatus($event.day)" -->
-    
-        <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [hourSegments]="6" [dayStartHour]="startHour"
-        [dayEndHour]="closeHour" [viewDate]="viewDate"  (dayHeaderClicked)="clickeddDate = $event.day.date"
+
+      <!-- <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events" (columnHeaderClicked)="clickedColumn = $event.isoDayNumber" (dayClicked)="dayClicked($event.day)" > -->
+      <!-- <app-day-status>  -->
+      <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
+        (columnHeaderClicked)="clickedColumn = $event.isoDayNumber" (beforeViewRender)="beforeMonthViewRender($event)"
+        (dayClicked)="MonthDayClicked($event.day)">
+      </mwl-calendar-month-view>
+      <!-- (mouseover)="mouseHovered($event)" -->
+      <!-- </app-day-status> -->
+      <!-- [title]="dayStatus($event.day)" -->
+
+      <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [hourSegments]="6" [dayStartHour]="startHour"
+        [dayEndHour]="closeHour" [viewDate]="viewDate" (dayHeaderClicked)="clickeddDate = $event.day.date"
         (hourSegmentClicked)="weekHourClicked($event)" (beforeViewRender)="beforeWeekOrDayViewRender($event)">
-        </mwl-calendar-week-view>
-    
+      </mwl-calendar-week-view>
+
     </div>
-    
+
     <p style="height:40px;"></p>
+
     
-    <!-- <form>
-        <div>
-            <label for="clinic">clinic</label>
-            <input id="clinic" [value]="clinic">
-        </div>
-        <div>
-            <label for="AppointmentTime">Appointment Time</label>
-            <input id="AppointmentTime" [value]="bookingTime | date:'medium'" disabled>
-        </div>
-        <button type="submit" >Book Appointment</button>
-    </form>
-    
-    <p>{{selectedItem}}</p>
- -->
-
-
-
-
-
-
-  
-     </div>
-  </div>
-  
-  
-  
-  <!-- 
-      <div  style=" min-height: 800px;" height= "500px" class="clinics"  >
-        <div  style="margin-top: 10em;">
-         
-  
-            <h2>manage scheduling</h2>
-          <mat-accordion class="example-headers-align"  style="background-color: #414bbe;margin-top: 0%;"  multi>
-            
-            <form  [formGroup]="clinicGroup" >
-            <mat-expansion-panel>
-              
-              <mat-expansion-panel-header style="width:200%; height: 80px;background-color: #bdbfdd;">
-               
-                <mat-panel-title   height="100px" >
-                
-                  <mat-form-field height="100px">
-                    <mat-label>Select Clinic</mat-label>
-                    <mat-select [(ngModel)]="selectedItem" formControlName="clinicName" (change)="onClinicSelected($event)">
-                      <mat-option *ngFor="let clinic of clinicList" [value]="clinic.clinicName" >
-                        {{clinic.clinicName}}
-                      </mat-option>
-                    </mat-select>
-                    
-                  </mat-form-field>
-                  
-                &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;
-                  <h3> {{selectedItem}}</h3>
-                 
-                  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;
-                
-                  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;
-                  <mat-form-field appearance="legacy">
-  <br>
-                    <mat-label>Choose Date Range</mat-label>
-                  
-                    <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRange">
-                      <input matStartDate formControlName="start" [(ngModel)]="startDate"placeholder="Start Date">
-                      <input matEndDate formControlName="end"[(ngModel)]="endDate" placeholder="End Date">
-                    </mat-date-range-input>
-                  
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  
-                    <mat-date-range-picker #picker></mat-date-range-picker>
-                  
-                  </mat-form-field>
-                  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;
-                  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;
-                  <h3>
-                    Start: {{dateRange.value.start | date}}    
-  
-                    End: {{dateRange.value.end | date}}
-                  </h3>
-                  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;
-                  <button type="submit" class="btn btn-primary" style="height: 50px;width: 80px;" (click)="submitFood(clinicGroup)" >Apply</button>
-                </mat-panel-title>
-                
-                <mat-panel-description>
-                 
-                  
-                 
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-           <form>
-                <h3>Clinic details will be dispayed here</h3>
-                <mat-form-field class="example-full-width">
-                  <mat-label>Date</mat-label>
-                  <input matInput placeholder="Date"> 
-                </mat-form-field>
-  
-                <mat-form-field class="example-full-width">
-                  <mat-label>Opening Time</mat-label>
-                  <input matInput placeholder="Opening Time"
-                </mat-form-field>
-  
-  
-                <mat-form-field class="example-full-width">
-                  <mat-label>Closing Time</mat-label>
-                  <input matInput placeholder="Closing  Time"> 
-                </mat-form-field>
-  
-               
-  
-                <mat-form-field class="example-full-width">
-                  <mat-label>Number of Beds</mat-label>
-                  <input matInput placeholder="Closing  Time">
-                </mat-form-field>
-  
-                </form>
-                
-                
-             
-  </mat-expansion-panel>
-  </form>
-  
-  </mat-accordion>
-  
-  
-  </div>
-  </div>
-  
-  
-  <app-footer></app-footer> -->
