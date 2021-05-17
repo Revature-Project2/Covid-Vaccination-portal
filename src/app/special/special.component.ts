@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class SpecialComponent implements OnInit {
 
-  constructor(private _router: Router) { }
+  constructor(public  router: Router) { }
 
   ngOnInit() {
   }
@@ -16,7 +16,7 @@ export class SpecialComponent implements OnInit {
   nabi()
   {
     
-    this._router.navigate(['mona']);
+    this.router.navigate(['/bookappointment']);
   }
 }
 

@@ -3,52 +3,52 @@
   <div class="boo" >
   
   
-  <button class="open-button" onclick="openForm()">Chat</button>
-  
-  <div class="chat-popup" id="myForm" style="max-height:500px">
-    <div class="form-container" >
-      <h1 > Chat     <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeForm()">
-          <span aria-hidden="true">&times;</span> 
-        </button></h1>
-      
+    <button class="open-button" style="background-color:rgba(194, 236, 6, 0.897); margin-bottom: 0px;" onclick="openForm()">Chat</button>
     
-    <div id="chat-window">
-      <div class="row "  style=" overflow: auto;scroll-behavior: smooth;max-height: 300px" >
-        <div class="column"></div>
-        <div class="column column-50" >
-          <ng-container *ngFor="let message of messages | async" style="border: crimson">
-
-            <div class="message" [ngClass]="{ 'from': message.sentBy === 'bot',
-                                              'to':   message.sentBy === 'user' }" >
-              {{ message.content }}
-            </div>
-          
-          </ng-container>
-          
-          
-          
+    <div class="chat-popup" id="myForm" style="max-height:500px">
+      <div class="form-container" >
+        <h1 > Chat     <button type="button"  class="close" data-dismiss="modal" aria-label="Close" onclick="closeForm()">
+            <span aria-hidden="true">&times;</span> 
+          </button></h1>
+        
+      
+      <div id="chat-window">
+        <div class="row "  style=" overflow: auto;scroll-behavior: smooth;max-height: 300px" >
+          <div class="column"></div>
+          <div class="column column-50" >
+            <ng-container *ngFor="let message of messages | async" style="border: crimson">
+  
+              <div class="message" [ngClass]="{ 'from': message.sentBy === 'bot',
+                                                'to':   message.sentBy === 'user' }" >
+                {{ message.content }}
+              </div>
+            
+            </ng-container>
+            
+            
+            
+          </div>
+          <div class="column"></div>
         </div>
-        <div class="column"></div>
-      </div>
-      </div>
-
+        </div>
+  
+      
+  
+        <label for="nameField">Your Message</label>
+            
+            
+        <input  rows="2" cols="25" [(ngModel)]="formValue" (keyup.enter)="sendMessage()"  width="48" height="48"  class="input-lg  
+        col-xs-4" type="text" style="overflow: hidden"><br>
+        
+        <button (click)="sendMessage()">Send</button>
+        
+  
+        
     
-
-      <label for="nameField">Your Message</label>
-          
-          
-      <input  rows="2" cols="25" [(ngModel)]="formValue" (keyup.enter)="sendMessage()"  width="48" height="48"  class="input-lg  
-      col-xs-4" type="text" style="overflow: hidden"><br>
-      
-      <button (click)="sendMessage()">Send</button>
-      
-
-      
-  
-      <!-- <button type="submit" class="btn">Send</button>
-      <button type="button" class="btn cancel" onclick="closeForm()">Close</button> -->
-      </div>
-  </div>
-  
-  
-  </div>
+        <!-- <button type="submit" class="btn">Send</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button> -->
+        </div>
+    </div>
+    
+    
+    </div>

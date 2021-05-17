@@ -20,7 +20,7 @@
     </div>
   
   <div class="top-bar py-3 bg-light facebook" id="home-section">
-    <div class="container ">
+    <div class="container-fluid">
       <div class="row align-items-center">
   
         <div class="col-6 text-left">
@@ -46,7 +46,7 @@
   </div>
   <header class="site-navbar py-4 bg-white js-sticky-header site-navbar-target" role="banner">
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="row align-items-center">
 
         <div class="col-6 col-xl-2">
@@ -58,21 +58,21 @@
           <nav class="site-navigation position-relative text-right" role="navigation">
 
             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">             
-              <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="home" class="nav-link" >Home</a></li>
+              <li class="btn btn-success" *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()" routerLink="home" class="nav-link" style="color: white" >Home</a></li>
               <!-- <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="login" class="nav-link" >Log In</a></li> -->
-              <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="logout" class="nav-link" >Log Out</a></li>
+              <li ><a *ngIf="loginService.isUserLoggedIn()" routerLink="logout" class="nav-link" >Log Out</a></li>
               <!-- <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="admin" class="nav-link" >Manage Appointments</a></li> -->
-              <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="manageclinics" class="nav-link" >Manage Clinics</a></li>
-              <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="aboutus" class="nav-link" >About Us</a></li>
+              <li ><a *ngIf="loginService.isUserLoggedIn()" routerLink="manageclinics" class="nav-link" >Manage Clinics</a></li>
+              <li class="btn btn-success" *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()" routerLink="aboutus" class="nav-link"  style="color: white" >About Us</a></li>
                
-              <li><a *ngIf="!loginService.isUserLoggedIn()"  routerLink="special" class="nav-link">Vaccineinfo</a></li>
-              <li><a *ngIf="!loginService.isUserLoggedIn()"  routerLink="service" class="nav-link">Do-Don'ts</a></li>
+              <!-- <li><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"  routerLink="special" class="nav-link">Vaccineinfo</a></li> -->
+              <!-- <li><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"  routerLink="service" class="nav-link">Do-Don'ts</a></li> -->
               <!-- <li><a *ngIf="!loginService.isUserLoggedIn()"  routerLink="test" class="nav-link">Test</a></li>             -->
              
               <!-- <li><a *ngIf="!loginService.isUserLoggedIn()"  routerLink="contactusform" class="nav-link">Contact</a></li> -->
-              <li *ngIf="!loginService.isUserLoggedIn()" class="btn btn-success"><a *ngIf="!loginService.isUserLoggedIn()"  routerLink ="bookappointment"class="nav-link" style="color: white"  >Booking</a></li>  
-              &nbsp;
-              <li *ngIf="!loginService.isUserLoggedIn()" class="btn btn-danger"><a *ngIf="!loginService.isUserLoggedIn()"  routerLink ="cancelbooking"class="nav-link" style="color: white"  >Cancel Booking</a></li> 
+              <li *ngIf="!loginService.isUserLoggedIn() && !isInLogin()" class="btn btn-success"><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"  routerLink ="bookappointment"class="nav-link" style="color: white"  >Booking</a></li>  
+            
+              <li *ngIf="!loginService.isUserLoggedIn() && !isInLogin()" class="btn btn-danger"><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"  routerLink ="cancelbooking"class="nav-link" style="color: white"  >Cancel Booking</a></li> 
                   
              </ul>
           </nav>
@@ -92,6 +92,6 @@
 <!-- .site-wrap -->
 <app-chatbox></app-chatbox> 
 
-
+<app-footer></app-footer>
 <router-outlet></router-outlet>
 <!-- <calendar-schedule  ></calendar-schedule> -->

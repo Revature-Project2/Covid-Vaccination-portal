@@ -7,8 +7,7 @@
      <title>Log In</title>
  </head>
  <body>
-    <div class="container col-4 bg-info.bg-gradient">
-      <br><br><br><br><br>
+    <div class="container col-4 bg-info.bg-gradient">     
         <form   class="bg-info" style="padding:50px" [formGroup] = "adminCreds">                   
             <div class="col-md-12">
                 <h1 class="h3 mb-4 font-weight-normal text-center">Log In</h1>
@@ -21,16 +20,16 @@
               <input type="password"  formControlName="password" class="form-control"  placeholder="password"  required>
             </div>       
           <br>                
-          <br>
-            <div class="col-sm-12">
-              <button type="submit" (click)=checkLogin()   class="btn btn-primary text-center">Log In</button> 
+          
+            <div   class="col-sm-12 text-center">
+              <button  type="submit" (click)=checkLogin()   class="btn btn-primary text-center">Log In</button> 
               <!-- [disabled]="adminCreds.invalid" -->
-              <a [routerLink]="['/passwordreset']"><button type="submit" class="btn btn-primary text-center float-right">Reset Password</button></a>
+              <!-- <a [routerLink]="['/passwordreset']"><button type="submit" class="btn btn-primary text-center float-right">Reset Password</button></a> -->
              
             </div>        
         </form>
       </div>
-     
+      <app-footer></app-footer>
  </body>
  </html>
 
