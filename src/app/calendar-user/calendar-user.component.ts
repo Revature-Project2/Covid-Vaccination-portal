@@ -115,7 +115,7 @@ export class CalendarUserComponent implements OnInit {
     // this.addSelectedDayViewClass();
   }
 
-
+  titled:any=this.title.toString().substring(0,15);
   ngOnChanges(){
     console.log('hi');
     (async()=>{

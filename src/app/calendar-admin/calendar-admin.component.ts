@@ -442,7 +442,7 @@ ngOnChanges(){
     })()    
    
   }
-
+  titled:any=this.title.toString().substring(0,15);
 
   public onUpdateClick(clinic : FormGroup){
     
@@ -462,7 +462,7 @@ ngOnChanges(){
         this.isUpdated=true;
       })()    
      
-    
+      
   // (async()=>{
   //   const config = {
   //     method: 'POST',

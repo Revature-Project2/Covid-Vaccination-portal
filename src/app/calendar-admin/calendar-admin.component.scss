@@ -49,7 +49,7 @@
   cursor: default;
 }
 .row.text-center{
-  margin:10px 0 10px 120px;
+  margin:10px 0 10px 10px;
 }
 
 
@@ -75,4 +75,18 @@ mwl-calendar-week-view-hour-segment{
   max-width:1500px;
   // width:95%;
   margin:50px 0 50px 0;
+}
+
+
+#myflex,#myflex2,#myflex3{
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content:flex-start
+
+}
+
+#miid{
+  text-align: center;
+  margin:0 auto;
 }
