@@ -19,4 +19,5 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	public User findByConfirmationNumberAndEmail(String confirmationNumber , String email);
 	@Transactional
     public void deleteByUserId(int id);
+	public User findByEmail(String email);
 }

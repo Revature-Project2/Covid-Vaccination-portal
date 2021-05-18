@@ -93,4 +93,12 @@ public class AppointmentController {
 //		return new ResponseEntity<List<Appointment>>(aService.findAllAppointments(), HttpStatus.OK);
 //	}
 
+	@PostMapping("/cancel")
+	public ResponseEntity<String> cancelAppointment(@RequestParam("email") String em, @RequestParam("conf") String cn){
+		
+		aService.cancelByUserId(uServe.findByConfirmationNumber(cn).getUserId());
+		uServe.deleteByEmail(em);
+		return new ResponseEntity<String>("Appointed canceled", HttpStatus.CREATED);
+	}
 }
+

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.covidportal.model.Appointment;
 import com.covidportal.model.Clinic;
 import com.covidportal.model.Timeslot;
+import com.covidportal.model.User;
 
 public interface AppointmentRepository extends JpaRepository<Appointment, Integer>{
 	public List<Appointment> findAll();
@@ -28,4 +29,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
 	
 	@Transactional
     public void deleteByAppointmentId(int appointmentId);
+	
+	public void deleteByUser(User user);
 }

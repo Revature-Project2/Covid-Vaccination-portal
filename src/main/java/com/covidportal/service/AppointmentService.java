@@ -1,6 +1,5 @@
 package com.covidportal.service;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.covidportal.model.Appointment;
 import com.covidportal.repository.AppointmentRepository;
+import com.covidportal.repository.UserRepository;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -19,9 +19,14 @@ public class AppointmentService {
 	
 	private AppointmentRepository aRepo;	
 	private UserService uService;
+	private UserRepository uRepo;
 	
 	public void bookAppointment(Appointment appointment) {
 		 aRepo.save(appointment);
+	}
+	
+	public void cancelByUserId(int id) {
+		aRepo.deleteByUser(uRepo.findByUserId(id));
 	}
 	
 	public List<Appointment> findAllAppointments(){

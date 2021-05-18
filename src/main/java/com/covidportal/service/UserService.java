@@ -24,7 +24,14 @@ public class UserService {
 		this.userRepo = userRepo;
 	}
 
+	public void deleteByEmail(String email) {
+		userRepo.delete(userRepo.findByEmail(email));
+	}
+
 	
+	public User findByConfirmationNumber(String conf) {
+		return(userRepo.findByConfirmationNumber(conf));
+	}
 	
 	
 	public List<User> findAll()

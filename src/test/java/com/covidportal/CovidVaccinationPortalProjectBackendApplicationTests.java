@@ -44,9 +44,6 @@ class CovidVaccinationPortalProjectBackendApplicationTests {
 
 	
 
-
-	
-
 	@Mock
 	private UserService userServ;
 	@Mock
@@ -152,11 +149,11 @@ class CovidVaccinationPortalProjectBackendApplicationTests {
 		assertTrue(userController.sendingmail("divyareddy416@gmail.com", "Confirm2s2"));
 	}
 
-	@Test
-	public void validateSuccessGenerateConfirmationNumber() {
-		assertNotNull(userController.generateConfirmationNumber());
-
-	}
+//	@Test
+//	public void validateSuccessGenerateConfirmationNumber() {
+//		assertNotNull(userController.generateConfirmationNumber());
+//
+//	}
 	@Test
 	public void validateFailureSendEmail() {
 		assertFalse(userController.sendingmail("sadsad", "Confirm2s2"));
