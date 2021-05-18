@@ -117,7 +117,6 @@ export class CalendarUserComponent implements OnInit {
 
   titled:any=this.title.toString().substring(0,15);
   ngOnChanges(){
-    console.log('hi');
     (async()=>{
       const rawResponse = await fetch("http://localhost:9010/clinic", {method: 'GET', headers:{
         'Accept': 'application/json',
@@ -127,7 +126,6 @@ export class CalendarUserComponent implements OnInit {
       });
       const clinics = await rawResponse.json();
       this.clinicList=clinics;
-      console.log(this.clinicList);
       // console.log(this.clinicList);
       // setTimeout(function(){console.log(clinics);},1000)
       // console.log(clinics);
@@ -327,7 +325,11 @@ export class CalendarUserComponent implements OnInit {
       }
       });
       const appointments = await rawResponse.json();
-      console.log(appointments);
+
+      appointments.forEach((appt)=>{
+        let js={start:appt, title:""};
+        this.events.push(js);
+      })
       
       
       // console.log(this.clinicList);
@@ -375,11 +377,9 @@ export class CalendarUserComponent implements OnInit {
     }
   
 public myTest(eventss:void):void{
-  console.log('hi');
 }
 
 public onClinicSelected(event:void):void{
-    console.log('hi');
       
   }
   get f() { return this.secondFormGroup.controls; }
@@ -418,10 +418,10 @@ valueChanged(event)
 {
   this.toggle = true;
   this.cards = [{ id: 1, label: '8.00 a.m.'}, { id: 2, label: '9.00 a.m'}, { id: 3, label: '10.00 a.m'}];
-   console.log(event.value);
+   (event.value);
    if(event.value == 'Wed May 26 2021 00:00:00 GMT-0400 (Eastern Daylight Time)')
    {
-     console.log("date is selcted yuppe");
+     ("date is selcted yuppe");
    }
 }
 
@@ -429,8 +429,8 @@ public submitForm(){
   let stringFood = JSON.stringify(this.firstFormGroup.value);
   this.covidserve.postForm(stringFood).subscribe(
     response => {
-      console.log("this is response get from admin");
-      console.log(response);
+      ("this is response get from admin");
+      (response);
      
     }
   );
@@ -476,16 +476,16 @@ mayVar2:any=0;
 
 
 myBooking(){
-  console.log(this.fname);
-  console.log(this.lname);
-  console.log(this.email);
-  console.log(this.pnumber);
-  console.log(this.health);
-  console.log(this.dob);
-  console.log(this.addr);
-  console.log(this.selectedItem);
-  console.log(this.mayVar2);
-  console.log(this.vaccine);
+  (this.fname);
+  (this.lname);
+  (this.email);
+  (this.pnumber);
+  (this.health);
+  (this.dob);
+  (this.addr);
+  (this.selectedItem);
+  (this.mayVar2);
+  (this.vaccine);
 
 
   (async()=>{
