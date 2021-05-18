@@ -35,6 +35,7 @@ export class CalendarAdminComponent implements OnInit {
   // title:any = new Date();
   
   title:any = new Date();
+
   selectedMonthViewDay: CalendarMonthViewDay;
   selectedDayViewDate: Date;
   hourColumns: WeekViewHourColumn[];
@@ -322,6 +323,7 @@ ngOnChanges(){
     });
     const clinics = await rawResponse.json();
     this.clinicList=clinics;
+    console.log(this.clinicList);
 
   })()
 
@@ -329,6 +331,7 @@ ngOnChanges(){
 
   public submitClinic(clinic: FormGroup)
   {
+    console.log(clinic);   
   }
 
 
@@ -359,6 +362,7 @@ ngOnChanges(){
     const joinTable = await rawResponse.json();
     
     this.availableTimes=[];
+    console.log(joinTable);
     joinTable.forEach((item)=>{
       if(((new Date().getTime()>item) ||(new Date(item).getHours()<this.startHour)   || (new Date(item).getHours()>(this.closeHour)))){
       
@@ -366,6 +370,7 @@ ngOnChanges(){
       this.availableTimes.push([item, item+600000])}
     }
     );
+    console.log(this.availableTimes);
     // setTimeout(function(){console.log(clinics);},1000)
 
   })();
@@ -377,7 +382,8 @@ ngOnChanges(){
     }
     });
     const appointments = await rawResponse.json();
-
+    console.log(appointments);
+    console.log(this.events);   
     appointments.forEach((appt)=>{
       let js={start:appt, title:""};
       this.events.push(js);

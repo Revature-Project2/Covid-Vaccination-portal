@@ -162,10 +162,10 @@ valueChanged(event)
 {
   this.toggle = true;
   this.cards = [{ id: 1, label: '8.00 a.m.'}, { id: 2, label: '9.00 a.m'}, { id: 3, label: '10.00 a.m'}];
-   (event.value);
+   console.log(event.value);
    if(event.value == 'Wed May 26 2021 00:00:00 GMT-0400 (Eastern Daylight Time)')
    {
-     ("date is selcted yuppe");
+     console.log("date is selcted yuppe");
    }
 }
 // submitForm()
@@ -181,8 +181,8 @@ public submitForm(){
   let stringFood = JSON.stringify(this.firstFormGroup.value);
   this.covidserve.postForm(stringFood).subscribe(
     response => {
-      ("this is response get from admin");
-      (response);
+      console.log("this is response get from admin");
+      console.log(response);
      
     }
   );

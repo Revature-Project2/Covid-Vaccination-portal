@@ -57,14 +57,14 @@ private user : User;
 submitForm(appointment : FormGroup){
   
     let stringAppointment = JSON.stringify(appointment.value); 
-    (stringAppointment);
-    ('After submit '+stringAppointment);
+    console.log(stringAppointment);
+    console.log('After submit '+stringAppointment);
     this.cancelBookingService.GetAppointments(stringAppointment).subscribe(
       data =>{ 
           
-        (data[0].clinic['clinicName']);   
-        (data);   
-        (data[1].clinic.clinicName);              
+        console.log(data[0].clinic['clinicName']);   
+        console.log(data);   
+        console.log(data[1].clinic.clinicName);              
         this.clinicName =data[0].clinic.clinicName;
         this.dateTime = data[0].timeslot.dateTime;
         // this.dateTime = new Date(this.dateTime).toISOString().slice(0, 19).replace('T', ' ');
@@ -75,7 +75,7 @@ submitForm(appointment : FormGroup){
         this.time1 = new Date(this.dateTime).toISOString().slice(11, 19).replace('T', ' ');
         this.userId = data[0].user.userId;
         this.user = new User(data[0].user.userId);
-        ('test2');
+        console.log('test2');
       }
     )
 }
@@ -99,7 +99,7 @@ mySub(){
     }
     });
     const success = await rawResponse.json();
-    (success);
+    console.log(success);
     this.firs=success.firstName;
     this.las=success.lastName;
   })()  
@@ -118,7 +118,7 @@ mySub(){
     }
     });
     const success = await rawResponse.json();
-    (success);
+    console.log(success);
     this.displaySuccess="Appoitnment successfully cancelled. Thank you"
   })() 
 
