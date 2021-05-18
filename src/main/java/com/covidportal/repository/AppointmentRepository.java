@@ -29,6 +29,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
 	
 	@Transactional
     public void deleteByAppointmentId(int appointmentId);
-	
+	@Transactional
 	public void deleteByUser(User user);
 }

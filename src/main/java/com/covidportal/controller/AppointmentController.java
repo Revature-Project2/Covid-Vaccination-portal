@@ -41,7 +41,7 @@ public class AppointmentController {
 	public VaccineTypeService vServe;
 	public ClinicService cServe;
 	public AppointmentStatusService asServe;
-	
+	public UserController uCon;
 	
 	@GetMapping("/initial")
 	public ResponseEntity<String> insertInitialValues(){
@@ -61,7 +61,7 @@ public class AppointmentController {
 	
 	
 	@PostMapping("/book")
-	public ResponseEntity<String> bookAppointment(@RequestParam("clinic") String cn,				
+	public ResponseEntity<User> bookAppointment(@RequestParam("clinic") String cn,				
 													@RequestParam("timeslot") long ts,				
 													@RequestParam("vaccine") String va,				
 													@RequestParam("clinic") String cl,
@@ -86,7 +86,8 @@ public class AppointmentController {
 		Appointment app = new Appointment(1,cId, uId, tId, aId, vId);
 		
 		aService.bookAppointment(app);
-		return new ResponseEntity<String>("Appointed Booked", HttpStatus.CREATED);
+		uCon.sendingmail(em, conf);
+		return new ResponseEntity<User>(uId, HttpStatus.CREATED);
 	}
 	
 //	public ResponseEntity<List<Appointment>> getAllAppointments(){
@@ -94,11 +95,19 @@ public class AppointmentController {
 //	}
 
 	@PostMapping("/cancel")
-	public ResponseEntity<String> cancelAppointment(@RequestParam("email") String em, @RequestParam("conf") String cn){
-		
-		aService.cancelByUserId(uServe.findByConfirmationNumber(cn).getUserId());
+	public ResponseEntity<User> cancelAppointment(@RequestParam("email") String em, @RequestParam("conf") String cn){
+		User u=uServe.findByConfirmationNumber(cn);
+		aService.cancelByUserId(u.getUserId());
 		uServe.deleteByEmail(em);
-		return new ResponseEntity<String>("Appointed canceled", HttpStatus.CREATED);
+		
+		return new ResponseEntity<User>(u, HttpStatus.CREATED);
 	}
+
+
+			@PostMapping("/precancel")
+			public ResponseEntity<User> preCancelAppointment(@RequestParam("email") String em, @RequestParam("conf") String cn){
+				User u=uServe.findByConfirmationNumber(cn);
+				return new ResponseEntity<User>(u, HttpStatus.CREATED);
+}
 }
 

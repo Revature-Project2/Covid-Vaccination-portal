@@ -35,7 +35,9 @@ public class TimeslotService {
 		return tcRepo.findTimeslotsByClinicAndStatus(c,status);
 	}
 	
-	
+	public int findByAppointmentId(int id) {
+		return (aRepo.findByAppointmentId(id).getTimeslot().getTimeslotId());
+	}
 	
 	
 	public List<Long> findTimeslotsByClinicAndStatus(Boolean status, String cName) {

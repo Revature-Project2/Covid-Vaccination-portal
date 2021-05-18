@@ -34,6 +34,7 @@ public class TimeslotController {
 	private TimeslotService tService;
 	
 	
+	
 	@GetMapping("/dates")
 	public ResponseEntity<List<Long>> getTimeslotsForCLinic(@RequestParam("status") Boolean status,
 															@RequestParam("clinic") String clinic){
@@ -54,17 +55,22 @@ public class TimeslotController {
 
 	
 	@GetMapping("/appointments")
-	public ResponseEntity<List<Appointment>> getTimeslotsForCLinic(@RequestParam("clinic") String clinic){
+	public ResponseEntity<List<Long>> getTimeslotsForCLinic(@RequestParam("clinic") String clinic){
 		List<Appointment> aps= tService.findAppointmentsByClinic(clinic);
+		List<Long> tis = new ArrayList<>();
 		for(Appointment t:aps) {
 			System.out.println(t);
+			int timeid= tService.findByAppointmentId(t.getAppointmentId());
+			long ti = tService.findByTimeslotId(timeid).getDateTime();
+			tis.add(ti);
 		}
-		return new ResponseEntity<List<Appointment>>(aps,HttpStatus.ACCEPTED);
+		
+		return new ResponseEntity<List<Long>>(tis,HttpStatus.ACCEPTED);
 	}
 	
 	
 	@PutMapping("/opendates")
-	public ResponseEntity<String> insertAvailableDates(@RequestParam("date1") long date1, 
+	public ResponseEntity<List<Timeslot>> insertAvailableDates(@RequestParam("date1") long date1, 
 														@RequestParam("date2") long date2,
 														@RequestParam("clinic") String clinic){
 		System.out.println(date1);
@@ -79,7 +85,7 @@ public class TimeslotController {
 			}
 		}
 		tService.createTimeslotAll(times, clinic);
-		return new ResponseEntity<String>("Timeslots created", HttpStatus.CREATED);
+		return new ResponseEntity<List<Timeslot>>(times, HttpStatus.CREATED);
 	}
 
 	
