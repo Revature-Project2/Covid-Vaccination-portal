@@ -382,9 +382,12 @@ ngOnChanges(){
     }
     });
     const appointments = await rawResponse.json();
+    console.log(appointments);
     console.log(this.events);   
-    // appointments.forEach(()=>{})this.events.push()
-    // setTimeout(function(){console.log(clinics);},1000)
+    appointments.forEach((appt)=>{
+      let js={start:appt, title:""};
+      this.events.push(js);
+    })
   })()
 
 
