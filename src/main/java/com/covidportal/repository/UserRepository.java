@@ -9,16 +9,15 @@ import com.covidportal.model.User;
 
 
 
-
 public interface UserRepository extends JpaRepository<User, Integer>{
 	
 	public List<User> findAll();
-	public User findByUserId(int userId);
 	public User findByHealthCardNumber(String healthCardNumber);
 	public User findByConfirmationNumber(String confirmationNumber);
 	public User findByFirstName(String firstname);
-	
-	@Transactional
-	public void deleteByUserId(int id);
+	public User findByUserId(int userId);
 	public User findByConfirmationNumberAndEmail(String confirmationNumber , String email);
+	@Transactional
+    public void deleteByUserId(int id);
+	public User findByEmail(String email);
 }

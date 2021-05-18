@@ -11,9 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="clinics")
@@ -41,15 +40,13 @@ public class Clinic {
 	
 	
 	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	@OneToMany(mappedBy="clinic", fetch=FetchType.EAGER)
-	//@JsonBackReference
-	@JsonIgnore
+	@OneToMany(mappedBy="clinic", fetch=FetchType.LAZY)
+	@JsonManagedReference
 	private List<Appointment> appointmentList = new ArrayList<>();
 	
 	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	@OneToMany(mappedBy="clinic", fetch=FetchType.EAGER)
-	//@JsonBackReference
-	@JsonIgnore
+	@OneToMany(mappedBy="clinic", fetch=FetchType.LAZY)
+	@JsonManagedReference
 	private List<TimeslotJoinClinic> timeslotClinicList = new ArrayList<>();
 	
 	public Clinic() {
@@ -68,23 +65,21 @@ public class Clinic {
 		this.appointmentList = appointmentList;
 		this.timeslotClinicList = timeslotClinicList;
 	}
-	
+	public Clinic(int clinicId, String clinicName, String clinicAddress, int numberOfBeds, Time openingTime,
+            Time closingTime) {
+        super();
+        this.clinicId = clinicId;
+        this.clinicName = clinicName;
+        this.address = clinicAddress;
+        this.numberOfBeds = numberOfBeds;
+        this.openingTime = openingTime;
+        this.closingTime = closingTime;
+    }
 	
 	public Clinic(String clinicName, String clinicAddress, int numberOfBeds, Time openingTime,
 			Time closingTime) {
 		super();
 	
-		this.clinicName = clinicName;
-		this.address = clinicAddress;
-		this.numberOfBeds = numberOfBeds;
-		this.openingTime = openingTime;
-		this.closingTime = closingTime;
-	}
-	
-	public Clinic(int clinicId, String clinicName, String clinicAddress, int numberOfBeds, Time openingTime,
-			Time closingTime) {
-		super();
-		this.clinicId = clinicId;
 		this.clinicName = clinicName;
 		this.address = clinicAddress;
 		this.numberOfBeds = numberOfBeds;
@@ -139,16 +134,7 @@ public class Clinic {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
-//	@Override
-//	public String toString() {
-//		return "Clinic [clinicId=" + clinicId + ", clinicName=" + clinicName + ", clinicAddress=" + address
-//				+ ", numberOfBeds=" + numberOfBeds + ", openingTime=" + openingTime + ", closingTime=" + closingTime
-//				+ "]";
-//	}
 
-	
 
 	
 

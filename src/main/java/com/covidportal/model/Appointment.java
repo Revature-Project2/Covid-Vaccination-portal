@@ -11,20 +11,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 //@AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-//@ToString
 @Entity
 @Table(name="Appointments")
 public class Appointment {
@@ -39,28 +35,28 @@ public class Appointment {
 	@Column(name="shot_number")
 	private int shot_number;
 	
-	//@JsonIgnore
-	@ManyToOne(fetch=FetchType.EAGER)
+	@JsonBackReference
+	@ManyToOne(/* cascade=CascadeType.ALL, */fetch=FetchType.LAZY)
 	@JoinColumn(name="clinic_id")
 	private Clinic clinic;
 	
-	//@JsonIgnore
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonBackReference
+	@ManyToOne(/* cascade=CascadeType.ALL, */fetch=FetchType.LAZY)
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	//@JsonIgnore
-	@ManyToOne(fetch=FetchType.EAGER)
+	@JsonBackReference
+	@ManyToOne(/* cascade=CascadeType.ALL, */ fetch=FetchType.LAZY)
 	@JoinColumn(name="timeslot_id")
 	private Timeslot timeslot;
 	
-	//@JsonIgnore
-	@ManyToOne(fetch=FetchType.EAGER)
+	@JsonBackReference
+	@ManyToOne(/* cascade=CascadeType.ALL, */ fetch=FetchType.LAZY)
 	@JoinColumn(name="appointment_status_id")
 	private AppointmentStatus appointmentStatus;
 	
-	//@JsonIgnore
-	@ManyToOne(fetch=FetchType.EAGER)
+	@JsonBackReference
+	@ManyToOne(/* cascade=CascadeType.ALL, */ fetch=FetchType.LAZY)
 	@JoinColumn(name="vaccine_type_id")
 	private VaccineType vaccineType;
 
@@ -76,7 +72,6 @@ public class Appointment {
 		this.vaccineType = vaccineType;
 	}
 
-	@Autowired
 	public Appointment(int appointmentId,int shot_number, Clinic clinic,
 			User user, Timeslot timeslot, AppointmentStatus appointmentStatus, VaccineType vaccineType) {
 		super();

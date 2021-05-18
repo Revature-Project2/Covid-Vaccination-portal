@@ -56,4 +56,9 @@ public class ClinicService {
     //return CRepo.findById(id);
     }
 
+	public void save(Clinic clin) {
+		CRepo.save(clin);
+		
+	}
+
 }

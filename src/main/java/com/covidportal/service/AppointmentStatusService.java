@@ -11,9 +11,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor(onConstructor=@__(@Autowired))
 public class AppointmentStatusService {
-    public AppointmentStatusRepository asServ;
-    public List<AppointmentStatus> getappointmentvyid(int id)
-    {
-        return asServ.findByAppointmentStatusId(id);
+    public AppointmentStatusRepository asRepo;
+//    public List<AppointmentStatus> getappointmentvyid(int id)
+//    {
+//        return asRepo.findByAppointmentStatusId(id);
+//    }
+    
+    public AppointmentStatus getByStatus(int statusId) {
+    	return asRepo.findByAppointmentStatusId(statusId);
     }
 }

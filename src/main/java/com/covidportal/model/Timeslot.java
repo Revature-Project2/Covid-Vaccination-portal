@@ -10,18 +10,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter @Setter
 @Entity
 @Table(name="timeslots")
 public class Timeslot {
@@ -39,15 +36,11 @@ public class Timeslot {
 //	@Column(name="time")// Type time
 ////	@Basic	
 //	private String time;	
-	
-	@JsonIgnore
-	//@JsonBackReference
-	@OneToMany(mappedBy="timeslot", fetch=FetchType.EAGER)
+	@JsonManagedReference
+	@OneToMany(mappedBy="timeslot", fetch=FetchType.LAZY)
 	private List<Appointment> appointmentList = new ArrayList<>();
-	
-	@JsonIgnore
-	//@JsonBackReference
-	@OneToMany(mappedBy="timeslot", fetch=FetchType.EAGER)
+	@JsonManagedReference
+	@OneToMany(mappedBy="timeslot", fetch=FetchType.LAZY)
 	private List<TimeslotJoinClinic> timeslotClinicList = new ArrayList<>();
 	
 	public Timeslot( long dateTime, List<Appointment> appointmentList, List<TimeslotJoinClinic> timeslotClinicList) {

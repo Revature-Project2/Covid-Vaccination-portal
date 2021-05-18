@@ -7,5 +7,6 @@ public interface AppointmentStatusRepository extends JpaRepository<AppointmentSt
 	
 	
 //	@Query("select as from AppointmentStatus as where as.AppointmentStatusId = ?1")
-  public  List<AppointmentStatus> findByAppointmentStatusId(int id);
+//  public  List<AppointmentStatus> findByAppointmentStatusId(int id);
+  public AppointmentStatus findByAppointmentStatusId(int appointmentStatusId);
 }

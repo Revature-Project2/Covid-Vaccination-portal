@@ -72,6 +72,20 @@ public class AdminController {
 		return new ResponseEntity<List<Admin>>(aServe.getAllAdmin(), HttpStatus.OK);
 	}
 	
+
+		// 	@PostMapping("/login")
+	// public ResponseEntity<Object> validateLogin(@RequestBody Admin adm){
+
+	// 	Admin a = aServe.getByUserName(adm.getUserName());
+	// 	if(a==null) {
+	// 		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+	// 	}
+	// 	if (adm.getPassword().equals(a.getPassword())) {
+	// 		return new ResponseEntity<Object>(a, HttpStatus.OK);
+	// 	}
+		
+	// 	return new ResponseEntity<Object>(null, HttpStatus.NOT_FOUND);
+	// }
 	
 	@PostMapping("/login")
 	public ResponseEntity<Admin> getUserNameAndPassword(@RequestBody Admin a){
@@ -108,7 +122,7 @@ public class AdminController {
 		}
 		return new ResponseEntity<Admin>(a, HttpStatus.OK);
 	}
-	
+
 	
 	@PostMapping("/pass")
     public ResponseEntity<Object> getByUserNameAndPassword(@RequestBody  Admin a, BindingResult result){

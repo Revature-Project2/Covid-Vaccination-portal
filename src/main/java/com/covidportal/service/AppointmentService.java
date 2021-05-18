@@ -1,6 +1,5 @@
 package com.covidportal.service;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.covidportal.model.Appointment;
 import com.covidportal.repository.AppointmentRepository;
+import com.covidportal.repository.UserRepository;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -17,26 +17,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(onConstructor=@__(@Autowired))
 public class AppointmentService {
 	
-	private AppointmentRepository aRepo;
+	private AppointmentRepository aRepo;	
 	private UserService uService;
+	private UserRepository uRepo;
 	
 	public void bookAppointment(Appointment appointment) {
 		 aRepo.save(appointment);
 	}
 	
-	public void deleteByAppointmentId(int id) {
-		aRepo.deleteByAppointmentId(id);
+	public void cancelByUserId(int id) {
+		aRepo.deleteByUser(uRepo.findByUserId(id));
 	}
+	
 	public List<Appointment> findAllAppointments(){
 		return aRepo.findAll();
 	}
-	public List<Appointment> findByUserId(int userId){		
-		return aRepo.findByUser(uService.findByUserId(userId));
-	}
 	
-	public List<Appointment> getByUserId(int userId){
-		return aRepo.findByUserId(userId);
-	}
 //	public List<Appointment> findByUserId(int userId){
 //		return aRepo.findByUserId(userId);
 //	}
@@ -60,6 +56,17 @@ public class AppointmentService {
 	public Appointment findByAppointmentId(int appointmentId) {
 		return aRepo.findByAppointmentId(appointmentId);
 	} 
+	
+	
+	public List<Appointment> findByUserId(int userId){
+        return aRepo.findByUser(uService.findByUserId(userId));
+    }
+	
+	public void deleteByAppointmentId(int id) {
+        aRepo.deleteByAppointmentId(id);
+    }
+	
+	
 }
 
 

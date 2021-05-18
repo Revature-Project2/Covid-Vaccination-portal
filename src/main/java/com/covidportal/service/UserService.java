@@ -24,13 +24,15 @@ public class UserService {
 		this.userRepo = userRepo;
 	}
 
-	public void deleteByUserId(int id) {
-		userRepo.deleteByUserId(id);
+	public void deleteByEmail(String email) {
+		userRepo.delete(userRepo.findByEmail(email));
+	}
+
+	
+	public User findByConfirmationNumber(String conf) {
+		return(userRepo.findByConfirmationNumber(conf));
 	}
 	
-	public User findByUserId(int userId) {
-		return userRepo.findByUserId(userId);
-	}
 	
 	public List<User> findAll()
 	{
@@ -56,6 +58,14 @@ public class UserService {
 
 
 	
+	
+	public User findByUserId(int userId) {
+        return userRepo.findByUserId(userId);
+    }
+	
+	public void deleteByUserId(int id) {
+        userRepo.deleteByUserId(id);
+    }
 	public void deleteUser(User user)
 	{
 		userRepo.delete(user);

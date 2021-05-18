@@ -1,19 +1,17 @@
 package com.covidportal;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
-import java.sql.Time;
-import java.util.ArrayList;
 import java.math.BigInteger;
 import java.sql.Date;
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -21,9 +19,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.covidportal.controller.UserController;
 import com.covidportal.model.Admin;
@@ -39,10 +34,13 @@ import com.covidportal.service.AppointmentStatusService;
 import com.covidportal.service.ClinicService;
 import com.covidportal.service.TimeslotService;
 import com.covidportal.service.UserService;
-import org.springframework.http.ResponseEntity;
 
 @SpringBootTest
 class CovidVaccinationPortalProjectBackendApplicationTests {
+
+//	@Test
+//	void contextLoads() {
+//	}
 
 	
 
@@ -151,11 +149,11 @@ class CovidVaccinationPortalProjectBackendApplicationTests {
 		assertTrue(userController.sendingmail("divyareddy416@gmail.com", "Confirm2s2"));
 	}
 
-	@Test
-	public void validateSuccessGenerateConfirmationNumber() {
-		assertNotNull(userController.generateConfirmationNumber());
-
-	}
+//	@Test
+//	public void validateSuccessGenerateConfirmationNumber() {
+//		assertNotNull(userController.generateConfirmationNumber());
+//
+//	}
 	@Test
 	public void validateFailureSendEmail() {
 		assertFalse(userController.sendingmail("sadsad", "Confirm2s2"));
@@ -228,10 +226,10 @@ class CovidVaccinationPortalProjectBackendApplicationTests {
 	}
 
 	// *****************AppointmentStatusService***************
-	@Test
-	public void validateGetAppointmentById() {
-		assertEquals((List<Clinic>) new ArrayList<Clinic>(), apntStatusServ.getappointmentvyid(1));
-	}
+//	@Test
+//	public void validateGetAppointmentById() {
+//		assertEquals((List<Clinic>) new ArrayList<Clinic>(), apntStatusServ.getappointmentvyid(1));
+//	}
 
 	// ***********************Timeslot Service*****************
 
@@ -265,6 +263,7 @@ class CovidVaccinationPortalProjectBackendApplicationTests {
 	@Test
 	void contextLoads() {
 	}
+
 
 
 

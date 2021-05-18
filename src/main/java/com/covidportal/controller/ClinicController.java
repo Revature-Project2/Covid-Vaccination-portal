@@ -1,8 +1,6 @@
 package com.covidportal.controller;
 
 import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,10 +11,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.covidportal.model.Clinic;
@@ -24,7 +24,7 @@ import com.covidportal.service.ClinicService;
 
 @RestController
 @RequestMapping(value="/clinic")
-@CrossOrigin(origins="*") 
+@CrossOrigin
 public class ClinicController {
 
 	private ClinicService cServe;
@@ -73,6 +73,8 @@ public class ClinicController {
 	
 	@GetMapping()
 	public ResponseEntity<List<Clinic>> getAllClinics(){
+		System.out.println(cServe.getAllClinic());
+
 		return new ResponseEntity<List<Clinic>>(cServe.getAllClinic(), HttpStatus.OK);
 	}
 	
@@ -127,5 +129,35 @@ public class ClinicController {
 //	
 //		return new ResponseEntity<Clinic>(cServe.getClinicByName(name), HttpStatus.OK);
 //	}
+
+//	@CrossOrigin
+//	@GetMapping("/updateclinic")
+//	public ResponseEntity<Clinic> updateClinic(@RequestBody Clinic cn ){
+//		Clinic clin = cServe.getClinicByName(cn.getClinicName());
+//		System.out.println(clin);
+//		clin.setNumberOfBeds(cn.getNumberOfBeds());
+//		clin.setOpeningTime(cn.getOpeningTime());
+//		clin.setClosingTime(cn.getClosingTime());		
+//		cServe.save(clin);
+//		
+//		return new ResponseEntity<Clinic>(clin,HttpStatus.OK);
+//		
+//	}
+	@PatchMapping("/updateclinic")
+	public ResponseEntity<Clinic> updateClinic(@RequestParam("clinicName") String cn,
+			@RequestParam("openTime") Time ot,
+			@RequestParam("closeTime") Time ct,
+			@RequestParam("beds") int be
+			){
+		
+		Clinic clin = cServe.getClinicByName(cn);
+		System.out.println(ct);
+		clin.setNumberOfBeds(be);
+		clin.setOpeningTime(ot);
+		clin.setClosingTime(ct);		
+		System.out.println(clin);
+		cServe.save(clin);
+		return new ResponseEntity<Clinic>(clin,HttpStatus.OK);		
+	}
 	
 }
