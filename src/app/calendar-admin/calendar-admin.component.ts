@@ -382,9 +382,16 @@ ngOnChanges(){
     }
     });
     const appointments = await rawResponse.json();
-    console.log(appointments);   
+    console.log(this.events);   
+    // appointments.forEach(()=>{})this.events.push()
     // setTimeout(function(){console.log(clinics);},1000)
   })()
+
+
+
+
+
+
    for(let clinic of this.clinicList)
    {
      if(clinic.clinicName == this.selectedItem)
@@ -438,12 +445,16 @@ ngOnChanges(){
       });
       const clinic2 = await rawResponse.json();
       this.isUpdated=true;
-
+      this.conf=true;
     })()    
    
   }
   titled:any=this.title.toString().substring(0,15);
 
+
+
+  conf:any="";
+cond:any=false;
   public onUpdateClick(clinic : FormGroup){
     
 
@@ -460,6 +471,8 @@ ngOnChanges(){
         });
         const clinic2 = await rawResponse.json();
         this.isUpdated=true;
+        this.conf=true;
+        this.cond=true;
       })()    
      
       

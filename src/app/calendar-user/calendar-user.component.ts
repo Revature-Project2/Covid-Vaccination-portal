@@ -444,7 +444,7 @@ lname:any;
 lastfunc(temp:any):void{
   this.lname=temp.target.value;
 }
-email:any;
+email:any="";
 emailfunc(temp:any):void{
   this.email=temp.target.value;
 }
@@ -468,8 +468,13 @@ vaccine:any;
 vaccinefunc(temp:any):any{
   this.vaccine=temp.target.value;
 }
+conf:any="";
+cond:any=false;
 mayVar:any="";
 mayVar2:any=0;
+
+
+
 myBooking(){
   console.log(this.fname);
   console.log(this.lname);
@@ -493,10 +498,15 @@ myBooking(){
     }, 
     },);
     const res = await rawResponse.json();
-    console.log(res);
+    this.conf=`Confirmation number: ${res.confirmationNumber}`;
+    this.cond=`COnfirmation Email: ${this.email}`;
+
   
   })()
 }
+
+
+
 
 
 }

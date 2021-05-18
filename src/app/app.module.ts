@@ -45,6 +45,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { CalendarUserComponent } from './calendar-user/calendar-user.component';
 import { CalendarAdminComponent } from './calendar-admin/calendar-admin.component';
 import { CancelbookingComponent } from './cancelbooking/cancelbooking.component';
+import { ScrollBottomDirective } from './scroll-bottom.directive';
 // import { CancelbookingComponent } from './cancelbooking/cancelbooking.component';
 // import { CalendarAdminComponent } from './calendar-admin/calendar-admin.component';
 // import { CalendarUserComponent } from './calendar-user/calendar-user.component';
@@ -80,10 +81,13 @@ import { CancelbookingComponent } from './cancelbooking/cancelbooking.component'
     MaterialhoverDirective,
     CalendarUserComponent,
     CalendarAdminComponent,
-    CancelbookingComponent
+    CancelbookingComponent,
+    ScrollBottomDirective
 
   ],
   imports: [
+    
+
     BrowserModule,
     AppRoutingModule,
     BrowserModule,

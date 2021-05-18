@@ -22,16 +22,16 @@
                   </ng-template>
                   <br><br><br>
                   <mat-form-field >
-                    <input matInput placeholder="Confirmation Code" formControlName="confirmationCodeCtrl" required>
+                    <input matInput placeholder="Confirmation Code" formControlName="confirmationCodeCtrl" required (change)="myConf($event)" >
                   </mat-form-field>
                   <span>&nbsp;</span>
                   <br><br>
                   <mat-form-field >
-                    <input matInput placeholder="Email" formControlName="emailCtrl" required>
+                    <input matInput placeholder="Email" formControlName="emailCtrl" required (change)="myEmail($event)">
                   </mat-form-field>
                
                 <div>
-                    <button mat-raised-button color="primary" (click)=submitForm(firstFormGroup) matStepperNext>Submit</button>
+                    <button mat-raised-button color="primary" (click)="mySub()" matStepperNext>Submit</button>
                 </div>
               </form>
             </mat-step>
@@ -42,13 +42,8 @@
                 <p></p><br>
                
                <h4><b>Your Appointment Details</b></h4>
-               <h5> <b> Booking Clinic:</b> {{clinicName}}</h5>
-               <p><u><b>Your First Booking</b></u></p>
-               <h5> <b> Booking Date:</b> {{ date }}</h5>
-               <h5> <b> Booking Time: </b>  {{ time }}</h5>
-               <p><u><b>Your Second Booking</b></u></p>
-               <h5> <b> Booking Date:</b> {{ date1 }}</h5>
-               <h5> <b> Booking Time: </b>  {{ time1 }}</h5>
+               <h5> <b> First name:</b> {{firs}}</h5>
+               <h5> <b> Last name:</b> {{las}}</h5>
                 <p style="color:green">{{displaySuccess}}</p>
               <div style="margin-top: 25px;">
                 <!-- <button mat-raised-button color="primary" matStepperPrevious>Back</button><span>&nbsp;</span> -->

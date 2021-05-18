@@ -1,4 +1,8 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { CovidserviceService } from '../services/covidservice.service';
 
 import { CalendarUserComponent } from './calendar-user.component';
 
@@ -8,7 +12,15 @@ describe('CalendarUserComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CalendarUserComponent ]
+      declarations: [ CalendarUserComponent ],
+      imports:[
+        HttpClientTestingModule,
+        RouterTestingModule,
+        FormBuilder,
+      ],
+      providers:[
+        CovidserviceService
+      ]
     })
     .compileComponents();
   });

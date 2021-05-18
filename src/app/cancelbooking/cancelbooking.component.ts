@@ -12,7 +12,7 @@ import { User } from '../services/user';
   styleUrls: ['./cancelbooking.component.scss']
 })
 export class CancelbookingComponent implements OnInit {
- clinicName; date; time; date1; time1; dateTime; userId; displaySuccess;
+ clinicName; date; time; date1; time1; dateTime; userId; displaySuccess;firs;las;ddate;ttime;
 
 private user : User;
 
@@ -79,15 +79,48 @@ submitForm(appointment : FormGroup){
       }
     )
 }
- submitForm1(){  
-  // console.log(JSON.stringify(this.user));
-  console.log(typeof(this.userId));
-  this.displaySuccess= "Both appointmeernts cancelled successfully. Thank You!";
-  this.cancelBookingService.DeleteAppointment((this.user.id)).subscribe(
-    response =>{         
-      console.log(response);     
-      
+conf:any;
+email:any;
+myConf(c:any){
+ this.conf=c.target.value;
+}
+myEmail(e:any){
+  this.email= e.target.value;
+}
+mySub(){
+  (async()=>{
+    const rawResponse = await fetch(`http://localhost:9010/appointments/precancel?email=${this.email}&conf=${this.conf}`,
+     {method: 'POST', headers:{
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': 'http://localhost:4200'
+      // 'Access-Control-Allow-Methods': 'POST',
+      // 'Access-Control-Allow-Headers': 'Content-Type'
     }
+    });
+    const success = await rawResponse.json();
+    console.log(success);
+    this.firs=success.firstName;
+    this.las=success.lastName;
+  })()  
+}
 
-  )};
+
+ submitForm1(){  
+  (async()=>{
+    const rawResponse = await fetch(`http://localhost:9010/appointments/cancel?email=${this.email}&conf=${this.conf}`,
+     {method: 'POST', headers:{
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': 'http://localhost:4200'
+      // 'Access-Control-Allow-Methods': 'POST',
+      // 'Access-Control-Allow-Headers': 'Content-Type'
+    }
+    });
+    const success = await rawResponse.json();
+    console.log(success);
+    this.displaySuccess="Appoitnment successfully cancelled. Thank you"
+  })() 
+
+ };
 }

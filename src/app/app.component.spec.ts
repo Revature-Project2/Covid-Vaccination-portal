@@ -124,6 +124,10 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('CovidVaccinePortal app is running!');
+    // expect(compiled.querySelector('.content span').textContent).toContain('CovidVaccinePortal app is running!');
+    const btn = fixture.debugElement.nativeElement.querySelector('#test');
+    expect(btn.innerHTML).toBe('ontario@covidvaccination.com');
+    //expect(compiled.querySelector('#test').textContent).toContain('CovidVaccinePortal app is running!');
   });
+
 });
