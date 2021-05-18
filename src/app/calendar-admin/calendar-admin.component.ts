@@ -117,7 +117,6 @@ ngOnChanges(){
     });
     const clinics = await rawResponse.json();
     this.clinicList=clinics;
-    console.log(this.clinicList);
     // setTimeout(function(){console.log(clinics);},1000)
   })()
 }
@@ -323,7 +322,6 @@ ngOnChanges(){
     });
     const clinics = await rawResponse.json();
     this.clinicList=clinics;
-    console.log(this.clinicList);
 
   })()
 
@@ -331,7 +329,6 @@ ngOnChanges(){
 
   public submitClinic(clinic: FormGroup)
   {
-    console.log(clinic);   
   }
 
 
@@ -352,6 +349,22 @@ ngOnChanges(){
      }
    });
 
+
+   (async()=>{
+    const rawResponse = await fetch(`http://localhost:9010/timeslots/appointments?clinic=${value}`, {method: 'GET', headers:{
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow.Origin': '*'
+    }
+    });
+    const appointments = await rawResponse.json();
+
+    appointments.forEach((appt)=>{
+      let js={start:appt, title:""};
+      this.events.push(js);
+    })
+  })();
+
    (async()=>{
     const rawResponse = await fetch(`http://localhost:9010/timeslots/dates?status=true&clinic=${value}`, {method: 'GET', headers:{
       'Accept': 'application/json',
@@ -362,7 +375,6 @@ ngOnChanges(){
     const joinTable = await rawResponse.json();
     
     this.availableTimes=[];
-    console.log(joinTable);
     joinTable.forEach((item)=>{
       if(((new Date().getTime()>item) ||(new Date(item).getHours()<this.startHour)   || (new Date(item).getHours()>(this.closeHour)))){
       
@@ -370,25 +382,10 @@ ngOnChanges(){
       this.availableTimes.push([item, item+600000])}
     }
     );
-    console.log(this.availableTimes);
     // setTimeout(function(){console.log(clinics);},1000)
 
   })();
-   (async()=>{
-    const rawResponse = await fetch(`http://localhost:9010/timeslots/appointments?clinic=${value}`, {method: 'GET', headers:{
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow.Origin': '*'
-    }
-    });
-    const appointments = await rawResponse.json();
-    console.log(appointments);
-    console.log(this.events);   
-    appointments.forEach((appt)=>{
-      let js={start:appt, title:""};
-      this.events.push(js);
-    })
-  })()
+   
 
 
 

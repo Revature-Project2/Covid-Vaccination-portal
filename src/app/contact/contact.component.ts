@@ -43,7 +43,6 @@ export class ContactComponent  implements OnInit {
   //   console.log(this.selectedItem);
   // }
   nameSelected(temp:any):void{
-    console.log("hi");
   }
   clinicList:Clinic[];
   ngOnInit() {
@@ -162,10 +161,8 @@ valueChanged(event)
 {
   this.toggle = true;
   this.cards = [{ id: 1, label: '8.00 a.m.'}, { id: 2, label: '9.00 a.m'}, { id: 3, label: '10.00 a.m'}];
-   console.log(event.value);
    if(event.value == 'Wed May 26 2021 00:00:00 GMT-0400 (Eastern Daylight Time)')
    {
-     console.log("date is selcted yuppe");
    }
 }
 // submitForm()
@@ -181,8 +178,7 @@ public submitForm(){
   let stringFood = JSON.stringify(this.firstFormGroup.value);
   this.covidserve.postForm(stringFood).subscribe(
     response => {
-      console.log("this is response get from admin");
-      console.log(response);
+      console.log("");
      
     }
   );

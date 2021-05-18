@@ -38,12 +38,10 @@ export class LoginComponent implements OnInit {
 
     this.loginservice.authenticate(stringAdmin).subscribe(
       dataResult => {
-        console.log('I am in checkLoglin'+ dataResult); 
         console.info(dataResult);       
         if(dataResult != null){
           this.invalidLogin = "no"; 
           sessionStorage.setItem('admin', JSON.stringify(dataResult))
-          console.log('logged in');          
           this.router.navigate(['/manageclinics']);
           // this.invalidLogin = false; 
           return false;

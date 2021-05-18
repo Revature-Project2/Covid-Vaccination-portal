@@ -117,7 +117,6 @@ export class CalendarUserComponent implements OnInit {
 
   titled:any=this.title.toString().substring(0,15);
   ngOnChanges(){
-    console.log('hi');
     (async()=>{
       const rawResponse = await fetch("http://localhost:9010/clinic", {method: 'GET', headers:{
         'Accept': 'application/json',
@@ -127,7 +126,6 @@ export class CalendarUserComponent implements OnInit {
       });
       const clinics = await rawResponse.json();
       this.clinicList=clinics;
-      console.log(this.clinicList);
       // console.log(this.clinicList);
       // setTimeout(function(){console.log(clinics);},1000)
       // console.log(clinics);
@@ -295,6 +293,27 @@ export class CalendarUserComponent implements OnInit {
     this.selectedItem=temp.target.value;
 
     (async()=>{
+      const rawResponse = await fetch(`http://localhost:9010/timeslots/appointments?clinic=${this.selectedItem}`, {method: 'GET', headers:{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow.Origin': '*'
+      }
+      });
+      const appointments = await rawResponse.json();
+      
+      appointments.forEach((appt)=>{
+        let js={start:appt, title:""};
+        this.events.push(js);
+      })
+      // console.log(this.clinicList);
+      // setTimeout(function(){console.log(clinics);},1000)
+      // console.log(clinics);
+    })();
+
+
+
+
+    (async()=>{
       const rawResponse = await fetch(`http://localhost:9010/timeslots/dates?status=true&clinic=${this.selectedItem}`, {method: 'GET', headers:{
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -304,7 +323,6 @@ export class CalendarUserComponent implements OnInit {
       const joinTable = await rawResponse.json();
       
       this.availableTimes=[];
-      console.log(joinTable);
       joinTable.forEach((item)=>{
         if(((new Date().getTime()>item) ||(new Date(item).getHours()<this.startHour)   || (new Date(item).getHours()>(this.closeHour)))){
         
@@ -312,28 +330,13 @@ export class CalendarUserComponent implements OnInit {
         this.availableTimes.push([item, item+600000])}
       }
       );
-      console.log(this.availableTimes);
       // console.log(this.availableTimes);
       
       // console.log(this.clinicList);
       // setTimeout(function(){console.log(clinics);},1000)
       // console.log(clinics);
     })();
-     (async()=>{
-      const rawResponse = await fetch(`http://localhost:9010/timeslots/appointments?clinic=${this.selectedItem}`, {method: 'GET', headers:{
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow.Origin': '*'
-      }
-      });
-      const appointments = await rawResponse.json();
-      console.log(appointments);
-      
-      
-      // console.log(this.clinicList);
-      // setTimeout(function(){console.log(clinics);},1000)
-      // console.log(clinics);
-    })()
+    
   }
   clinicList:Clinic[];
   ngOnInit() {
@@ -375,11 +378,9 @@ export class CalendarUserComponent implements OnInit {
     }
   
 public myTest(eventss:void):void{
-  console.log('hi');
 }
 
 public onClinicSelected(event:void):void{
-    console.log('hi');
       
   }
   get f() { return this.secondFormGroup.controls; }
@@ -418,10 +419,8 @@ valueChanged(event)
 {
   this.toggle = true;
   this.cards = [{ id: 1, label: '8.00 a.m.'}, { id: 2, label: '9.00 a.m'}, { id: 3, label: '10.00 a.m'}];
-   console.log(event.value);
    if(event.value == 'Wed May 26 2021 00:00:00 GMT-0400 (Eastern Daylight Time)')
    {
-     console.log("date is selcted yuppe");
    }
 }
 
@@ -429,8 +428,7 @@ public submitForm(){
   let stringFood = JSON.stringify(this.firstFormGroup.value);
   this.covidserve.postForm(stringFood).subscribe(
     response => {
-      console.log("this is response get from admin");
-      console.log(response);
+
      
     }
   );
@@ -476,16 +474,7 @@ mayVar2:any=0;
 
 
 myBooking(){
-  console.log(this.fname);
-  console.log(this.lname);
-  console.log(this.email);
-  console.log(this.pnumber);
-  console.log(this.health);
-  console.log(this.dob);
-  console.log(this.addr);
-  console.log(this.selectedItem);
-  console.log(this.mayVar2);
-  console.log(this.vaccine);
+
 
 
   (async()=>{

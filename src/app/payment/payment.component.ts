@@ -57,24 +57,21 @@ export class PaymentComponent implements OnInit {
         layout: 'vertical'
       },
       onApprove: (data, actions) => {
-        console.log('onApprove - transaction was approved, but not authorized', data, actions);
         actions.order.get().then(details => {
-          console.log('onApprove - you can get full order details inside onApprove: ', details);
         });
       },
       onClientAuthorization: (data) => {
-        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
         this.showSuccess = true;
       },
       onCancel: (data, actions) => {
-        console.log('OnCancel', data, actions);
+        console.log('');
       },
       onError: err => {
-        console.log('OnError', err);
+        console.log('');
       },
       onClick: (data, actions) => {
         
-        console.log('onClick', data, actions);
+        console.log('');
       },
     };
     }

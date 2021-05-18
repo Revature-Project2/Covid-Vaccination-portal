@@ -76,8 +76,7 @@ export class ManageClinicsComponent implements OnInit {
 
   public submitClinic(clinic: FormGroup)
   {
-    console.log("Clicked details submitted");
-    console.log(clinic);
+    console.log("");
     //console.log(clinic.date);
 
     
@@ -122,20 +121,16 @@ export class ManageClinicsComponent implements OnInit {
   firstD:any;
   secondD:any;
   firstDate(temp:any):void{
-    console.log(temp.target.value);
     let year:any= Number(temp.target.value.substring(0,4));
     let month:any= (Number(temp.target.value.substring(5,7)))-1;
     let day:any= Number(temp.target.value.substring(8,10));
     this.firstD= new Date(year,month,day).getTime();
-    console.log(this.firstD);
   }
   secondDate(temp:any):void{
-    console.log(temp.target.value);
     let year:any= Number(temp.target.value.substring(0,4));
     let month:any= (Number(temp.target.value.substring(5,7)))-1;
     let day:any= Number(temp.target.value.substring(8,10));
     this.secondD= new Date(year,month,day).getTime();
-    console.log(this.clinicName);
   }
   onDatesClick(temp:any):void{
     (async()=>{

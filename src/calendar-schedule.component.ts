@@ -51,9 +51,7 @@ export class CalendarScheduleComponent {
   // }
 
   dayClicked(day: CalendarMonthViewDay): void {
-    console.log(day);
     // this.setView(CalendarView.Week);
-    console.log(day.events);
     this.selectedMonthViewDay = day;
     const selectedDateTime = this.selectedMonthViewDay.date.getTime();
     const dateIndex = this.selectedDays.findIndex(
@@ -108,18 +106,15 @@ export class CalendarScheduleComponent {
 
 
   myMethod(event:any):void{
-    console.log(event);
     this.clickeddDate=event.date;
   }
 
 
   // hourClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
   hourClicked(): void {
-    console.log("hi");
     // console.log(date);
   }
   secClick(){
-    console.log("hii");
     // console.log(events)
   }
   events: CalendarEvent[] = [
@@ -181,4 +176,3 @@ export class CalendarScheduleComponent {
 
 
 dateAdapter : DateAdapter;
-  console.log(DateAdapter);
