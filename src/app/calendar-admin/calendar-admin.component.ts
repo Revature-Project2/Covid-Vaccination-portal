@@ -360,7 +360,7 @@ ngOnChanges(){
     const appointments = await rawResponse.json();
 
     appointments.forEach((appt)=>{
-      let js={start:appt, title:""};
+      let js={start:appt, title:"", end:appt+600000};
       this.events.push(js);
     })
   })();
