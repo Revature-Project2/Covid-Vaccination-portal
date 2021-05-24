@@ -6,7 +6,7 @@ The COVID-19 Vaccination Scheduling Portal is a web app for booking COVID vaccin
 
 ## Environment/Technologies
 
-Java, Spring, Angular, Git, Spring Boot, Spring Data, PostgreSQL, AWS S3, Jenkins JUnit, Mockito, Jenkins, Karma/Jasmine
+Java, Spring, Angular, Git, Spring Boot, Spring Data, PostgreSQL, AWS S3, JUnit, Mockito, Jenkins, Karma/Jasmine
 
 ## Agular CLI
 
