@@ -1,4 +1,5 @@
 # COVID-19 Vaccination Scheduling Portal
+## Project Introduction
 The COVID-19 Vaccination Scheduling Portal is a web app for booking COVID vaccination appointments for eligible people , who can visit this website and book their appointments with available clinics and their respective timeslots, by providing their email and health card number along with their additional information such as first name, last name, birthday, phone number and address. After they succeed to book an appointment, they will receive an email with a booking confirmation number, which along with their email, they can use to cancel their appointment if they want. And admins can log in and manage their respective clinics' booking appointments, which will appear on appointment booking calendar.
 
 # CovidVaccinePortal
