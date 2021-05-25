@@ -1,47 +1,75 @@
-# COVID-19 Vaccination Scheduling Portal - Group Project
+***************************************************
+* Project: 		COVID-19 Vaccination Scheduling Portal - Group Project
+* Last Updated: May 25, 2021
+***************************************************
+* Contents:	
+*	- Technologies Used
+*	- Features
+*	-	Getting Started
+*	- Usage
+* - Team members
+* - Licenses
+***************************************************
 
-## Project Introduction
+1.  Technologies Used:
 
-The COVID-19 Vaccination Scheduling Portal is a web app for booking COVID vaccination appointments for eligible people , who can visit this website and book their appointments with available clinics and their respective timeslots, by providing their email and health card number along with their additional information such as first name, last name, birthday, phone number and address. After they succeed to book an appointment, they will receive an email with a booking confirmation number, which along with their email, they can use to cancel their appointment if they want. And admins can log in and manage their respective clinics' booking appointments, which will appear on appointment booking calendar.
+	1.1 Java
+  1.2 Spring Boot and Data
+  1.3 Angular 
+  1.4 AWS RDS
+  1.5 AWS EC2
+  1.6 JUnit/Mockito
+  1.8 AWS S3
+  1.9 Karma/Jasmine
+  1.10 Jenkins
+	
 
-### Note: For backend files, please refer to 'master-back' branch.
+2. 	Features
 
-## Environment/Technologies
+ 	2.1 Booking Appointment with Real-time Scheduling
+  2.2 Cancelling Booking
+  2.3 Making calendar days available for booking by admins
+  2.4 Edit clinic capacity and hours of operation by admins
+  2.5 Chatbot for Generally Asked Questions
+  2.6 Email Notification for booking Appointment
+  2.7 Password Encryption
 
-Java, Spring, Angular, Git, Spring Boot, Spring Data, PostgreSQL, AWS S3, JUnit, Mockito, Jenkins, Karma/Jasmine
 
-## Agular CLI
+3.  Getting Started  
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.6.
+  Execute the following command in git to import the project locally.
+  - git pull https://github.com/Revature-Project2/Covid-Vaccination-portal.git
+  Then inside the project folder run the following commands in a terminal to run the front-end part of the application
+  npm install
+  ng serve
+  ** There must be Node.js installed on the machine that you are running the application on.
+  This application fetches back-end resources from an AWS EC2 instance. In case it is not responsive, pull the back-end files from the 'master-back' branch and run     locally, and after running them change the base URL part of the sections that are fetching from the back-end to your local machine ("http://localhost:9010").
+  In order to run the back-end files localy, import the project in Eclypse or spring suite tool 4 as a Spring Boot application. Find the project name in the Boot       Dashboard and start it. You can change the back-end port in the application.yaml file.
+  
+  
+4.	Usage
 
-## Development server
+ User Layer
+ General public can book appointments by selecting clinic and vaccine type.
+ They can see calendar with dates that have slots available for booking and days that are not available
+ Once they submit appointment request they will get a confirmation number to  email that they provided while booking.
+ They can cancel their appointment by entering the confirmation number and email.
+ Admin Layer
+ Has to go to login page in order to login as  Admin and perform admin finctionalities.
+ Can make calendar days as available or not available for booking.
+ Can update clinics with opening hours, closing hours and number of beds
+  
+  
+5. Team Members
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+  - Borisagar, Mona
+  - Deverapally, Divya
+  - Karimi, Saman
+  - KC, Dharam 
+  - Variyath, Nisanth
 
-## Code scaffolding
+6.	Licenses
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
-## Team Members
-* Borisagar, Mona
-* Deverapally, Divya
-* Karimi, Saman
-* KC, Dharam 
-* Variyath, Nisanth
 
