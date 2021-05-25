@@ -3,6 +3,7 @@
 * Last Updated: May 25, 2021
 ***************************************************
 * Contents:	
+* - Introduction
 *	- Technologies Used
 *	- Features
 *	-	Getting Started
@@ -10,6 +11,10 @@
 * - Team members
 * - Licenses
 ***************************************************
+0. Introduction
+
+  Covid Vaccination Portal is a scheduling system for people who are eligible for covid vaccination and would like to book an appointment for it. The portal has a       list of vaccination clinics, and users can book and cancel appointments. Also admins can make days available fo vaccination and edit clinics capacity and hours of     operation
+
 
 1.  Technologies Used:
 
@@ -49,15 +54,21 @@
   
 4.	Usage
 
+  ![proj-0](https://user-images.githubusercontent.com/50775688/119525226-510e7c00-bd4c-11eb-934e-92191109c819.png)
  User Layer
  General public can book appointments by selecting clinic and vaccine type.
  They can see calendar with dates that have slots available for booking and days that are not available
  Once they submit appointment request they will get a confirmation number to  email that they provided while booking.
+ ![proj-2](https://user-images.githubusercontent.com/50775688/119525231-510e7c00-bd4c-11eb-9f41-c4f4e97f36c1.png)
+![proj-3](https://user-images.githubusercontent.com/50775688/119525234-51a71280-bd4c-11eb-8ffd-3a089a069f0c.png)
+![proj4](https://user-images.githubusercontent.com/50775688/119525221-5075e580-bd4c-11eb-9aac-9f1a3e0b5817.png)
  They can cancel their appointment by entering the confirmation number and email.
+ ![proj-5](https://user-images.githubusercontent.com/50775688/119525224-5075e580-bd4c-11eb-8045-fb21eae57076.png)
  Admin Layer
  Has to go to login page in order to login as  Admin and perform admin finctionalities.
  Can make calendar days as available or not available for booking.
- Can update clinics with opening hours, closing hours and number of beds
+ Can update clinics with opening hours, closing hours and number of beds.
+ ![proj-1](https://user-images.githubusercontent.com/50775688/119525229-510e7c00-bd4c-11eb-8b03-9592b5418422.png)
   
   
 5. Team Members
@@ -67,6 +78,7 @@
   - Karimi, Saman
   - KC, Dharam 
   - Variyath, Nisanth
+
 
 6.	Licenses
 
