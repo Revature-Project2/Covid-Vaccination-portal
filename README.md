@@ -18,15 +18,15 @@
 
 1.  Technologies Used:
 
-    1.1 Java
-    1.2 Spring Boot and Data
-    1.3 Angular 
-    1.4 AWS RDS
-    1.5 AWS EC2
-    1.6 JUnit/Mockito
-    1.8 AWS S3
-    1.9 Karma/Jasmine
-    1.10 Jenkins
+    1.1   Java
+    1.2   Spring Boot and Data
+    1.3   Angular 
+    1.4   AWS RDS
+    1.5   AWS EC2
+    1.6   JUnit/Mockito
+    1.8   AWS S3
+    1.9   Karma/Jasmine
+    1.10  Jenkins
 	
 
 2. 	Features
