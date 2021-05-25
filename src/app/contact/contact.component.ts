@@ -48,7 +48,7 @@ export class ContactComponent  implements OnInit {
   ngOnInit() {
     
     (async()=>{
-      const rawResponse = await fetch("http://localhost:9010/clinic", {method: 'GET', headers:{
+      const rawResponse = await fetch("http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/clinic", {method: 'GET', headers:{
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Access-Control-Allow.Origin': '*'

@@ -109,7 +109,7 @@ export class CalendarAdminComponent implements OnInit {
   // }
 ngOnChanges(){
   (async()=>{
-    const rawResponse = await fetch("http://localhost:9010/clinic", {method: 'GET', headers:{
+    const rawResponse = await fetch("http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/clinic", {method: 'GET', headers:{
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Access-Control-Allow.Origin': '*'
@@ -128,7 +128,7 @@ ngOnChanges(){
 
 
     // (async()=>{
-    //   const rawResponse = await fetch("http://localhost:9010/clinic", {method: 'GET', headers:{
+    //   const rawResponse = await fetch("http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/clinic", {method: 'GET', headers:{
     //     'Accept': 'application/json',
     //     'Content-Type': 'application/json',
     //     'Access-Control-Allow.Origin': '*'
@@ -152,7 +152,7 @@ ngOnChanges(){
         ){
         day.cssClass= 'available-day';}});
       // if(day.date.getMonth() && day.date.getDate()){day.cssClass= 'available-day'}
-      if(day.events.length>this.numberOfBeds*(this.closeHour-this.startHour)){day.cssClass= 'full-day';}
+      if(day.events.length>=this.numberOfBeds*(this.closeHour-this.startHour)){day.cssClass= 'full-day';}
       if (
         this.selectedDays.some(
           (selectedDay) => selectedDay.date.getTime() === day.date.getTime()
@@ -200,8 +200,8 @@ ngOnChanges(){
     hourColumn.hours.forEach((hour)=>{hour.segments.forEach((segment)=>{
       let segmentEvents=0;
       this.availableTimes.forEach((openPeriod)=>{
-        this.events.forEach((event)=>{if(new Date(event.start).getTime()+200000>new Date(segment.date).getTime()
-                                              &&new Date(event.start).getTime()-200000<new Date(segment.date).getTime() ){
+        this.events.forEach((event)=>{if(new Date(event.start).getTime()>=new Date(segment.date).getTime()
+                                              &&new Date(event.start).getTime()<=new Date(segment.date).getTime() ){
         // hourColumn.events.forEach((event)=>{if(new Date(event.event.start).getTime()+200000>new Date(segment.date).getTime()
         //                                       &&new Date(event.event.start).getTime()-200000<new Date(segment.date).getTime() ){
           segmentEvents++;
@@ -300,7 +300,7 @@ ngOnChanges(){
 
   constructor(private clinicService: ClinicService, private httpCli: HttpClient) { }
 
-  public urlBase :any= "http://localhost:9010/clinic";
+  public urlBase :any= "http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/clinic";
 
 
 
@@ -314,7 +314,7 @@ ngOnChanges(){
   // );
   
   (async()=>{
-    const rawResponse = await fetch("http://localhost:9010/clinic", {method: 'GET', headers:{
+    const rawResponse = await fetch("http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/clinic", {method: 'GET', headers:{
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Access-Control-Allow.Origin': '*'
@@ -351,7 +351,7 @@ ngOnChanges(){
 
 
    (async()=>{
-    const rawResponse = await fetch(`http://localhost:9010/timeslots/appointments?clinic=${value}`, {method: 'GET', headers:{
+    const rawResponse = await fetch(`http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/timeslots/appointments?clinic=${value}`, {method: 'GET', headers:{
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Access-Control-Allow.Origin': '*'
@@ -366,7 +366,7 @@ ngOnChanges(){
   })();
 
    (async()=>{
-    const rawResponse = await fetch(`http://localhost:9010/timeslots/dates?status=true&clinic=${value}`, {method: 'GET', headers:{
+    const rawResponse = await fetch(`http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/timeslots/dates?status=true&clinic=${value}`, {method: 'GET', headers:{
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Access-Control-Allow.Origin': '*'
@@ -434,7 +434,7 @@ ngOnChanges(){
   onDatesClick(temp:any):void{
     (async()=>{
       const rawResponse = await fetch(
-        `http://localhost:9010/timeslots/opendates/?date1=${this.firstD}&date2=${this.secondD}&clinic=${this.clinicName}`,
+        `http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/timeslots/opendates/?date1=${this.firstD}&date2=${this.secondD}&clinic=${this.clinicName}`,
        {method: 'PUT', headers:{
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -460,7 +460,7 @@ cond:any=false;
 
       (async()=>{
         const rawResponse = await fetch(
-          `http://localhost:9010/clinic/updateclinic?clinicName=${this.clinicName}&openTime=${this.openTime}&closeTime=${this.closeTime}&beds=${this.beds}`,
+          `http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/clinic/updateclinic?clinicName=${this.clinicName}&openTime=${this.openTime}&closeTime=${this.closeTime}&beds=${this.beds}`,
          {method: 'PATCH', headers:{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -486,7 +486,7 @@ cond:any=false;
   //     },
   //     body: JSON.stringify(clinic.value)
   // }
-  //           const rawResponse = await fetch("http://localhost:9010/clinic/updateclinic", config);
+  //           const rawResponse = await fetch("http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/clinic/updateclinic", config);
   //         })() 
                
     //          {method: 'POST', headers:{

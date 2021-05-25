@@ -75,7 +75,9 @@
               <!-- <li><a *ngIf="!loginService.isUserLoggedIn()"  routerLink="contactusform" class="nav-link">Contact</a></li> -->
               <li *ngIf="!loginService.isUserLoggedIn() && !isInLogin()" class="btn btn-secondary"><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"  routerLink ="bookappointment"class="nav-link" style="color: white"  >Booking</a></li>  
             &nbsp;
-              <li *ngIf="!loginService.isUserLoggedIn() && !isInLogin()" class="btn btn-danger"><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"  routerLink ="cancelbooking"class="nav-link" style="color: white"  >Cancel Booking</a></li> 
+              <li *ngIf="!loginService.isUserLoggedIn() && !isInLogin()" class="btn btn-danger"><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"  routerLink ="cancelbooking"class="nav-link" style="color: white; " >Cancel Booking</a></li> 
+              &nbsp;
+              <li *ngIf="!loginService.isUserLoggedIn() && !isInLogin()" class="btn btn-secondary"><a *ngIf="!loginService.isUserLoggedIn() && !isInLogin()"  routerLink ="login"class="nav-link" style="color: white;" >Login</a></li> 
                   
              </ul>
           </nav>

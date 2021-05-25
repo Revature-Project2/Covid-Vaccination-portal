@@ -7,7 +7,8 @@ import { Clinic } from './manage-clinics/clinic';
 })
 export class ClinicService {
 
-  private urlBase= "http://localhost:9010/clinic";
+  // private urlBase= "http://localhost:9010/clinic";
+  private urlBase= "http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/clinic";
   constructor(private httpCli: HttpClient ) { }
   public getAllClinics():Observable<Clinic[]>{
     const httpHead={

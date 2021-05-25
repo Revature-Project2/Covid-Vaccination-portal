@@ -41,7 +41,7 @@ export class ManageClinicsComponent implements OnInit {
 
   constructor(private clinicService: ClinicService, private httpCli: HttpClient) { }
 
-  public urlBase :any= "http://localhost:9010/clinic";
+  public urlBase :any= "http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/clinic";
 
 
 
@@ -58,7 +58,7 @@ export class ManageClinicsComponent implements OnInit {
   // );
   
   (async()=>{
-    const rawResponse = await fetch("http://localhost:9010/clinic", {method: 'GET', headers:{
+    const rawResponse = await fetch("http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/clinic", {method: 'GET', headers:{
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Access-Control-Allow.Origin': '*'
@@ -135,7 +135,7 @@ export class ManageClinicsComponent implements OnInit {
   onDatesClick(temp:any):void{
     (async()=>{
       const rawResponse = await fetch(
-        `http://localhost:9010/timeslots/opendates/?date1=${this.firstD}&date2=${this.secondD}&clinic=${this.clinicName}`,
+        `http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/timeslots/opendates/?date1=${this.firstD}&date2=${this.secondD}&clinic=${this.clinicName}`,
        {method: 'PUT', headers:{
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -157,7 +157,7 @@ export class ManageClinicsComponent implements OnInit {
 
       (async()=>{
         const rawResponse = await fetch(
-          `http://localhost:9010/clinic/updateclinic?clinicName=${this.clinicName}&openTime=${this.openTime}&closeTime=${this.closeTime}&beds=${this.beds}`,
+          `http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/clinic/updateclinic?clinicName=${this.clinicName}&openTime=${this.openTime}&closeTime=${this.closeTime}&beds=${this.beds}`,
          {method: 'PATCH', headers:{
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -182,7 +182,7 @@ export class ManageClinicsComponent implements OnInit {
   //     },
   //     body: JSON.stringify(clinic.value)
   // }
-  //           const rawResponse = await fetch("http://localhost:9010/clinic/updateclinic", config);
+  //           const rawResponse = await fetch("http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/clinic/updateclinic", config);
   //         })() 
                
     //          {method: 'POST', headers:{

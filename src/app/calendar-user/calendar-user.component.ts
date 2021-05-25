@@ -118,7 +118,7 @@ export class CalendarUserComponent implements OnInit {
   titled:any=this.title.toString().substring(0,15);
   ngOnChanges(){
     (async()=>{
-      const rawResponse = await fetch("http://localhost:9010/clinic", {method: 'GET', headers:{
+      const rawResponse = await fetch("http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/clinic", {method: 'GET', headers:{
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Access-Control-Allow.Origin': '*'
@@ -191,8 +191,8 @@ export class CalendarUserComponent implements OnInit {
     hourColumn.hours.forEach((hour)=>{hour.segments.forEach((segment)=>{
       let segmentEvents=0;
       this.availableTimes.forEach((openPeriod)=>{
-        this.events.forEach((event)=>{if(new Date(event.start).getTime()+200000>new Date(segment.date).getTime()
-                                              &&new Date(event.start).getTime()-200000<new Date(segment.date).getTime() ){
+        this.events.forEach((event)=>{if(new Date(event.start).getTime()>=new Date(segment.date).getTime()
+                                              &&new Date(event.start).getTime()<=new Date(segment.date).getTime() ){
         // hourColumn.events.forEach((event)=>{if(new Date(event.event.start).getTime()+200000>new Date(segment.date).getTime()
         //                                       &&new Date(event.event.start).getTime()-200000<new Date(segment.date).getTime() ){
           segmentEvents++;
@@ -291,9 +291,23 @@ export class CalendarUserComponent implements OnInit {
   // }
   nameSelected(temp:any):void{
     this.selectedItem=temp.target.value;
+    const value = temp.target.value;
+    this.selectedItem = value;
+    this.clinicName=value;
+    this.clinicList.forEach((clinic)=>{
+      if (clinic.clinicName==value){
+        this.openTime=clinic.openingTime;
+        this.closeTime=clinic.closingTime;
+        this.startHour=Number(clinic.openingTime.toString().substring(0,2));
+        this.closeHour=Number(clinic.closingTime.toString().substring(0,2));
+        this.beds=clinic.numberOfBeds;
+        this.numberOfBeds=clinic.numberOfBeds;
+      }
+    });
+ 
 
     (async()=>{
-      const rawResponse = await fetch(`http://localhost:9010/timeslots/appointments?clinic=${this.selectedItem}`, {method: 'GET', headers:{
+      const rawResponse = await fetch(`http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/timeslots/appointments?clinic=${this.selectedItem}`, {method: 'GET', headers:{
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Access-Control-Allow.Origin': '*'
@@ -314,7 +328,7 @@ export class CalendarUserComponent implements OnInit {
 
 
     (async()=>{
-      const rawResponse = await fetch(`http://localhost:9010/timeslots/dates?status=true&clinic=${this.selectedItem}`, {method: 'GET', headers:{
+      const rawResponse = await fetch(`http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/timeslots/dates?status=true&clinic=${this.selectedItem}`, {method: 'GET', headers:{
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Access-Control-Allow.Origin': '*'
@@ -343,7 +357,7 @@ export class CalendarUserComponent implements OnInit {
   
    
     (async()=>{
-      const rawResponse = await fetch("http://localhost:9010/clinic", {method: 'GET', headers:{
+      const rawResponse = await fetch("http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/clinic", {method: 'GET', headers:{
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Access-Control-Allow.Origin': '*'
@@ -479,7 +493,7 @@ myBooking(){
 
   (async()=>{
     const rawResponse = await fetch(
-      `http://localhost:9010/appointments/book?clinic=${this.selectedItem}&timeslot=${this.mayVar2}&vaccine=${this.vaccine}&fname=${this.fname}&lname=${this.lname}&email=${this.email}&pnumber=${this.pnumber}&health=${this.health}&dob=${this.dob}&addr=${this.addr}`, 
+      `http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/appointments/book?clinic=${this.selectedItem}&timeslot=${this.mayVar2}&vaccine=${this.vaccine}&fname=${this.fname}&lname=${this.lname}&email=${this.email}&pnumber=${this.pnumber}&health=${this.health}&dob=${this.dob}&addr=${this.addr}`, 
       {method: 'Post', headers:{
       'Accept': 'application/json',
       'Content-Type': 'application/json',

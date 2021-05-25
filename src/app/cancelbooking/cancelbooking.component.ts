@@ -84,7 +84,7 @@ myEmail(e:any){
 }
 mySub(){
   (async()=>{
-    const rawResponse = await fetch(`http://localhost:9010/appointments/precancel?email=${this.email}&conf=${this.conf}`,
+    const rawResponse = await fetch(`http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/appointments/precancel?email=${this.email}&conf=${this.conf}`,
      {method: 'POST', headers:{
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -102,7 +102,7 @@ mySub(){
 
  submitForm1(){  
   (async()=>{
-    const rawResponse = await fetch(`http://localhost:9010/appointments/cancel?email=${this.email}&conf=${this.conf}`,
+    const rawResponse = await fetch(`http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/appointments/cancel?email=${this.email}&conf=${this.conf}`,
      {method: 'POST', headers:{
       'Accept': 'application/json',
       'Content-Type': 'application/json',

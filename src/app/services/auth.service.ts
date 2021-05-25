@@ -9,7 +9,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class AuthService {
 
-  private urlBase = "http://localhost:9010/admin/login";
+  private urlBase = "http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/admin/login";
   private httpCli : HttpClient;  
   constructor(httpCli: HttpClient) { 
     this.httpCli = httpCli;

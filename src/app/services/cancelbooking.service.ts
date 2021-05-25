@@ -14,8 +14,8 @@ export class CancelbookingService {
   // }
 
 
-  baseurl = 'http://localhost:9010/users/cancelbooking';
-  deleteUrl = 'http://localhost:9010/users';
+  baseurl = 'http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/users/cancelbooking';
+  deleteUrl = 'http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/users';
   private httpCli : HttpClient;  
   constructor(httpCli: HttpClient) { 
     this.httpCli = httpCli;

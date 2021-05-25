@@ -7,7 +7,7 @@ import { formdata } from '../contact/contact';
   providedIn: 'root'
 })
 export class CovidserviceService {
-   private baseurl="http://localhost:9010/users/saveuserandappointment"
+   private baseurl="http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/users/saveuserandappointment"
   constructor(private httpCli:HttpClient) { }
 
 
