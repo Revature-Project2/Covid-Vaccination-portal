@@ -24,18 +24,10 @@ import * as EventEmitter from 'events';
   encapsulation: ViewEncapsulation.None
 })
 export class CalendarAdminComponent implements OnInit {
-
-
-
-
   viewDate: Date = new Date();
   view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
-
-  // title:any = new Date();
-  
   title:any = new Date();
-
   selectedMonthViewDay: CalendarMonthViewDay;
   selectedDayViewDate: Date;
   hourColumns: WeekViewHourColumn[];
@@ -44,14 +36,10 @@ export class CalendarAdminComponent implements OnInit {
   fullSegments:any = [];
   fullDay:any={date: new Date('May 15, 2021 03:24:00'), day: 4, isPast: true, isToday: false, isFuture: false, cssClass: "fullDays"};
   pastDays: CalendarMonthViewDay[];
-  // availableTimes=[[new Date().getTime(), new Date().getTime()+600000000]];
   availableTimes=[];
-
   setView(view: CalendarView) {
     this.view = view;
   }
-  
-
   clickeddDate: Date;
   clickedColumn: number;
   clinic:string="north";
@@ -62,7 +50,6 @@ export class CalendarAdminComponent implements OnInit {
   dayStatus(day: CalendarMonthViewDay):string{
     if(day.isPast){ return("past date");}
   };
-
   MonthDayClicked(day: CalendarMonthViewDay): void {
     this.clickeddDate= day.date;
     this.title=day.date;
@@ -74,19 +61,6 @@ export class CalendarAdminComponent implements OnInit {
       this.viewDate=day.date;
       this.setView(CalendarView.Week);
     }});
-    // this.selectedMonthViewDay = day;
-    // const selectedDateTime = this.selectedMonthViewDay.date.getTime();
-    // const dateIndex = this.selectedDays.findIndex(
-    //   (selectedDay) => selectedDay.date.getTime() === selectedDateTime
-    // );
-    // if (dateIndex > -1) {
-    //   delete this.selectedMonthViewDay.cssClass;
-    //   this.selectedDays.splice(dateIndex, 1);
-    // } else {
-    //   this.selectedDays.push(this.selectedMonthViewDay);
-    //   day.cssClass = 'cal-day-selected';
-    //   this.selectedMonthViewDay = day;
-    // }
   }
   weekHourClicked(day :any){
     this.title=day.date;
@@ -98,15 +72,8 @@ export class CalendarAdminComponent implements OnInit {
         this.bookingTime=null;
       }
     });
-    // this.addSelectedDayViewClass();
-    // this.addSelectedDayViewClass();
+
   }
-
-  // @Input() selectedItem:string;
-  // @Input() clinicList:Clinic[];
-
-  // ngOnInt(selectedItem){
-  // }
 ngOnChanges(){
   (async()=>{
     const rawResponse = await fetch("http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/clinic", {method: 'GET', headers:{
@@ -117,41 +84,15 @@ ngOnChanges(){
     });
     const clinics = await rawResponse.json();
     this.clinicList=clinics;
-    // setTimeout(function(){console.log(clinics);},1000)
   })()
 }
-
-
-
-
   beforeMonthViewRender({body,header,period}): void {
-
-
-    // (async()=>{
-    //   const rawResponse = await fetch("http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/clinic", {method: 'GET', headers:{
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //     'Access-Control-Allow.Origin': '*'
-    //   }
-    //   });
-    //   const clinics = await rawResponse.json();
-    //   this.clinicList=clinics;
-    //   // setTimeout(function(){console.log(clinics);},1000)
-    // })()
-
     body.forEach((day) => {
-      // day.cssClass= 'unavailable-day';
       if(day.isPast){ day.cssClass= 'unavailable-day';}
-      // this.availableTimes.forEach((openPeriod)=>{if((day.date.getTime()>=openPeriod[0] && day.date.getTime()<=openPeriod[1])
-      //                                               ||(day.date.getTime()>=openPeriod[0] && day.date.getTime()<openPeriod[0]+86400000)
-      //                                               ||(day.date.getTime()<=openPeriod[1] && day.date.getTime()>openPeriod[1]-86400000)
       this.availableTimes.forEach((openPeriod)=>{if((openPeriod[0]-day.date.getTime()<86400000 && openPeriod[0]-day.date.getTime()>0
-                                                  
-        
         )
         ){
         day.cssClass= 'available-day';}});
-      // if(day.date.getMonth() && day.date.getDate()){day.cssClass= 'available-day'}
       if(day.events.length>=this.numberOfBeds*(this.closeHour-this.startHour)){day.cssClass= 'full-day';}
       if (
         this.selectedDays.some(
@@ -161,29 +102,14 @@ ngOnChanges(){
         day.cssClass = 'cal-day-selected';
       }
     });
-
-    //  this.clinicService.getAllClinics().subscribe(
-    //   response =>{
-    //     this.clinicList=response;
-    //    }
-    // );
-    
-   
-
-
   }
   beforeWeekOrDayViewRender(event: CalendarWeekViewBeforeRenderEvent) {
     this.hourColumns = event.hourColumns;
-    // this.addSelectedDayViewClass();
     this.title=event.period.start.getDay();
     event.header.forEach((day)=>{
       if(day.isPast){ day.cssClass= 'unavailable-day';}
     });
     event.hourColumns.forEach((hourColumn)=>{
-      // this.availableTimes.forEach((openPeriod)=>{
-      //   if(hourColumn.date.getTime()>=openPeriod[0] && hourColumn.date.getTime()<=openPeriod[1]){
-      //   hourColumn.hours.forEach((hour)=>{hour.segments.forEach((segment)=>{segment.cssClass = 'available-day';})});
-      // }
         hourColumn.hours.forEach((hour)=>{hour.segments.forEach((segment)=>{
           this.availableTimes.forEach((openPeriod)=>{
             if(segment.date.getTime()>=openPeriod[0] && segment.date.getTime()<=openPeriod[1]){ 
@@ -193,17 +119,12 @@ ngOnChanges(){
               }
           })});
       }
-      //   if(hourColumn.date.getTime()<new Date().getTime()){
-      //   hourColumn.hours.forEach((hour)=>{hour.segments.forEach((segment)=>{segment.cssClass = 'unavailable-day';})});
-      // }
     )
     hourColumn.hours.forEach((hour)=>{hour.segments.forEach((segment)=>{
       let segmentEvents=0;
       this.availableTimes.forEach((openPeriod)=>{
         this.events.forEach((event)=>{if(new Date(event.start).getTime()>=new Date(segment.date).getTime()
                                               &&new Date(event.start).getTime()<=new Date(segment.date).getTime() ){
-        // hourColumn.events.forEach((event)=>{if(new Date(event.event.start).getTime()+200000>new Date(segment.date).getTime()
-        //                                       &&new Date(event.event.start).getTime()-200000<new Date(segment.date).getTime() ){
           segmentEvents++;
         }});   
       });
@@ -213,64 +134,9 @@ ngOnChanges(){
       }});});
     });
   }
-  // beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void {
-  //   this.fullDay.cssClass= 'fullDays';
-  //   body.forEach((day) => {
-  //     if (
-  //       this.selectedDays.some(
-  //         (selectedDay) => selectedDay.date.getTime() === day.date.getTime()
-  //       )
-  //     ) {
-  //       day.cssClass = 'cal-day-selected';
-  //     }
-  //   });
-  // }
-  // dayy:any=null;
 
-  // @Output() mouseH = new EventEmitter<string>();
-  //   mouseHovered(day){
-  //     this.mouseH.emit(`${day.path[1].firstElementChild.ariaLabel}`);
-  //   }
-
-  // private addSelectedDayViewClass() {
-  //   this.hourColumns.forEach((column) => {
-  //     column.hours.forEach((hourSegment) => {
-  //       hourSegment.segments.forEach((segment) => {
-  //         delete segment.cssClass;
-  //         if (
-  //           this.selectedDayViewDate &&
-  //           segment.date.getTime() === this.selectedDayViewDate.getTime()
-  //         ) {
-  //           segment.cssClass = 'cal-day-selected';
-  //         }
-  //       });
-  //     });
-  //   });
-  // }
-
- 
-
- 
   events: CalendarEvent[] = [
-    // {
-    //   start: startOfDay(new Date()),
-    //   title: 'Second event',
-    // }
   ];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   selectedItem:string;
   openTime : any="Opening Time";
   closeTime :any= "Closing Time";
@@ -285,34 +151,19 @@ ngOnChanges(){
     start: new FormControl(),
     end: new FormControl()
   });
-  
   private selected = 'option2';
-
   clinicGroup=new FormGroup({
    
     clinicName: new FormControl(''),
     openingTime: new FormControl(''),
    closingTime: new FormControl(''),
-   numberOfBeds: new FormControl('')
-    
+   numberOfBeds: new FormControl('')  
     });
- 
-
   constructor(private clinicService: ClinicService, private httpCli: HttpClient) { }
 
   public urlBase :any= "http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/clinic";
-
-
-
   clinicList:Clinic[];
   ngOnInit(): void {
-
-  //  this.clinicService.getAllClinics().subscribe(
-  //   response =>{
-  //     this.clinicList=response;
-  //    }
-  // );
-  
   (async()=>{
     const rawResponse = await fetch("http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/clinic", {method: 'GET', headers:{
       'Accept': 'application/json',
@@ -322,19 +173,13 @@ ngOnChanges(){
     });
     const clinics = await rawResponse.json();
     this.clinicList=clinics;
-
   })()
-
   }
-
   public submitClinic(clinic: FormGroup)
   {
   }
-
-
   public onClinicSelected(event)
   {
-
     const value = event.target.value;
    this.selectedItem = value;
    this.clinicName=value;
@@ -348,8 +193,6 @@ ngOnChanges(){
        this.numberOfBeds=clinic.numberOfBeds;
      }
    });
-
-
    (async()=>{
     const rawResponse = await fetch(`http://ec2-18-219-2-30.us-east-2.compute.amazonaws.com:9010/timeslots/appointments?clinic=${value}`, {method: 'GET', headers:{
       'Accept': 'application/json',
@@ -358,7 +201,6 @@ ngOnChanges(){
     }
     });
     const appointments = await rawResponse.json();
-
     appointments.forEach((appt)=>{
       let js={start:appt, title:"", end:appt+600000};
       this.events.push(js);
@@ -382,7 +224,6 @@ ngOnChanges(){
       this.availableTimes.push([item, item+600000])}
     }
     );
-    // setTimeout(function(){console.log(clinics);},1000)
 
   })();
    

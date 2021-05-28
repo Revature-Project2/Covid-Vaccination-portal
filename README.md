@@ -13,7 +13,7 @@
 ***************************************************
 0.   Introduction
 
-    Covid Vaccination Portal is a scheduling system for people who are eligible for covid vaccination and would like to book an appointment for it. The portal has a       list of vaccination clinics, and users can book and cancel appointments. Also admins can make days available for vaccination and edit clinics capacity and hours of     operation
+    Covid Vaccination Portal is a scheduling system for people who are eligible for covid vaccination and would like to book an appointment for it. The portal has a       list of vaccination clinics, and users can book and cancel appointments. Also admins can make days available fo vaccination and edit clinics capacity and hours of     operation
 
 
 1.  Technologies Used:
